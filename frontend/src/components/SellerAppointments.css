@@ -1,0 +1,76 @@
+.appointments-h1{
+    text-align: center;
+    padding: 40px;
+    
+}
+
+.cards{
+    padding: 30px;
+    text-align: left;
+    
+}
+
+.main-content{
+    text-align: center;
+    text-emphasis-color: black;
+    
+}
+
+.customCard {
+    background: #FFEFD8 !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttons{
+display: inline-block;
+}
+
+.buttons > button{
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-top: 40px;
+    margin-bottom:30px;
+    background-color:#FFEFD8;
+    border-color: #FFEFD8;
+    color: black;
+    
+}
+
+.buttons>button:hover {
+    background-color: #C5801A;
+    border-color: #C5801A;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.buttons>button::selection {
+    background-color: #C5801A !important;
+    border-color: #C5801A !important;
+
+}
+
+.apr-buttons{
+    display: inline-block;
+    text-align: right;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.apr-buttons > button{
+
+    margin-right: 15px;
+    margin-left: 15px;
+    background-color:#C5801A;
+    border-color: #C5801A;
+    color: black;
+    
+}
+
+.decision-buttons{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
