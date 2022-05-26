@@ -3,7 +3,7 @@ import "./SellerAppointments.css";
 import Axios from "axios";
 import { Card, Button, Row } from "react-bootstrap";
 
-function SellerAppointments() {
+function SellerRequests() {
 	const responses = [
 		{
 			_id: "6260afc9f481f2aa958617ef",
@@ -59,31 +59,13 @@ function SellerAppointments() {
 			date: "1602442800000",
 			alternate_date: "1665514800000",
 		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Cancelled",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Completed",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
 	];
 
-	const [appointments, setAppointments] = useState(null);
+	const [requests, setRequests] = useState(null);
 	const getAppointments = () => {
 		///Axios.get("http://localhost:4000/api/auth/getApp").then((response) => {
 		//console.log(response);
-		setAppointments(responses.data);
+		setRequests(responses.data);
 		//}
 		//);
 	};
@@ -95,22 +77,14 @@ function SellerAppointments() {
 
 	const [isRejected, setIsRejected] = useState(null);
 
-	const [isCompleted, setIsCompleted] = useState(null);
-
-	const [isCancelled, setIsCancelled] = useState(null);
-
 	var approved = responses.filter((e) => e.status === "Approved");
 	var rejected = responses.filter((e) => e.status === "Rejected");
 	var pending = responses.filter((e) => e.status === "Pending");
-	var completed = responses.filter((e) => e.status === "Completed");
-	var cancelled = responses.filter((e) => e.status === "Cancelled");
 
 	function showApproved() {
 		setIsApproved(true);
 		setIsRejected(false);
 		setIsPending(false);
-		setIsCancelled(false);
-		setIsCompleted(false);
 		setfilteredAppointments(approved);
 	}
 
@@ -118,8 +92,6 @@ function SellerAppointments() {
 		setIsApproved(false);
 		setIsRejected(true);
 		setIsPending(false);
-		setIsCancelled(false);
-		setIsCompleted(false);
 		setfilteredAppointments(rejected);
 	}
 
@@ -127,27 +99,7 @@ function SellerAppointments() {
 		setIsApproved(false);
 		setIsRejected(false);
 		setIsPending(true);
-		setIsCancelled(false);
-		setIsCompleted(false);
 		setfilteredAppointments(pending);
-	}
-
-	function showCompleted() {
-		setIsApproved(false);
-		setIsRejected(false);
-		setIsPending(false);
-		setIsCancelled(false);
-		setIsCompleted(true);
-		setfilteredAppointments(completed);
-	}
-
-	function showCancelled() {
-		setIsApproved(false);
-		setIsRejected(false);
-		setIsPending(false);
-		setIsCompleted(false);
-		setIsCancelled(true);
-		setfilteredAppointments(cancelled);
 	}
 
 	return (
@@ -176,23 +128,6 @@ function SellerAppointments() {
 				>
 					{" "}
 					Pending
-				</Button>
-				<Button
-					id="completed-button"
-					variant="outline-warning"
-					onClick={() => showCompleted()}
-				>
-					{" "}
-					Completed
-				</Button>
-
-				<Button
-					id="pending-button"
-					variant="outline-warning"
-					onClick={() => showCancelled()}
-				>
-					{" "}
-					Cancelled
 				</Button>
 			</div>
 
@@ -230,27 +165,6 @@ function SellerAppointments() {
 														<b>To User: </b> {response.to_user_id}
 													</p>
 													<p>
-														<b>Rejection Date: </b> {response.alternate_date}
-													</p>
-												</div>
-											)}
-											{isCompleted === true && (
-												<div className="test">
-													<p>
-														<b>To User: </b> {response.to_user_id}
-													</p>
-													<p>
-														<b>Completion Date: </b> {response.alternate_date}
-													</p>
-												</div>
-											)}
-
-											{isCancelled === true && (
-												<div className="user-date">
-													<p>
-														<b>To User: </b> {response.to_user_id}
-													</p>
-													<p>
 														<b>Cancellation Date: </b> {response.alternate_date}
 													</p>
 												</div>
@@ -268,15 +182,10 @@ function SellerAppointments() {
 												<b>Status: </b>
 												{response.status}
 											</p>
-											<div className="date-report">
-												<p>
-													<b>Date: </b>
-													{response.date}
-												</p>
-												<a className="report-link" href="">
-													Report Customer
-												</a>
-											</div>
+											<p>
+												<b>Date: </b>
+												{response.date}
+											</p>
 										</Card.Text>
 										<div className="decision-buttons">
 											{isPending === true && (
@@ -300,4 +209,4 @@ function SellerAppointments() {
 	);
 }
 
-export default SellerAppointments;
+export default SellerRequests;

@@ -3,7 +3,7 @@ import "./SellerAppointments.css";
 import Axios from "axios";
 import { Card, Button, Row } from "react-bootstrap";
 
-function SellerAppointments() {
+function CustomerAppointments() {
 	const responses = [
 		{
 			_id: "6260afc9f481f2aa958617ef",
@@ -278,18 +278,6 @@ function SellerAppointments() {
 												</a>
 											</div>
 										</Card.Text>
-										<div className="decision-buttons">
-											{isPending === true && (
-												<div className="apr-buttons">
-													<Button className="apr-btn" variant="outline-warning">
-														Accept
-													</Button>
-													<Button className="rej-btn" variant="outline-warning">
-														Rejcet
-													</Button>
-												</div>
-											)}
-										</div>
 									</Card.Body>
 								</Card>
 							</div>
@@ -300,4 +288,4 @@ function SellerAppointments() {
 	);
 }
 
-export default SellerAppointments;
+export default CustomerAppointments;

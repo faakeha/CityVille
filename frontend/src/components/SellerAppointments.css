@@ -6,9 +6,13 @@
 
 .cards{
     padding: 30px;
-    text-align: left;
     
 }
+.card-text{
+    text-align: left;
+}
+
+
 
 .main-content{
     text-align: center;
@@ -54,7 +58,7 @@ display: inline-block;
     display: inline-block;
     text-align: right;
     margin-left: auto !important;
-    margin-right: auto !important;
+
 }
 
 .apr-buttons > button{
@@ -67,10 +71,21 @@ display: inline-block;
     
 }
 
-.decision-buttons{
-    margin-left: auto;
-    margin-right: auto;
+.test{
+    display: flex;
+    justify-content: space-between;
 }
 
+.date-report {
+    display: flex;
+    justify-content: space-between;
+}
 
+.user-date {
+    display: flex;
+    justify-content: space-between;
+}
 
+.report-link{
+    color: black;
+}
