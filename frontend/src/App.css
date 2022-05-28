@@ -9,13 +9,14 @@
 
 body{
   position: relative;
-  min-height: 100vh;
+  min-height:100vh;
+   margin:0;
 }
 
 body::after{
   content:'';
   display: block;
-  height: 70px;
+  height: 90px;
 }
 
 nav{
@@ -82,7 +83,7 @@ margin: auto;
 
 .floatcontainer{
   display: flex;
-  padding: 20px;
+  padding: 15px;
   vertical-align: top;
 }
 
@@ -96,10 +97,13 @@ margin: auto;
 }
 
 .card{
-  padding: 20px;
+  height: 73vh;
   display: flex;
 }
 
+.hd{
+  overflow: hidden;
+}
 
 .hc{
   flex: 1;
@@ -116,6 +120,7 @@ margin: auto;
 
 .form-group.l{
   margin: 20px;
+  text-align: center;
 }
 
 .cont{
@@ -199,7 +204,7 @@ div .row3{
 
 
 .react-horizontal-scrolling-menu--item{
-  height: 180px !important;
+  height: 180px; 
 }
 
 .searchResult{
@@ -332,7 +337,9 @@ label {
 
 
 
+
 .flex-container {
+
   display: flex;
   padding: 0px 25px 10px 15px;
   color : #fff;
@@ -340,7 +347,6 @@ label {
   background: #C5801A;
   text-align: right;
   height: 90px;
-  
   align-items: center;
 }
 
@@ -375,6 +381,8 @@ label {
   width: 100%;
   font-size: 20px;
   height: 90px;
+  
+  
 }
 .footer_support{
   font-size: 20px;
@@ -551,17 +559,15 @@ label {
 
 .services{
   width: 100%;
-  top:90px;
-  height: 95vh;
-  bottom: 90px;
+  height: 80%;
+  
   
 }
 
 .serviceleft{
-  
   background-color:#FFEFD8;
   float: left;
-  width: 25%;
+  width: 24%;
   height: 95vh;
   bottom: 90px;
   padding: 20px;
@@ -573,7 +579,16 @@ label {
   height: 95vh;
   bottom: 90px;
   padding: 20px;
+  overflow: scroll;
+  
 }
+
+.ser2{
+  margin-bottom: 10px;
+}
+
+
+
 
 /* .leftcat{
   width: 80%;
@@ -605,4 +620,8 @@ label {
 .serviceTitle{
   font-weight: 500;
   font-size:50px;
+}
+
+.align{
+  text-align: left;
 }

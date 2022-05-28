@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {useState, useEffect, createContext} from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import Profile from './Profile';
+import {FaExclamationCircle } from "react-icons/fa";
 
 
 function Login() {
@@ -17,6 +18,8 @@ function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+    const [msg, setMsg] = useState('')
   //const [data, setData] = useState('');
 
 
@@ -39,12 +42,39 @@ function Login() {
       console.log('before route change')
     localStorage.setItem('firstLogin', true)
     localStorage.setItem('userToken', data.refreshToken)
+    setMsg(data.message)
+    setIsOpen(true)
+    while(isOpen)
     routeChange()
+    
     }
     else{
       prompt(data)
     }
    
+  }
+
+  function FPopup(){
+    if(isOpen && msg === 'Error'){
+      return(
+        <div class="popup">
+        <div className='tick'>
+              <FaExclamationCircle size='lg'/>
+          </div>
+          <div className='box'>
+            <h2 style={{color: '#c91414'}}>Error</h2>
+            <p style={{color: '#c91414'}}> Please check all fields before signing up!</p>
+            <br/><br/><br/> 
+            <input 
+              type="submit"
+              className="btn btn-primary log"
+              value='Ok'
+             onClick={() => {setIsOpen(false)}}
+            />
+          </div>
+        </div>
+  
+       )} 
   }
 
   
@@ -109,6 +139,7 @@ function Login() {
                 
               </div>
         </form>
+        {isOpen && msg === 'Error' && <FPopup/>}
       </div>
     </div>
     

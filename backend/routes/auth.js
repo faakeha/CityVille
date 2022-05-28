@@ -190,12 +190,13 @@ router.put("/updateService/:id", verifyToken, async (req, res) => { //service id
 router.post("/login", async(req,res)=>{
     try{
         const user = await User.findOne({email:req.body.email});
-        !user && res.status(401).json("Wrong Credentials")
+        if(!user) return res.status(401).json("Wrong Credentials")
+
 
         const decrypted_password = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
         const pass = decrypted_password.toString(cryptoJs.enc.Utf8);
 
-        pass !== req.body.password && res.status(401).json("Wrong Credentials")
+        if(pass !== req.body.password) return res.status(401).json("Wrong Credentials")
 
         const accessToken = jwt.sign({
             id: user._id
@@ -611,5 +612,13 @@ router.get('/Categories', async(req, res) => {
     });
     res.json(arrc);
 });
+
+router.get('/getServices', async(req, res) => {
+    const serv = await Service.aggregate([{ $group: {_id: "$category", num_services: {$sum: 1}, services: {$addToSet: "$$ROOT"}}}])
+
+    res.json(serv);
+})
+
+router.get('/getServiceObj')
 
 module.exports = router;

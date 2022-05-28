@@ -6,6 +6,7 @@ export const DataProvider = ({children}) => {
     const [users,setUsers] = useState([''])
     const [categories, setCategories] = useState([''])
     const [services, setServices] = useState([''])
+    const [servcat, setServcat] = useState([''])
 
     useEffect(() => {
         //console.log('hi from global state')
@@ -77,6 +78,38 @@ export const DataProvider = ({children}) => {
         }
         allServices()
 
+        async function serv(){
+            console.log('in serv method')
+            
+            const data = await fetch('http://localhost:3001/CityVille/getServices', {
+              method: 'GET',
+              
+            }).then((response) => response.json())
+            .then(data => {
+              return data;
+            });
+        
+            setServcat(data)
+            console.log('serv', data)
+          }
+          serv()
+
+          async function getServiceObj(){
+            console.log('in service obj')
+            const ser = await fetch('http://localhost:3001/CityVille/Services', {
+                method: 'GET',
+
+              })
+              .then((response) => response.json())
+              .then(data => {
+                return data;
+            });
+            //console.log('srv', ser)
+            setServices(ser)
+        }
+        
+
+
         
     }, [])
 
@@ -85,7 +118,8 @@ export const DataProvider = ({children}) => {
     const state = {
         categories : [categories, setCategories],
         services : [services, setServices],
-        users : [users, setUsers]
+        users : [users, setUsers],
+        servcat : [servcat, setServcat]
     }
     return (
         <GlobalState.Provider value={state}>
