@@ -85,7 +85,7 @@ function Login() {
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-                type="text"
+                type="password"
                 className="form-control"
                 placeholder="Enter your password here"
                 autoFocus

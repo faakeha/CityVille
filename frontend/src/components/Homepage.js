@@ -55,7 +55,7 @@ const [sp] = state.users
 
       const getcategories = categoriesG.map( item => (
         <div className="form-group l" >
-          <img src="https://res.cloudinary.com/dbmknff2i/image/upload/v1650369466/users/x_pbf8xz.png" style={{
+          <img className='img' src="https://res.cloudinary.com/dbmknff2i/image/upload/v1650369466/users/x_pbf8xz.png" style={{
         width: 100,
         height: 100,
         }} alt='category' ></img>

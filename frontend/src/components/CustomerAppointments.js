@@ -1,83 +1,111 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SellerAppointments.css";
-import Axios from "axios";
+//import Axios from "axios";
 import { Card, Button, Row } from "react-bootstrap";
 
 function CustomerAppointments() {
-	const responses = [
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Pending",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Pending",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Pending",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Approved",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Approved",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Rejected",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Cancelled",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Completed",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-	];
+
+	const [responses, setResponse] = useState([]);
+
+	async function get_com_app(event){
+
+	console.log('in login method')
+	const token = localStorage['userToken'] 
+    //event.preventDefault()
+    const data = await fetch('http://localhost:3001/CityVille/getApp', {
+      method: 'GET',
+      headers: {
+        'Content-Type':'application/json',
+		"token":`Bearer ${token}`
+      }
+      })
+    
+	  const res = await data.json()
+	  console.log("eeeeeeeeeeeeeeeeeeeeee",res)
+	  setResponse(res);
+
+	}
+
+	useEffect((e) => {
+		get_com_app(e)
+	   }, []); 
+
+
+
+	// const responses = [
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Pending",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Pending",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Pending",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Approved",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Approved",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Rejected",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Cancelled",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Completed",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// ];
 
 	const [appointments, setAppointments] = useState(null);
 	const getAppointments = () => {

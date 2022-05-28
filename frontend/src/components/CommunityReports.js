@@ -1,68 +1,94 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SellerAppointments.css";
-import Axios from "axios";
+//import Axios from "axios";
 import { Card, Button, Row } from "react-bootstrap";
 
 function CommunityReports() {
-	const responses = [
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			report_status: "Rejected",
-			description: "desc desc desc",
-			date: "1602442800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			report_status: "Pending",
-			description: "desc desc desc",
-			date: "1602442800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			report_status: "Approved",
-			description: "desc desc desc",
-			date: "1602442800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			report_status: "Approved",
-			description: "desc desc desc",
-			date: "1602442800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			report_status: "Approved",
-			description: "desc desc desc",
-			date: "1602442800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			report_status: "Approved",
-			description: "desc desc desc",
-			date: "1602442800000",
-		},
-	];
+
+	const [response, setResponse] = useState([]);
+
+	async function get_com_reports(event){
+
+	console.log('in login method')
+	const token = localStorage['userToken'] 
+    //event.preventDefault()
+    const data = await fetch('http://localhost:3001/CityVille/allreports', {
+      method: 'GET',
+      headers: {
+        'Content-Type':'application/json',
+		"token":`Bearer ${token}`
+      }
+      })
+    
+	  const res = await data.json()
+	  console.log("eeeeeeeeeeeeeeeeeeeeee",res)
+	  setResponse(res);
+
+	}
+
+	useEffect((e) => {
+		get_com_reports(e)
+	   }, []); 
+
+	// const response = [
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		report_status: "Rejected",
+	// 		description: "desc desc desc",
+	// 		date: "1602442800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		report_status: "Pending",
+	// 		description: "desc desc desc",
+	// 		date: "1602442800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		report_status: "Approved",
+	// 		description: "desc desc desc",
+	// 		date: "1602442800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		report_status: "Approved",
+	// 		description: "desc desc desc",
+	// 		date: "1602442800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		report_status: "Approved",
+	// 		description: "desc desc desc",
+	// 		date: "1602442800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		report_status: "Approved",
+	// 		description: "desc desc desc",
+	// 		date: "1602442800000",
+	// 	},
+	// ];
 
 	const [reports, setReports] = useState(null);
-	const getAppointments = () => {
-		///Axios.get("http://localhost:4000/api/auth/getApp").then((response) => {
-		//console.log(response);
-		setReports(responses.data);
-		//}
-		//);
-	};
+	// const getAppointments = () => {
+	// 	///Axios.get("http://localhost:4000/api/auth/getApp").then((response) => {
+	// 	//console.log(response);
+	// 	setReports(response.data);
+	// 	//}
+	// 	//);
+	// };
 	const [filteredReports, setfilteredReports] = useState(null);
 
 	const [isPending, setIsPending] = useState(null);
@@ -71,9 +97,10 @@ function CommunityReports() {
 
 	const [isRejected, setIsRejected] = useState(null);
 
-	var approved = responses.filter((e) => e.report_status === "Approved");
-	var rejected = responses.filter((e) => e.report_status === "Rejected");
-	var pending = responses.filter((e) => e.report_status === "Pending");
+	var approved = response.filter((e) => e.report_status === "Approved");
+	var rejected = response.filter((e) => e.report_status === "Rejected");
+	var pending = response.filter((e) => e.report_status === "Pending");
+	console.log("1", approved)
 
 	function showApproved() {
 		setIsApproved(true);
@@ -169,7 +196,7 @@ function CommunityReports() {
 											</p>
 											<p>
 												<b>Date: </b>
-												{response.date}
+												{response.createdAt}
 											</p>
 										</Card.Text>
 										<div className="decision-buttons">
