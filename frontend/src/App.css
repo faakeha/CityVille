@@ -128,7 +128,7 @@ margin: auto;
 
 }
 
-img {
+.img {
   border: 5px solid #555;
 }
 
@@ -408,13 +408,16 @@ label {
 .float-child1 {
   width: 40%;
   float: left;
-  padding: 20px;
+  padding: 0px;
+  
 }  
 .float-child2 {
   width: 40%;
   float: left;
   padding: 20px;
+  padding-left: 70px;
   flex: 1;
+  text-align: left;
 }  
 #form_class1{
   background: #d3be9e;

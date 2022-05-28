@@ -17,6 +17,11 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Popup from './components/Popup';
 import Services from './components/Services';
+import CommunityReports from './components/CommunityReports';
+import CustomerAppointments from './components/CustomerAppointments';
+import SellerAppointments from './components/SellerAppointments';
+import Individual_listing from './components/Individual_Listings';
+import PostListing from './components/PostListing';
 
 
 function App() {
@@ -28,12 +33,14 @@ function App() {
     
   <Router>
   <Header/>
+  
     <Footer/>
     <div className='App'>
     
       <Routes>
       
-      <Route path="" element={<Homepage/>} />
+      
+      <Route path="" element={<Individual_listing/>} />
       <Route path="/HomePage" element={<Homepage/>} />
       <Route path="/Popup" element={<Popup/>} />
       <Route path="/Searchbox" element={<Searchbox/>} />
@@ -43,6 +50,8 @@ function App() {
       <Route path="/Profile" element={<Profile/>} />
       <Route path="/Services" element={<Services/>} />
       <Route path="/Events" element={<Events/>} />
+      <Route path="/PostListing" element={<PostListing/>} />
+      
 
       
       </Routes>
