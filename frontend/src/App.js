@@ -22,16 +22,21 @@ import CustomerAppointments from './components/CustomerAppointments';
 import SellerAppointments from './components/SellerAppointments';
 import Individual_listing from './components/Individual_Listings';
 import PostListing from './components/PostListing';
+import SellerRequests from './components/SellerRequests';
+import Header1 from './components/Header1';
+import Header2 from './components/Header2';
+import Header3 from './components/Header3';
 
 
 function App() {
-  
+  const role = localStorage['user_role'];
   return(
     
   <DataProvider>
     
     
-  <Router>
+    <Router>
+  {role == 1 ? <Header1/> : role == 2 ? <Header2/> : role == 3 ? <Header3/> : <Header/> }
   <Header/>
   
     <Footer/>
@@ -40,7 +45,7 @@ function App() {
       <Routes>
       
       
-      <Route path="" element={<Individual_listing/>} />
+      <Route path="" element={<Login/>} />
       <Route path="/HomePage" element={<Homepage/>} />
       <Route path="/Popup" element={<Popup/>} />
       <Route path="/Searchbox" element={<Searchbox/>} />
@@ -51,6 +56,7 @@ function App() {
       <Route path="/Services" element={<Services/>} />
       <Route path="/Events" element={<Events/>} />
       <Route path="/PostListing" element={<PostListing/>} />
+      <Route path="/SellerRequests" element={<SellerRequests/>} />
       
 
       

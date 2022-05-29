@@ -1,71 +1,99 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SellerAppointments.css";
-import Axios from "axios";
+//import Axios from "axios";
 import { Card, Button, Row } from "react-bootstrap";
 
 function SellerRequests() {
-	const responses = [
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Pending",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Pending",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Pending",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Approved",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Approved",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Rejected",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-	];
+	const [response, setResponse] = useState([]);
+
+	async function get_seller_req(event){
+
+		console.log('in login method')
+		const token = localStorage['userToken'] 
+		//event.preventDefault()
+		const data = await fetch('http://localhost:3001/CityVille/AdminServices', {
+		  method: 'GET',
+		  headers: {
+			'Content-Type':'application/json',
+			"token":`Bearer ${token}`
+		  }
+		  })
+		
+		  const res = await data.json()
+		  console.log("eeeeeeeeeeeeeeeeeeeeee",res)
+		  setResponse(res);
+	
+		}
+	
+		useEffect((e) => {
+			get_seller_req(e)
+		   }, []); 
+	
+	
+
+
+	// const responses = [
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Pending",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Pending",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Pending",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Approved",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Approved",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Rejected",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// ];
 
 	const [requests, setRequests] = useState(null);
 	const getAppointments = () => {
 		///Axios.get("http://localhost:4000/api/auth/getApp").then((response) => {
 		//console.log(response);
-		setRequests(responses.data);
+		setRequests(response.data);
 		//}
 		//);
 	};
@@ -77,9 +105,9 @@ function SellerRequests() {
 
 	const [isRejected, setIsRejected] = useState(null);
 
-	var approved = responses.filter((e) => e.status === "Approved");
-	var rejected = responses.filter((e) => e.status === "Rejected");
-	var pending = responses.filter((e) => e.status === "Pending");
+	var approved = response.filter((e) => e.status === "Approved");
+	var rejected = response.filter((e) => e.status === "Rejected");
+	var pending = response.filter((e) => e.status === "Pending");
 
 	function showApproved() {
 		setIsApproved(true);
@@ -104,7 +132,7 @@ function SellerRequests() {
 
 	return (
 		<div className="main-content">
-			<h1 className=".appointments-h1">My Appointments</h1>
+			<h1 className=".appointments-h1">Seller Requests</h1>
 			<div className="buttons">
 				<Button
 					id="approved-button"
@@ -142,50 +170,74 @@ function SellerRequests() {
 											{isApproved === true && (
 												<div className="test">
 													<p>
-														<b>To User: </b> {response.to_user_id}
+														<b>User ID: </b> {response.user_id}
 													</p>
 													<p>
-														<b>Acceptance Date: </b> {response.alternate_date}
+														<b>Service Name: </b> {response.service_name}
 													</p>
+													<p>
+														<b>Description: </b> {response.description}
+													</p>
+													<p>
+														<b>Category: </b> {response.category}
+													</p>
+													<p>
+														<b>Business Address: </b> {response.business_address}
+													</p>
+													<p>
+														<b>Price: </b> {response.price}
+													</p>
+
 												</div>
 											)}
 											{isPending === true && (
 												<div className="test">
 													<p>
-														<b>To User: </b> {response.to_user_id}
+														<b>User ID: </b> {response.user_id}
 													</p>
 													<p>
-														<b>Recieval Date: </b> {response.date}
+														<b>Service Name: </b> {response.service_name}
 													</p>
+													<p>
+														<b>Description: </b> {response.description}
+													</p>
+													<p>
+														<b>Category: </b> {response.category}
+													</p>
+													<p>
+														<b>Business Address: </b> {response.business_address}
+													</p>
+													<p>
+														<b>Price: </b> {response.price}
+													</p>
+
 												</div>
 											)}
 											{isRejected === true && (
 												<div className="test">
 													<p>
-														<b>To User: </b> {response.to_user_id}
+														<b>User ID: </b> {response.user_id}
 													</p>
 													<p>
-														<b>Cancellation Date: </b> {response.alternate_date}
+														<b>Service Name: </b> {response.service_name}
 													</p>
+													<p>
+														<b>Description: </b> {response.description}
+													</p>
+													<p>
+														<b>Category: </b> {response.category}
+													</p>
+													<p>
+														<b>Business Address: </b> {response.business_address}
+													</p>
+													<p>
+														<b>Price: </b> {response.price}
+													</p>
+
 												</div>
 											)}
 
-											<p>
-												<b>From User: </b>
-												{response.from_user_id}
-											</p>
-											<p>
-												<b>For Service: </b>
-												{response.service_id}
-											</p>
-											<p>
-												<b>Status: </b>
-												{response.status}
-											</p>
-											<p>
-												<b>Date: </b>
-												{response.date}
-											</p>
+											
 										</Card.Text>
 										<div className="decision-buttons">
 											{isPending === true && (

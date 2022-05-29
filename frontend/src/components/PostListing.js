@@ -31,9 +31,9 @@ function PostListing(){
           <Form.Control type="text" placeholder="Enter your business address" />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <button variant="primary" type="submit">
           Submit
-        </Button>
+        </button>
       </Form>
 
 
