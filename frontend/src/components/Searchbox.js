@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react'
 import { Link } from 'react-router-dom';
 import {BsSearch} from 'react-icons/bs'
 import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import {GlobalState} from '../GlobalState'
 
 function Searchbox() {
@@ -59,18 +60,23 @@ function Searchbox() {
             <h5>Users</h5>
             {/* <Notfound/> */}
             {filteredUsers.map(value => (
-                <Link to="/DetailPage"  className='searchItem'>
+                <Link to="/CustomerProfile"  className='searchItem'>
                   <p className='searchText'>{value.first_name} {value.last_name}</p></Link>
             ))}
             <p className='searchLine'>-</p>
             <h5>Services</h5>
             {filteredServices.map(value => (
-                <Link to="/DetailPage"  className='searchItem'>
+                <Link to="/Individual_Listing"  className='searchItem'>
                   <p className='searchText'>{value.service_name}</p></Link>
             ))}
             
         </div>
         )
+      }
+
+      const handleSelect=(e)=>{
+        console.log(e);
+
       }
       
 
@@ -100,10 +106,13 @@ function Searchbox() {
 
   <Dropdown.Menu>
   {categoriesG.map(value => (
-                <Dropdown.Item key={value}>{value}</Dropdown.Item>
+  <Dropdown.Item key={value}  >
+    <Link to="/Services" state={{service: {value} }} style={{textDecoration:"none", color:"black"}}>{value}</Link>
+  </Dropdown.Item>
+
             ))}
   </Dropdown.Menu>
-</Dropdown>
+  </Dropdown>
       </div>
       </div>
       
