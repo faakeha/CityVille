@@ -42,20 +42,19 @@ function Login() {
       console.log('before route change')
     localStorage.setItem('firstLogin', true)
     localStorage.setItem('userToken', data.refreshToken)
-    setMsg(data.message)
-    setIsOpen(true)
-    while(isOpen)
+    
     routeChange()
     
     }
     else{
-      prompt(data)
+      setMsg(data)
+      setIsOpen(true)
     }
    
   }
 
   function FPopup(){
-    if(isOpen && msg === 'Error'){
+    if(isOpen && msg === 'Wrong Credentials'){
       return(
         <div class="popup">
         <div className='tick'>
@@ -63,8 +62,11 @@ function Login() {
           </div>
           <div className='box'>
             <h2 style={{color: '#c91414'}}>Error</h2>
-            <p style={{color: '#c91414'}}> Please check all fields before signing up!</p>
-            <br/><br/><br/> 
+            <p style={{color: '#555'}}>
+              The username or password you entered is incorrect.<br/><br/>
+              Please try again.
+            </p>
+            <br/> 
             <input 
               type="submit"
               className="btn btn-primary log"
@@ -139,7 +141,7 @@ function Login() {
                 
               </div>
         </form>
-        {isOpen && msg === 'Error' && <FPopup/>}
+        {isOpen && msg === 'Wrong Credentials' && <FPopup/>}
       </div>
     </div>
     
