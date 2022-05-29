@@ -2,13 +2,17 @@
 import React, {useContext, useState, useEffect} from 'react'
 import { GlobalState } from '../GlobalState'
 import {getItemsPos, ScrollMenu} from 'react-horizontal-scrolling-menu'
+import { useLocation } from 'react-router-dom'
 
 
-function Services() {
+function Services(props) {
   const state = useContext(GlobalState)
   const [cs, setcs] = state.servcat
   const [checkedState, setCheckedState] = useState( { serv:[], istrue:[] } )
+  const location = useLocation()
+  const {choice} = location.state
 
+  console.log('here', choice)
   const handleOnChange = (e) => {
 
     const index = e.target.value;

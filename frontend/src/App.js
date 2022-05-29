@@ -15,17 +15,13 @@ import Searchbox from './components/Searchbox';
 import {DataProvider} from './GlobalState';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Popup from './components/Popup';
 import Services from './components/Services';
 import CommunityReports from './components/CommunityReports';
 import CustomerAppointments from './components/CustomerAppointments';
 import SellerAppointments from './components/SellerAppointments';
 import Individual_listing from './components/Individual_Listings';
 import PostListing from './components/PostListing';
-import SellerRequests from './components/SellerRequests';
-import Header1 from './components/Header1';
-import Header2 from './components/Header2';
-import Header3 from './components/Header3';
+import CustomerProfile from './components/CustomerProfile';
 
 
 function App() {
@@ -45,9 +41,8 @@ function App() {
       <Routes>
       
       
-      <Route path="" element={<Login/>} />
-      <Route path="/HomePage" element={<Homepage/>} />
-      <Route path="/Popup" element={<Popup/>} />
+      <Route path="/Listing" element={<Individual_listing/>} />
+      <Route path="/Homepage" element={<Homepage/>} />
       <Route path="/Searchbox" element={<Searchbox/>} />
       <Route path="/Register/:role" element={<Register/>} />
       <Route path="/Login" element={<Login/>} />
@@ -56,7 +51,10 @@ function App() {
       <Route path="/Services" element={<Services/>} />
       <Route path="/Events" element={<Events/>} />
       <Route path="/PostListing" element={<PostListing/>} />
-      <Route path="/SellerRequests" element={<SellerRequests/>} />
+      <Route path="/CustomerProfile" element={<CustomerProfile/>} />
+      <Route path="/Individual_Listing" element={<Individual_listing/>} />
+
+
       
 
       
