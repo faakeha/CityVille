@@ -134,6 +134,8 @@ margin: auto;
 
 .roundimg{
   border-radius: 50%;
+  border: #555;
+  
 }
 
 .scroll{

@@ -80,8 +80,8 @@ function Register() {
         <FaCheckCircle size='lg'></FaCheckCircle>
     </div>
     <div className='box'>
-        <h2 style={{color: 'gray'}}>Success</h2>
-     <p style={{color: 'gray'}}> You have successfully signed up! </p>
+        <h2 style={{color: '#555'}}>Success</h2>
+     <p style={{color: '#555'}}> You have successfully signed up! </p>
      <br/><br/><br/> 
       <input 
         type="submit"
