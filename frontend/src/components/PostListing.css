@@ -1,10 +1,20 @@
 .submit-button{
     border-color: #C5801A;
     width: 130px;
-    background-color: #C5801A;
-    
-}
-.submit-button:hover{
-    color: #C5801A;
+    background-color: #C5801A;   
 }
 
+.submit-button:hover{
+    color: #C5801A;
+
+}
+.toggle{
+    text-align: left;
+}
+
+.form{
+    float: right;
+    width: fit-content;
+    padding-right: 200px;
+    padding-top: 45px;    
+}
