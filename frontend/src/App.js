@@ -22,6 +22,7 @@ import SellerAppointments from './components/SellerAppointments';
 import Individual_listing from './components/Individual_Listings';
 import PostListing from './components/PostListing';
 import CustomerProfile from './components/CustomerProfile';
+import SellerRequests from './components/SellerRequests';
 
 
 function App() {
@@ -52,6 +53,8 @@ function App() {
       <Route path="/PostListing" element={<PostListing/>} />
       <Route path="/CustomerProfile" element={<CustomerProfile/>} />
       <Route path="/Individual_Listing" element={<Individual_listing/>} />
+      <Route path="/SellerRequests" element={<SellerRequests/>} />
+
 
 
       

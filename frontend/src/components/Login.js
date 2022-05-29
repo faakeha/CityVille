@@ -40,8 +40,10 @@ function Login() {
 
     if(data !== 'Wrong Credentials'){
       console.log('before route change')
-    localStorage.setItem('firstLogin', true)
-    localStorage.setItem('userToken', data.refreshToken)
+      console.log('dataaaa', data)
+   
+    localStorage.setItem('userToken', data.accessToken)
+    localStorage.setItem('name', data.first_name)
     
     routeChange()
     

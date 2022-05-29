@@ -17,6 +17,7 @@
 .main-content{
     text-align: center;
     text-emphasis-color: black;
+    flex-direction: column; 
     
 }
 
