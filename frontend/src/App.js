@@ -51,6 +51,8 @@ function App() {
       <Route path="/Events" element={<Events/>} />
       <Route path="/PostListing" element={<PostListing/>} />
       <Route path="/CustomerProfile" element={<CustomerProfile/>} />
+      <Route path="/Individual_Listing" element={<Individual_listing/>} />
+
 
       
 
