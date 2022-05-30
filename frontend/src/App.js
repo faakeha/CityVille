@@ -26,6 +26,7 @@ import SellerRequests from './components/SellerRequests';
 import Header1 from './components/Header1';
 import Header2 from './components/Header2';
 import Header3 from './components/Header3';
+import ReviewListings from "./components/ReviewListings";
 
 
 
@@ -64,6 +65,8 @@ function App() {
       <Route path="/CommunityReports" element={<CommunityReports/>} />
       <Route path="/CustomerAppointments" element={<CustomerAppointments/>} />
 	  <Route path="/SellerAppointments" element={<SellerAppointments/>} />
+	  <Route path="/ReviewListings" element={<ReviewListings/>} />
+    
 	  
 
 				{/* <Footer />
