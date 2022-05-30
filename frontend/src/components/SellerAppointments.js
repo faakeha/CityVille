@@ -4,34 +4,28 @@ import "./SellerAppointments.css";
 import { Card, Button, Row } from "react-bootstrap";
 
 function SellerAppointments() {
-
 	const [responses, setResponse] = useState([]);
 
-	async function get_com_app(event){
+	async function get_com_app(event) {
+		console.log("in login method");
+		const token = localStorage["userToken"];
+		//event.preventDefault()
+		const data = await fetch("http://localhost:3001/CityVille/getApp", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				token: `Bearer ${token}`,
+			},
+		});
 
-	console.log('in login method')
-	const token = localStorage['userToken'] 
-    //event.preventDefault()
-    const data = await fetch('http://localhost:3001/CityVille/getApp', {
-      method: 'GET',
-      headers: {
-        'Content-Type':'application/json',
-		"token":`Bearer ${token}`
-      }
-      })
-    
-	  const res = await data.json()
-	  console.log("eeeeeeeeeeeeeeeeeeeeee",res)
-	  setResponse(res);
-
+		const res = await data.json();
+		console.log("eeeeeeeeeeeeeeeeeeeeee", res);
+		setResponse(res);
 	}
 
 	useEffect((e) => {
-		get_com_app(e)
-	   }, []); 
-
-
-
+		get_com_app(e);
+	}, []);
 
 	// const responses = [
 	// 	{
