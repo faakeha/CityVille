@@ -11,6 +11,7 @@ function Login() {
   const state = useContext(GlobalState)
     //const [sp] = state.users;
     const [role, setRole] = state.role;
+    const [user, setUser] = state.user
     
     
 
@@ -76,11 +77,20 @@ function Login() {
 
     if(data !== 'Wrong Credentials'){
       console.log('before route change')
-    localStorage.setItem('firstLogin', true)
-    localStorage.setItem('userToken', data.accessToken)
-    setRole(data.user_role);
-    localStorage.setItem('user_role', data.user_role)
-    localStorage.setItem('user_id', data._id)
+      console.log(data)
+    // localStorage.setItem('firstLogin', true)
+     localStorage.setItem('userToken', data.accessToken)
+    setRole(JSON.stringify(data.user_role));
+    //localStorage.setItem('user_role', JSON.stringify(data.user_role))
+    setUser({
+      id: data._id,
+      first_name: data.first_name,
+      last_name:data.last_name,
+      token :data.accessToken
+    })
+    
+    // localStorage.setItem('user_role', data.user_role)
+    // localStorage.setItem('user_id', data._id)
     routeChange()
     
     }
