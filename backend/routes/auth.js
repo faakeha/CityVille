@@ -291,10 +291,21 @@ router.get("/users", async (req, res) => {
 	}
 });
 
+
+
 //getAllusers for home page
-router.get("/getAllUsers", async (req, res) => {
-	const users = await User.find({ user_role: { $ne: 1 } });
+router.get("/sellers", async (req, res) => {
+	const users = await User.find({ user_role: 3});
 	res.json(users);
+});
+
+router.get("/user/:id", verifyToken, async (req, res) => {
+	if(req.user.id == req.params.id){
+		const user = await User.find({_id: req.user.id});
+		res.json(user)
+	}
+
+	
 });
 
 //Update user

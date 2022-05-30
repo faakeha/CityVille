@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import {useState, useEffect, createContext} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import Profile from './Profile';
 import {FaExclamationCircle } from "react-icons/fa";
+import { GlobalState } from '../GlobalState'
 
 
 function Login() {
@@ -22,6 +23,8 @@ function Login() {
     const [msg, setMsg] = useState('')
   //const [data, setData] = useState('');
 
+  const state = useContext(GlobalState)
+  const [isAdmin, setIsAdmin] = state.admin
 
   async function loginUser(event){
     console.log('in login method')
@@ -41,7 +44,8 @@ function Login() {
     if(data !== 'Wrong Credentials'){
       console.log('before route change')
       console.log('dataaaa', data)
-   
+      
+      
     localStorage.setItem('userToken', data.accessToken)
     localStorage.setItem('name', data.first_name)
     
@@ -51,7 +55,7 @@ function Login() {
     else{
       setMsg(data)
       setIsOpen(true)
-    }
+    } 
    
   }
 
