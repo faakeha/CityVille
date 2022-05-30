@@ -16,24 +16,26 @@ const cid = 2;
 // }
 
 
-// function logout() {
-//   //localStorage.clear()
-//   console.log(localStorage)
-
 
 // }
 
 
-function Header(event, props) {
+function Header(event) {
+  const state = useContext(GlobalState)
+    //const [sp] = state.users;
+    //const [role, setRole] = state.role;
+    const [role, setRole] = useState('')
+  function logout() {
+    
+    localStorage.clear()
+    console.log(localStorage)
   
-
-  // const state = useContext(GlobalState)
-  //const [sp] = state.users;
-  //const [role, setRole] = state.role;
-  //const [role, setRole] = useState('')
-   const role1 =  props.role;
+  
+  }
+  
+   //const role1 =  props.role;
   console.log("printing role")
-  console.log(role1)
+  //console.log(role1)
   const username = localStorage['username'];
   //const forceUpdate = UseForceUpdate()
   

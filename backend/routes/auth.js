@@ -317,8 +317,8 @@ router.get("/users", async (req, res) => {
 });
 
 //getAllusers for home page
-router.get("/getAllUsers", async (req, res) => {
-	const users = await User.find({ user_role: { $ne: 1 } });
+router.get("/sellers", async (req, res) => {
+	const users = await User.find({ user_role: 3 });
 	res.json(users);
 });
 
@@ -378,7 +378,7 @@ router.delete("/logout", verifyToken2, async (req, res) => {
 	user1.token = "";
 	user1.save();
 
-	res.json(user1.token);
+	res.json("Logged out");
 });
 
 //Create appointments
@@ -623,5 +623,10 @@ router.get('/getServices', async(req, res) => {
 })
 
 router.get('/getServiceObj')
+
+router.get('/getRole', verifyToken, async(req,res) => {
+	const user = await User.findOne({ _id: req.user.id });
+	res.json(user.user_role);
+})
 
 module.exports = router;

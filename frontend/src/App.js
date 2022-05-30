@@ -22,6 +22,9 @@ import SellerAppointments from './components/SellerAppointments';
 import Individual_listing from './components/Individual_Listings';
 import PostListing from './components/PostListing';
 import CustomerProfile from './components/CustomerProfile';
+import Header1 from './components/Header1';
+import Header2 from './components/Header2';
+import Header3 from './components/Header3';
 
 
 function App() {
@@ -32,15 +35,15 @@ function App() {
     
     
     <Router>
-  {role == 1 ? <Header1/> : role == 2 ? <Header2/> : role == 3 ? <Header3/> : <Header/> }
-  <Header/>
+  {role == 1 ? <Header1/> : role == 2 ? <Header3/> : role == 3 ? <Header2/> : <Header/> }
+  
   
     <Footer/>
     <div className='App'>
     
       <Routes>
       
-      
+      <Route path="" element={<Homepage/>} />
       <Route path="/Listing" element={<Individual_listing/>} />
       <Route path="/Homepage" element={<Homepage/>} />
       <Route path="/Searchbox" element={<Searchbox/>} />

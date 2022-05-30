@@ -5,12 +5,44 @@ import logo from '../logo.svg';
 import Register from './Register';
 import { GlobalState } from '../GlobalState'
 
-function logout() {
-  //localStorage.clear()
-  console.log(localStorage)
-}
+
 
 function Header2() {
+  const state = useContext(GlobalState)
+  
+  const [role, setRole] = state.role;
+function logout() {
+  
+  //localStorage.clear()
+  console.log(localStorage)
+  async function check (){
+  const token = localStorage['userToken'] 
+		//event.preventDefault()
+		const data = await fetch('http://localhost:3001/CityVille/logout', {
+		  method: 'DELETE',
+		  headers: {
+			'Content-Type':'application/json'
+		  },
+      body: JSON.stringify({
+        token
+      })
+		  })
+		
+     const response = await data.json();
+    
+     if(response == "Logged out"){
+       setRole("");
+       localStorage.clear();
+     }
+     }
+     check() 
+
+}
+
+
+
+
+
   const username = localStorage['username'];
   return (
     <div className="flex-container" >
