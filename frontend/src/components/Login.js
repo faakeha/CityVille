@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {useState, useEffect, useContext} from 'react';
+import {useState, useEffect, createContext, useContext} from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import Profile from './Profile';
 import {FaExclamationCircle } from "react-icons/fa";
@@ -7,6 +7,13 @@ import { GlobalState } from '../GlobalState'
 
 
 function Login() {
+
+  const state = useContext(GlobalState)
+    //const [sp] = state.users;
+    const [role, setRole] = state.role;
+    
+    
+
    let navigate = useNavigate(); 
   function routeChange(){ 
     
@@ -16,17 +23,43 @@ function Login() {
     //}
     
   } 
+  
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isOpen, setIsOpen] = useState(false);
     const [msg, setMsg] = useState('')
   //const [data, setData] = useState('');
+  const [login_resp, setLogin] = useState('')
+  //const [role, setRole] = useState('')
 
-  const state = useContext(GlobalState)
-  const [isAdmin, setIsAdmin] = state.admin
+  
 
   async function loginUser(event){
+
+  //   Promise.all([
+  //   fetch('http://localhost:3001/CityVille/Login'),
+  //   fetch('http://localhost:3001/CityVille/getRole')
+  // ]).then(function (responses) {
+  //   // Get a JSON object from each of the responses
+  //   return Promise.all(responses.map(function (response) {
+  //     return response.json();
+  //   }));
+  // }).then(function (data) {
+  //   // Log the data to the console
+  //   // You would do something with both sets of data here
+  //   console.log('login response', data[0]);
+  //   console.log('get role response', data[1]);
+    
+  // }).catch(function (error) {
+  //   // if there's an error, log it
+  //   console.log(error);
+  // });
+
+
+
+
+
     console.log('in login method')
     event.preventDefault()
     const response = await fetch('http://localhost:3001/CityVille/login', {
@@ -43,19 +76,21 @@ function Login() {
 
     if(data !== 'Wrong Credentials'){
       console.log('before route change')
-      console.log('dataaaa', data)
-      
-      
+    localStorage.setItem('firstLogin', true)
     localStorage.setItem('userToken', data.accessToken)
-    localStorage.setItem('name', data.first_name)
-    
+    setRole(data.user_role);
+    localStorage.setItem('user_role', data.user_role)
+    localStorage.setItem('user_id', data._id)
     routeChange()
     
     }
     else{
       setMsg(data)
       setIsOpen(true)
-    } 
+    }
+
+
+    
    
   }
 

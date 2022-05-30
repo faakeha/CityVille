@@ -121,6 +121,31 @@ router.get("/Services", async (req, res) => {
 	}
 });
 
+router.get("/AdminServices", verifyToken, async (req, res) => {
+	const user1 = await User.findOne({ _id: req.user.id });
+	// if (!req?.query?.id) {
+		//user
+		if(user1.user_role == 1){
+		const all_services = await Service.find();
+			//{ approve_status: "Pending" }
+		//);
+		res.json(all_services);
+		}
+		else{
+			res.json("You are not authorized to do that");
+		}
+	// }
+	// //get services of specified user
+	// else {
+	// 	console.log(req.query.id);
+	// 	const user_service = await Service.find({ user_id: req.query.id });
+	// 	res.json(user_service);
+	// 	if (!user_service) {
+	// 		res.json("Seller does not exist.");
+	// 	}
+	// }
+});
+
 //Update service
 router.put("/updateService/:id", verifyToken, async (req, res) => {
 	//service id will be given
@@ -295,7 +320,7 @@ router.get("/users", async (req, res) => {
 
 //getAllusers for home page
 router.get("/sellers", async (req, res) => {
-	const users = await User.find({ user_role: 3});
+	const users = await User.find({ user_role: 3 });
 	res.json(users);
 });
 
@@ -364,7 +389,7 @@ router.delete("/logout", verifyToken2, async (req, res) => {
 	user1.token = "";
 	user1.save();
 
-	res.json(user1.token);
+	res.json("Logged out");
 });
 
 //Create appointments
@@ -634,5 +659,10 @@ router.get("/AdminServices", verifyToken, async (req, res) => {
 	// 	}
 	// }
 });
+
+router.get('/getRole', verifyToken, async(req,res) => {
+	const user = await User.findOne({ _id: req.user.id });
+	res.json(user.user_role);
+})
 
 module.exports = router;
