@@ -8,7 +8,8 @@ export const DataProvider = ({children}) => {
     const [services, setServices] = useState([''])
     const [servcat, setServcat] = useState([''])
     const [role, setRole] = useState('')
-    const [user, setUser] = useState([''])
+    //const [user, setUser] = useState([''])
+    const [user, setUser] = useState({id:"", first_name: "", last_name:"", token:""})
 
     useEffect(() => {
         //console.log('hi from global state')
