@@ -12,6 +12,7 @@ const PostListing = () => {
 	return (
 		<div>
 			<div className="float-child1">
+				
 				<h2 style={{ paddingLeft: "0px", paddingTop: "35px" }}>
 					House Cleaning
 				</h2>

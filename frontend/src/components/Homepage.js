@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { ScrollMenu } from 'react-horizontal-scrolling-menu'
 import Searchbox from './Searchbox'
 import { GlobalState } from '../GlobalState'
+import { Link } from 'react-router-dom'
 
 
 function Homepage() {
@@ -42,10 +43,12 @@ function Homepage() {
 
   const getsp = sp.map(item => (
     <div className='form-group l'>
+      <Link to={`/SellerProfile/${item._id}`}>
       <img src={item.image} style={{
         width: 100,
         height: 100,
-      }} alt='user' className='roundimg'></img>
+      }} alt='user' className='roundimg' ></img>
+      </Link>
       <div>
         <p>{item.first_name} {item.last_name}</p>
 
@@ -63,7 +66,7 @@ function Homepage() {
       <div>
         <p>{item}</p>
         <br></br>
-      </div>
+      </div> 
     </div>
   ));
 
