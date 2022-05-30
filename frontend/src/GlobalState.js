@@ -7,6 +7,8 @@ export const DataProvider = ({children}) => {
     const [categories, setCategories] = useState([''])
     const [services, setServices] = useState([''])
     const [servcat, setServcat] = useState([''])
+    const [role, setRole] = useState()
+    const [user, setUser] = useState({id:"", first_name: "", last_name:"", token:""})
 
     useEffect(() => {
         //console.log('hi from global state')
@@ -33,11 +35,24 @@ export const DataProvider = ({children}) => {
             }
             refreshToken()
         }*/
+        // async function getUser(event){
+        //   console.log('in users method')
+      
+        //   const response = await fetch(`http://localhost:3001/CityVille/user/${id}`, {
+        //     method: 'GET',
+        //   }).then((response) => response.json())
+        //       .then(data => {
+        //     return data;
+        // });
+
+        // setUser(response)
+        // }
+        // getUser()
 
         async function allUsers(event){
             console.log('in users method')
         
-            const response = await fetch('http://localhost:3001/CityVille/getAllUsers', {
+            const response = await fetch('http://localhost:3001/CityVille/sellers', {
               method: 'GET',
             }).then((response) => response.json())
                 .then(data => {
@@ -107,7 +122,45 @@ export const DataProvider = ({children}) => {
             //console.log('srv', ser)
             setServices(ser)
         }
-        
+
+      //   async function get_role(){
+      //     const token = localStorage['userToken']
+      //     console.log('in role obj')
+      //     const ser = await fetch('http://localhost:3001/CityVille/getRole', {
+      //         method: 'GET',
+      //         headers: {
+      //         'Content-Type':'application/json',
+      //         "token":`Bearer ${token}`
+      //         }
+              
+
+      //       })
+      //       .then((response) => response.json())
+      //       .then(data => {
+      //         return data;
+      //     });
+      //     //console.log('srv', ser)
+      //     setRole(ser)
+
+      // }
+      //   get_role();
+
+
+        async function getUser(event){
+          console.log('in users method')
+          const id = localStorage['user_id'];
+          const response = await fetch(`http://localhost:3001/CityVille/user/${id}`
+          , {
+            method: 'GET',
+          }).then((response) => response.json())
+              .then(data => {
+            return data;
+        });
+
+        setUser(response)
+        }
+        getUser()
+   
 
 
         
@@ -119,7 +172,9 @@ export const DataProvider = ({children}) => {
         categories : [categories, setCategories],
         services : [services, setServices],
         users : [users, setUsers],
-        servcat : [servcat, setServcat]
+        servcat : [servcat, setServcat],
+        role : [role, setRole],
+        user: [user, setUser]
     }
     return (
         <GlobalState.Provider value={state}>

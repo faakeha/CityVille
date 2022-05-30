@@ -86,12 +86,14 @@ router.post("/createService", verifyToken, async (req, res) => {
 				const savedService = await newService.save();
 				res.status(201).json({ status: 201, message: "Service Added" });
 			} catch (err) {
+				console.log(err);
 				res.status(500).json({ status: 500, message: err });
 			}
+		} else {
+			res
+				.status(403)
+				.json({ status: 403, message: "You are not permitted to do that." });
 		}
-		res
-			.status(403)
-			.json({ status: 403, message: "You are not permitted to do that." });
 	} else {
 		res
 			.status(403)
@@ -298,9 +300,16 @@ router.get("/users", async (req, res) => {
 });
 
 //getAllusers for home page
-router.get("/getAllUsers", async (req, res) => {
-	const users = await User.find({ user_role: { $ne: 1 } });
+router.get("/sellers", async (req, res) => {
+	const users = await User.find({ user_role: 3 });
 	res.json(users);
+});
+
+router.get("/user/:id", verifyToken, async (req, res) => {
+	if (req.user.id == req.params.id) {
+		const user = await User.find({ _id: req.user.id });
+		res.json(user);
+	}
 });
 
 //Update user
@@ -599,6 +608,7 @@ router.get("/Categories", async (req, res) => {
 
 router.get("/getServices", async (req, res) => {
 	const serv = await Service.aggregate([
+		{ $match: { approve_status: "Approved" } },
 		{
 			$group: {
 				_id: "$category",

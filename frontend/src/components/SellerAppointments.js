@@ -122,11 +122,11 @@ function SellerAppointments() {
 
 	const [isCancelled, setIsCancelled] = useState(null);
 
-	var approved = responses.filter((e) => e.status === "Approved");
-	var rejected = responses.filter((e) => e.status === "Rejected");
-	var pending = responses.filter((e) => e.status === "Pending");
-	var completed = responses.filter((e) => e.status === "Completed");
-	var cancelled = responses.filter((e) => e.status === "Cancelled");
+	var approved = responses.filter((e) => e.approve_status === "Approved");
+	var rejected = responses.filter((e) => e.approve_status === "Rejected");
+	var pending = responses.filter((e) => e.approve_status === "Pending");
+	var completed = responses.filter((e) => e.approve_status === "Completed");
+	var cancelled = responses.filter((e) => e.approve_status === "Cancelled");
 
 	function showApproved() {
 		setIsApproved(true);

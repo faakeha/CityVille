@@ -38,7 +38,7 @@ function CustomerAppointments() {
 	// 		to_user_id: "242424242424242424242422",
 	// 		from_user_id: "130390394309430943093093",
 	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Pending",
+	// 		approve_status: "Pending",
 	// 		date: "1602442800000",
 	// 		alternate_date: "1665514800000",
 	// 	},
@@ -47,7 +47,7 @@ function CustomerAppointments() {
 	// 		to_user_id: "242424242424242424242422",
 	// 		from_user_id: "130390394309430943093093",
 	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Pending",
+	// 		approve_status: "Pending",
 	// 		date: "1602442800000",
 	// 		alternate_date: "1665514800000",
 	// 	},
@@ -56,7 +56,7 @@ function CustomerAppointments() {
 	// 		to_user_id: "242424242424242424242422",
 	// 		from_user_id: "130390394309430943093093",
 	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Pending",
+	// 		approve_status: "Pending",
 	// 		date: "1602442800000",
 	// 		alternate_date: "1665514800000",
 	// 	},
@@ -65,7 +65,7 @@ function CustomerAppointments() {
 	// 		to_user_id: "242424242424242424242422",
 	// 		from_user_id: "130390394309430943093093",
 	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Approved",
+	// 		approve_status: "Approved",
 	// 		date: "1602442800000",
 	// 		alternate_date: "1665514800000",
 	// 	},
@@ -74,7 +74,7 @@ function CustomerAppointments() {
 	// 		to_user_id: "242424242424242424242422",
 	// 		from_user_id: "130390394309430943093093",
 	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Approved",
+	// 		approve_status: "Approved",
 	// 		date: "1602442800000",
 	// 		alternate_date: "1665514800000",
 	// 	},
@@ -83,7 +83,7 @@ function CustomerAppointments() {
 	// 		to_user_id: "242424242424242424242422",
 	// 		from_user_id: "130390394309430943093093",
 	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Rejected",
+	// 		approve_status: "Rejected",
 	// 		date: "1602442800000",
 	// 		alternate_date: "1665514800000",
 	// 	},
@@ -92,7 +92,7 @@ function CustomerAppointments() {
 	// 		to_user_id: "242424242424242424242422",
 	// 		from_user_id: "130390394309430943093093",
 	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Cancelled",
+	// 		approve_status: "Cancelled",
 	// 		date: "1602442800000",
 	// 		alternate_date: "1665514800000",
 	// 	},
@@ -101,7 +101,7 @@ function CustomerAppointments() {
 	// 		to_user_id: "242424242424242424242422",
 	// 		from_user_id: "130390394309430943093093",
 	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Completed",
+	// 		approve_status: "Completed",
 	// 		date: "1602442800000",
 	// 		alternate_date: "1665514800000",
 	// 	},
@@ -127,11 +127,11 @@ function CustomerAppointments() {
 
 	const [isCancelled, setIsCancelled] = useState(null);
 
-	var approved = responses.filter((e) => e.status === "Approved");
-	var rejected = responses.filter((e) => e.status === "Rejected");
-	var pending = responses.filter((e) => e.status === "Pending");
-	var completed = responses.filter((e) => e.status === "Completed");
-	var cancelled = responses.filter((e) => e.status === "Cancelled");
+	var approved = responses.filter((e) => e.approve_status === "Approved");
+	var rejected = responses.filter((e) => e.approve_status === "Rejected");
+	var pending = responses.filter((e) => e.approve_status === "Pending");
+	var completed = responses.filter((e) => e.approve_status === "Completed");
+	var cancelled = responses.filter((e) => e.approve_status === "Cancelled");
 
 	function showApproved() {
 		setIsApproved(true);
@@ -294,7 +294,7 @@ function CustomerAppointments() {
 											</p>
 											<p>
 												<b>Status: </b>
-												{response.status}
+												{response.approve_status}
 											</p>
 											<div className="date-report">
 												<p>
