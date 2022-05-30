@@ -23,6 +23,7 @@ import Individual_listing from "./components/Individual_Listings";
 import PostListing from "./components/PostListing";
 import CustomerProfile from "./components/CustomerProfile";
 import SellerRequests from "./components/SellerRequests";
+import SellerProfile from "./components/SellerProfile";
 
 function App() {
 	return (
@@ -53,6 +54,7 @@ function App() {
 							path="/SellerAppointments"
 							element={<SellerAppointments />}
 						/>
+						<Route path="/SellerProfile" element={<SellerProfile />} />
 					</Routes>
 				</div>
 			</Router>
