@@ -15,7 +15,7 @@ const appointmentsSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'services'
     },
-	status:{
+	approve_status:{
         type: String,
 		enum: ['Pending', 'Approved', 'Rejected', 'Completed', 'Cancelled'],
 		default: 'Pending'

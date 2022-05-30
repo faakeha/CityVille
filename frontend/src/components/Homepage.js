@@ -10,7 +10,8 @@ function Homepage() {
   const [categoriesG] = state.categories
   //const [sp, setSp] = useState([''])
   const [sp] = state.users
-
+  const [user, setUser] = state.user
+  console.log('first', user)
   //const userToken = localStorage.getItem('userToken')
 
   // Promise.all([
