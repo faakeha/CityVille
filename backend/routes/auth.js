@@ -78,7 +78,7 @@ router.post("/createService", verifyToken, async (req, res) => {
 		// reviews: req.body.reviews,
 		// ratings: req.body.ratings,
 		business_address: req.body.business_address,
-		price: req.body.price,
+		price: req.body.price
 	});
 	if (user1.user_role == 3) {
 		if (user1.id == newService.user_id) {
@@ -86,16 +86,16 @@ router.post("/createService", verifyToken, async (req, res) => {
 				const savedService = await newService.save();
 				res.status(201).json({ status: 201, message: "Service Added" });
 			} catch (err) {
+				console.log(err)
 				res.status(500).json({ status: 500, message: err });
 			}
 		}
-		res
-			.status(403)
-			.json({ status: 403, message: "You are not permitted to do that." });
+		else{res.status(403).json({ status: 403, message: "You are not permitted to do that." });
+	}
+		
+			
 	} else {
-		res
-			.status(403)
-			.json({ status: 403, message: "You are not permitted to do that." });
+		res.status(403).json({ status: 403, message: "You are not permitted to do that." });
 	}
 });
 
