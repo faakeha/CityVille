@@ -66,7 +66,7 @@ const username = user.first_name
 
       <div className="flex-container" >
         <h1 className="header_title">CityVille</h1>
-        <Link to="/Homepage" className="header_home1" style={{ textDecoration: 'none' }}>
+        <Link to="/Homepage" className="header_home" style={{ textDecoration: 'none', paddingRight: '35px' }}>
           Home</Link>&nbsp;
         <Link to="/CommunityReports" className="header_service" style={{ textDecoration: 'none' }}>
           Reports</Link>&nbsp;
@@ -77,7 +77,11 @@ const username = user.first_name
         <Link to="/Homepage" className="header_service" onClick={logout} style={{ textDecoration: 'none' }}>
           Logout</Link>&nbsp;
         <Link to="/Profile" className="header_user" style={{ textDecoration: 'none', fontSize: '15px', color: '#ffffff' }}>
-          {username}</Link>&nbsp;
+          {username}</Link>&nbsp;&nbsp;
+          <img src="https://res.cloudinary.com/dbmknff2i/image/upload/v1653947860/users/profile_u6z026.png" style={{
+          width: 60,
+          height: 55,
+        }} className="roundimg" alt='user'></img>
       </div>
     )
   }
@@ -98,7 +102,11 @@ const username = user.first_name
         <Link to='/PostListing' className='btn-primary col hdbtn' style={{ textDecoration: 'none', maxWidth: '150px', marginRight: '30px', marginLeft: '25px' }}>
           Add Service</Link>
         <Link to="/SellerProfile" className="header_user" style={{ textDecoration: 'none', fontSize: '15px', color: '#ffffff', paddingRight: '1px' }}>
-          {username}</Link>&nbsp;
+          {username}</Link>&nbsp;&nbsp;
+          <img src="https://res.cloudinary.com/dbmknff2i/image/upload/v1653947860/users/profile_u6z026.png" style={{
+          width: 60,
+          height: 55,
+        }} className="roundimg" alt='user'></img>
       </div>
     )
   }
@@ -112,10 +120,14 @@ const username = user.first_name
           Services</Link>&nbsp;
         <Link to="/CustomerAppointments" className="header_service" style={{ textDecoration: 'none' }}>
           Appointments</Link>&nbsp;
-        <Link to="/Homepage" className="header_service" onClick={logout} style={{ textDecoration: 'none' }}>
+        <Link to="/Homepage" className="header_service" onClick={logout} style={{ textDecoration: 'none'}}>
           Logout</Link>&nbsp;
-        <Link to="/CustomerProfile" className="header_user" style={{ textDecoration: 'none', fontSize: '15px', color: '#ffffff', paddingRight: '100px' }}>
-          {username}</Link>&nbsp;
+        <Link to="/CustomerProfile" className="header_user" style={{ textDecoration: 'none', fontSize: '15px', color: '#ffffff', paddingRight: '30px' }}>
+          {username}</Link>
+          <img src="https://res.cloudinary.com/dbmknff2i/image/upload/v1653947860/users/profile_u6z026.png" style={{
+          width: 60,
+          height: 55,
+        }} className="roundimg" alt='user'></img>
       </div>
     )
   }

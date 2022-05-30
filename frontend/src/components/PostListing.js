@@ -8,7 +8,7 @@ const PostListing = () => {
 	const [selected, setSelected] = useState(null);
 	const handleSelect = (key, value) => {
 		setSelected(categories[key]);
-		setCategory(selected);
+		setCategory(categories[key]);
 	};
 
 	const [service_name, setServiceName] = useState('');
@@ -22,11 +22,12 @@ const PostListing = () => {
     const [msg, setMsg] = useState('')
 	const state = useContext(GlobalState)
     const [cat] = state.categories;
+	const user_id = localStorage["user_id"];
 
 	async function reg_service(event) {
 		console.log("in login method");
 		const token = localStorage["userToken"];
-		const user_id = localStorage["user_id"];
+		
 		console.log(user_id, service_name, description, category, image_url, business_address, price)
 		const image_url = "https://res.cloudinary.com/dbmknff2i/image/upload/v1653407708/cityville/cityville6_onzrct.jpg";
 		event.preventDefault()
@@ -46,11 +47,12 @@ const PostListing = () => {
 		setResponse(res);
 		alert (res)
 	}
-
+	
+    console.log(user_id, service_name, description, category, image_url, business_address, price)
 	console.log(response)
-	var categories = cat;
+	var categories = cat
 	return (
-		<div>
+		<div style={{height: "110vh"}}>
 			<div className="float-child1">
 				
 				<h2 style={{ paddingLeft: "0px", paddingTop: "35px" }}>
@@ -91,8 +93,9 @@ const PostListing = () => {
 				</p>
 			</div>
 			<Form  className="form">
-
+			
 			<Form.Group className="mb-3" controlId="formBasicPassword">
+			
 					<Form.Label>Service Name</Form.Label>
 					<Form.Control type="text" placeholder="Enter the service name" 
 					value = {service_name}
@@ -100,6 +103,7 @@ const PostListing = () => {
 					/>
 					
 				</Form.Group>
+				
 
 				<Form.Group className="mb-3" controlId="formBasicEmail">
 					<Form.Label>Description</Form.Label>
