@@ -78,7 +78,7 @@ router.post("/createService", verifyToken, async (req, res) => {
 		// reviews: req.body.reviews,
 		// ratings: req.body.ratings,
 		business_address: req.body.business_address,
-		price: req.body.price
+		price: req.body.price,
 	});
 	if (user1.user_role == 3) {
 		if (user1.id == newService.user_id) {
@@ -86,16 +86,18 @@ router.post("/createService", verifyToken, async (req, res) => {
 				const savedService = await newService.save();
 				res.status(201).json({ status: 201, message: "Service Added" });
 			} catch (err) {
-				console.log(err)
+				console.log(err);
 				res.status(500).json({ status: 500, message: err });
 			}
+		} else {
+			res
+				.status(403)
+				.json({ status: 403, message: "You are not permitted to do that." });
 		}
-		else{res.status(403).json({ status: 403, message: "You are not permitted to do that." });
-	}
-		
-			
 	} else {
-		res.status(403).json({ status: 403, message: "You are not permitted to do that." });
+		res
+			.status(403)
+			.json({ status: 403, message: "You are not permitted to do that." });
 	}
 });
 
@@ -185,39 +187,45 @@ router.put("/updateService/:id", verifyToken, async (req, res) => {
 });
 
 //LOGIN
-router.post("/login", async(req,res)=>{
-    try{
-        const user = await User.findOne({email:req.body.email});
-        if(!user) return res.status(401).json("Wrong Credentials")
+router.post("/login", async (req, res) => {
+	try {
+		const user = await User.findOne({ email: req.body.email });
+		if (!user) return res.status(401).json("Wrong Credentials");
 
+		const decrypted_password = CryptoJS.AES.decrypt(
+			user.password,
+			process.env.SECRET_KEY
+		);
+		const pass = decrypted_password.toString(cryptoJs.enc.Utf8);
 
-        const decrypted_password = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
-        const pass = decrypted_password.toString(cryptoJs.enc.Utf8);
+		if (pass !== req.body.password)
+			return res.status(401).json("Wrong Credentials");
 
-        if(pass !== req.body.password) return res.status(401).json("Wrong Credentials")
+		const accessToken = jwt.sign(
+			{
+				id: user._id,
+			},
+			process.env.JWT_KEY,
+			{ expiresIn: "4d" }
+		);
+		user.token = accessToken;
+		user.save();
+		//User.updateOne({ _id: user._id }, { $set: { token: accessToken } })
 
-        const accessToken = jwt.sign({
-            id: user._id
-        }, process.env.JWT_KEY,
-        {expiresIn: "4d"}
-        );
-        user.token = accessToken;
-        user.save()
-        //User.updateOne({ _id: user._id }, { $set: { token: accessToken } })
+		const refreshToken = jwt.sign(
+			{
+				id: user._id,
+			},
+			process.env.REFRESH_KEY
+		);
 
-        const refreshToken = jwt.sign({
-            id: user._id
-        }, process.env.REFRESH_KEY);
-
-        refresh_tokens_list.push(refreshToken)
-        //console.log('lmn', refresh_tokens_list);
-        const {password, ...others} = user._doc;
-        res.status(200).json({...others, accessToken, refreshToken});
-
-    }
-    catch(err){
-    res.status(500).json(err);
-    }
+		refresh_tokens_list.push(refreshToken);
+		//console.log('lmn', refresh_tokens_list);
+		const { password, ...others } = user._doc;
+		res.status(200).json({ ...others, accessToken, refreshToken });
+	} catch (err) {
+		res.status(500).json(err);
+	}
 });
 
 router.post("/token", (req, res) => {
@@ -291,21 +299,17 @@ router.get("/users", async (req, res) => {
 	}
 });
 
-
-
 //getAllusers for home page
 router.get("/sellers", async (req, res) => {
-	const users = await User.find({ user_role: 3});
+	const users = await User.find({ user_role: 3 });
 	res.json(users);
 });
 
 router.get("/user/:id", verifyToken, async (req, res) => {
-	if(req.user.id == req.params.id){
-		const user = await User.find({_id: req.user.id});
-		res.json(user)
+	if (req.user.id == req.params.id) {
+		const user = await User.find({ _id: req.user.id });
+		res.json(user);
 	}
-
-	
 });
 
 //Update user
@@ -602,27 +606,34 @@ router.get("/Categories", async (req, res) => {
 	res.json(arrc);
 });
 
-router.get('/getServices', async(req, res) => {
-    const serv = await Service.aggregate([{ "$match": { approve_status: "Approved" } }, { $group: {_id: "$category", num_services: {$sum: 1}, services: {$addToSet: "$$ROOT"}}}])
+router.get("/getServices", async (req, res) => {
+	const serv = await Service.aggregate([
+		{ $match: { approve_status: "Approved" } },
+		{
+			$group: {
+				_id: "$category",
+				num_services: { $sum: 1 },
+				services: { $addToSet: "$$ROOT" },
+			},
+		},
+	]);
 
-    res.json(serv);
-})
+	res.json(serv);
+});
 
 router.get("/AdminServices", verifyToken, async (req, res) => {
-	
 	const user1 = await User.findOne({ _id: req.user.id });
 	// if (!req?.query?.id) {
-		//user
-		
-		if(user1.user_role == 1){
+	//user
+
+	if (user1.user_role == 1) {
 		const all_services = await Service.find();
-			//{ approve_status: "Pending" }
+		//{ approve_status: "Pending" }
 		//);
 		res.json(all_services);
-		}
-		else{
-			res.json("You are not authorized to do that");
-		}
+	} else {
+		res.json("You are not authorized to do that");
+	}
 	// }
 	// //get services of specified user
 	// else {
@@ -633,6 +644,30 @@ router.get("/AdminServices", verifyToken, async (req, res) => {
 	// 		res.json("Seller does not exist.");
 	// 	}
 	// }
+});
+function GetSortOrder(prop) {
+	return function (a, b) {
+		if (a[prop] > b[prop]) {
+			return 1;
+		} else if (a[prop] < b[prop]) {
+			return -1;
+		}
+		return 0;
+	};
+}
+router.get("/getTopServiceProviders", async (req, res) => {
+	const all_services = await Service.aggregate([
+		{ $project: { avg_rating: { $avg: "$ratings" } } },
+	]);
+
+	var services = [];
+	for (let index = 0; index < all_services.length; index++) {
+		const element = all_services[index]["avg_rating"];
+		if (element > 4) {
+			services.push(all_services[index]);
+		}
+	}
+	res.json(services);
 });
 
 module.exports = router;
