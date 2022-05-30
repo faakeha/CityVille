@@ -78,7 +78,7 @@ function Login() {
     if(data !== 'Wrong Credentials'){
       console.log('before route change')
       console.log(data)
-    // localStorage.setItem('firstLogin', true)
+    localStorage.setItem('username', (data.first_name + " " + data.last_name))
      localStorage.setItem('userToken', data.accessToken)
     setRole(JSON.stringify(data.user_role));
     //localStorage.setItem('user_role', JSON.stringify(data.user_role))
@@ -89,8 +89,8 @@ function Login() {
       token :data.accessToken
     })
     
-    // localStorage.setItem('user_role', data.user_role)
-    // localStorage.setItem('user_id', data._id)
+     localStorage.setItem('user_role', data.user_role)
+     localStorage.setItem('user_id', data._id)
     routeChange()
     
     }
