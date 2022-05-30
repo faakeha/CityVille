@@ -21,9 +21,7 @@ function CustomerProfile() {
             </div>
            
         </div>
-        {/* <div>
-          <h3>Reviews</h3>
-        </div> */}
+        
 
     </div>
   )

@@ -1,0 +1,30 @@
+
+.main-card{
+    background-color: #FFEFD8;
+    border-color: #FFEFD8;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.cards{
+    
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+.buttons {
+    display: inline-block;
+}
+
+.buttons>button {
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    background-color: #FFEFD8;
+    border-color: #FFEFD8;
+    color: black;
+
+}
