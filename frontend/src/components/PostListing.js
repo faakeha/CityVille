@@ -52,7 +52,7 @@ const PostListing = () => {
 	console.log(response)
 	var categories = cat
 	return (
-		<div>
+		
 		<div style={{overflow:"hidden", paddingBottom:"20px"}}>
 			<div className="float-child1">
 				
@@ -92,8 +92,9 @@ const PostListing = () => {
 					{" "}
 					
 				</p>
+		
 			</div>
-			<Form  className="form">
+			<Form className="form">
 			
 			<Form.Group className="mb-3" controlId="formBasicPassword">
 			
@@ -101,19 +102,11 @@ const PostListing = () => {
 					<Form.Control type="text" placeholder="Enter the service name" 
 					value = {service_name}
 					onChange={(e) => setServiceName(e.target.value)}
-					 
 					
 					/>
 					
 				</Form.Group>
 				
-
-					</Form>		
-
-			</div>
-			<Form  className="form">
-
-			
 
 				<Form.Group className="mb-3" controlId="formBasicEmail">
 					<Form.Label>Description</Form.Label>
@@ -174,7 +167,7 @@ const PostListing = () => {
 					Submit
 				</Button>
 			</Form>
-		</div>
+			</div>
 	);
 };
 
