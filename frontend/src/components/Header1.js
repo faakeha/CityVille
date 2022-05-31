@@ -5,6 +5,7 @@ import logo from '../logo.svg';
 import Register from './Register';
 import { GlobalState } from '../GlobalState'
 
+
 // function logout() {
 //   //localStorage.clear()
 //   console.log(localStorage)

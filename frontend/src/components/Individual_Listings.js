@@ -61,15 +61,7 @@ import { Link, useParams } from 'react-router-dom';
         
     }, [])
 
-    /*setListing({
-        service_name: list.service_name,
-        description: list.description,
-        category: list.category,
-        price: list.price,
-        add: list.business_address
-    })*/
-    
-
+   
         return (
             <div >
                 <div className="float-child1">

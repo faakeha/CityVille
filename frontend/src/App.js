@@ -3,7 +3,7 @@ import "./App.css";
 import Nav from "./components/Nav";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Profile from "./components/Profile";
+import NotAuth from "./components/NotAuth";
 import Events from "./components/Events";
 import Homepage from "./components/Homepage";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -26,6 +26,7 @@ import SellerRequests from "./components/SellerRequests";
 import Header1 from "./components/Header1";
 import Header2 from "./components/Header2";
 import Header3 from "./components/Header3";
+import SellerProfile from "./components/SellerProfile";
 
 function App() {
 	// const role = JSON.parse(localStorage.getItem('user_role'))
@@ -45,11 +46,13 @@ function App() {
 						<Route path="/Register/:role" element={<Register />} />
 						<Route path="/Login" element={<Login />} />
 						<Route path="/Nav" element={<Nav />} />
-						<Route path="/Profile" element={<Profile />} />
+						<Route path="/NotAuth" element={<NotAuth />} />
 						<Route path="/Services" element={<Services />} />
 						<Route path="/Events" element={<Events />} />
 						<Route path="/PostListing" element={<PostListing />} />
 						<Route path="/CustomerProfile" element={<CustomerProfile />} />
+						<Route path="/SellerProfile" element={<SellerProfile />} />
+
 						<Route
 							path="/Individual_Listing/:id"
 							element={<Individual_listing />}

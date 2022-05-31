@@ -54,7 +54,6 @@ const PostListing = () => {
 	return (
 		<div>
 		<div style={{overflow:"hidden", paddingBottom:"20px"}}>
-			
 			<div className="float-child1">
 				
 				<h2 style={{ paddingLeft: "0px", paddingTop: "35px" }}>
