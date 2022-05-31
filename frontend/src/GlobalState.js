@@ -109,19 +109,7 @@ export const DataProvider = ({children}) => {
           }
           serv()
 
-          async function getServiceObj(){
-            console.log('in service obj')
-            const ser = await fetch('http://localhost:3001/CityVille/Services', {
-                method: 'GET',
-
-              })
-              .then((response) => response.json())
-              .then(data => {
-                return data;
-            });
-            //console.log('srv', ser)
-            setServices(ser)
-        }
+         
 
       //   async function get_role(){
       //     const token = localStorage['userToken']

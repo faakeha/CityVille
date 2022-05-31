@@ -2,10 +2,10 @@
 import React, {useContext, useState, useEffect} from 'react'
 import { GlobalState } from '../GlobalState'
 import {getItemsPos, ScrollMenu} from 'react-horizontal-scrolling-menu'
-import { useNavigate, useLocation } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 
-function Services(props) {
+function Services() {
   
   const state = useContext(GlobalState)
   const [cs, setcs] = state.servcat
@@ -47,10 +47,12 @@ function Services(props) {
           
           <div className='align'>
             <div className='form-group l'>
+              <Link to={`/Individual_Listing/${obj._id}`}>
               <img src="https://res.cloudinary.com/dbmknff2i/image/upload/v1650369466/users/x_pbf8xz.png" style={{
               width: 100,
               height: 100,
               }} alt='user' className='roundimg'></img>
+              </Link>
               
               <p style={{textAlign: "center", fontWeight:"500", fontSize:"19px"}}>{obj.service_name}</p>
               <br></br>

@@ -1,0 +1,43 @@
+POST http://localhost:3001/CityVille/login
+content-type: application/json
+
+{
+    "email":"tuba@gmail.com",
+    "password":"tuba123"
+}
+
+GET http://localhost:3001/CityVille/getTopServiceProviders
+content-type: application/json
+
+{
+
+}
+
+
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 903
+ETag: W/"387-uc/aOfqoc6sQRtx9Ie5HOt/MLb8"
+Date: Mon, 30 May 2022 12:52:21 GMT
+Connection: close
+
+{
+  "_id": "6245f717a30ea813afcd4087",
+  "first_name": "tuba",
+  "last_name": "nasir",
+  "email": "tuba@gmail.com",
+  "cnic_number": "145885833415",
+  "phone_number": "0233462425",
+  "address": "gulshan",
+  "user_role": 1,
+  "createdAt": "2022-03-31T18:46:47.307Z",
+  "updatedAt": "2022-05-30T12:49:30.463Z",
+  "__v": 0,
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDVmNzE3YTMwZWE4MTNhZmNkNDA4NyIsImlhdCI6MTY1MzkxNTE0MSwiZXhwIjoxNjU0MjYwNzQxfQ.3EhkT6KKz4a1kPQvra6lRGQAR4rEksl-jFrVYpTZBTs",
+  "image": "https://res.cloudinary.com/dbmknff2i/image/upload/v1650369466/users/x_pbf8xz.png",
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDVmNzE3YTMwZWE4MTNhZmNkNDA4NyIsImlhdCI6MTY1MzkxNTE0MSwiZXhwIjoxNjU0MjYwNzQxfQ.3EhkT6KKz4a1kPQvra6lRGQAR4rEksl-jFrVYpTZBTs",
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDVmNzE3YTMwZWE4MTNhZmNkNDA4NyIsImlhdCI6MTY1MzkxNTE0MX0.9vEYr32swEU02pf7MoZpsgbwE3n8vNyNsLnvRJKcMBw"
+}

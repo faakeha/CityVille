@@ -83,7 +83,7 @@ function Searchbox() {
           <h5>Users</h5>
           {/* <Notfound/> */}
           {filteredUsers.map(value => (
-            <Link to="/CustomerProfile" className='searchItem'>
+            <Link to={`/SellerProfile/${value._id}`} className='searchItem'>
               <p className='searchText'>{value.first_name} {value.last_name}</p></Link>
           ))}
           <p className='searchLine'>-</p>
