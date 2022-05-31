@@ -88,25 +88,33 @@ const PostListing = () => {
 					{" "}
 					
 				</p>
-			</div>
-			<Form  className="form">
-
-			<Form.Group className="mb-3" controlId="formBasicPassword">
-					<Form.Label>Service Name</Form.Label>
-					<Form.Control type="text" placeholder="Enter the service name" 
+				<Form>
+				<Form.Group className="mb-2" controlId="formBasicPassword">
+					<Form.Label className= "lb1">Service Name</Form.Label>
+					<Form.Control className= "lb2"
 					value = {service_name}
 					onChange={(e) => setServiceName(e.target.value)}
+					type="text" placeholder="Enter the service name" 
+					
 					/>
 					
 				</Form.Group>
 
+					</Form>		
+
+			</div>
+			<Form  className="form">
+
+			
+
 				<Form.Group className="mb-3" controlId="formBasicEmail">
 					<Form.Label>Description</Form.Label>
 					<Form.Control
+					value = {description}
+					onChange={(e) => setDesc(e.target.value)}
 						type="text"
 						placeholder="Describe what your service is about"
-						value = {description}
-						onChange={(e) => setDesc(e.target.value)}
+						
 					/>
 				</Form.Group>
 				<Form.Group className="mb-3" controlId="formBasicEmail">
@@ -138,18 +146,20 @@ const PostListing = () => {
 				<Form.Group className="mb-3" controlId="formBasicPassword">
 					<Form.Label>Price</Form.Label>
 					<Form.Control
+					value = {price}
+					onChange={(e) => setPrice(e.target.value)}
 						type="text"
 						placeholder="Enter the price you want to sell your service for"
-						value = {price}
-						onChange={(e) => setPrice(e.target.value)}
 					/>
 				</Form.Group>
 
 				<Form.Group className="mb-3" controlId="formBasicPassword">
 					<Form.Label>Address</Form.Label>
-					<Form.Control type="text" placeholder="Enter your business address" 
+					<Form.Control 
 					value = {business_address}
-					onChange={(e) => setAddress(e.target.value)}/>
+					onChange={(e) => setAddress(e.target.value)}
+					type="text" placeholder="Enter your business address" 
+					/>
 				</Form.Group>
 
 				<Button onClick= {reg_service} variant="warning" type="submit" className="submit-button">

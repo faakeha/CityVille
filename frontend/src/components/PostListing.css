@@ -16,5 +16,11 @@
     float: right;
     width: fit-content;
     padding-right: 200px;
-    padding-top: 45px;    
+    padding-top: 0px;    
+    padding-bottom: 20px;
+}
+.lb1{
+    padding-left: 30px;
+    position: relative;
+    
 }
