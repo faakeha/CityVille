@@ -54,7 +54,7 @@ function App() {
 						<Route path="/SellerProfile" element={<SellerProfile />} />
 
 						<Route
-							path="/Individual_Listing/:id"
+							path="/Individual_Listing/:id/:uid"
 							element={<Individual_listing />}
 						/>
 						<Route path="/PostListing" element={<PostListing />} />

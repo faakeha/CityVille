@@ -77,19 +77,7 @@ const SellerProfile = () => {
 						src="https://res.cloudinary.com/dbmknff2i/image/upload/v1653748300/users/Image_t0wi4m.png"
 						alt="Tesla"
 					/>
-					{/* <div className="">
-						&nbsp;&nbsp;&nbsp;
-						<img
-							style={{
-								paddingLeft: "5px",
-								paddingTop: "27px",
-								maxHeight: "17px",
-								maxWidth: "17px",
-							}}
-							src="https://res.cloudinary.com/dbmknff2i/image/upload/v1653748300/users/rating_star_d7webp.png"
-							alt="Tesla"
-						/>
-					</div> */}
+					
 				</div>
 
 				<div className="card-wrapper">
@@ -100,17 +88,17 @@ const SellerProfile = () => {
 					}
 					<Card className="main-card">
 						<Card.Body>
-							This is a card this is a card this is a carddddddddddddddd
+							Review 1
 						</Card.Body>
 					</Card>
 					<Card className="main-card">
 						<Card.Body>
-							This is a card this is a card this is a carddddddddddddddd
+							Review 2
 						</Card.Body>
 					</Card>
 					<Card className="main-card">
 						<Card.Body>
-							This is a card this is a card this is a carddddddddddddddd
+							Review 3
 						</Card.Body>
 					</Card>
 				</div>

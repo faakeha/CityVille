@@ -35,21 +35,6 @@ function CustomerProfile() {
   console.log('lalal', name)
 
 
-  
-  /*const custprof = async() => {
-	if(response !== null){
-		response.map(item => (
-		setCust(item)
-	  
-		))
-	}
-  }
-
-  useEffect((e) => {
-	
-    custprof();
-	}, [response]);*/
-
   useEffect((e) => {
     get_user(e);
 	
@@ -72,8 +57,8 @@ function CustomerProfile() {
 							style={{
 								paddingLeft: "5px",
 								paddingTop: "27px",
-								maxHeight: "17px",
-								maxWidth: "17px",
+								maxHeight: "30px",
+								maxWidth: "30px",
 							}}
 							src="https://res.cloudinary.com/dbmknff2i/image/upload/v1653748300/users/rating_star_d7webp.png"
 							alt="Tesla"
@@ -88,17 +73,17 @@ function CustomerProfile() {
 					}
 					<Card className="main-card">
 						<Card.Body>
-							This is a card this is a card this is a carddddddddddddddd
+							Review 1
 						</Card.Body>
 					</Card>
 					<Card className="main-card">
 						<Card.Body>
-							This is a card this is a card this is a carddddddddddddddd
+							Review 2
 						</Card.Body>
 					</Card>
 					<Card className="main-card">
 						<Card.Body>
-							This is a card this is a card this is a carddddddddddddddd
+							Review 3
 						</Card.Body>
 					</Card>
 				</div>

@@ -64,7 +64,7 @@ function Homepage() {
 	const getcategories = categoriesG.map((item) => (
 		<div className="form-group l">
 			<img
-				className="img"
+				className="imgc"
 				src="https://res.cloudinary.com/dbmknff2i/image/upload/v1650369466/users/x_pbf8xz.png"
 				style={{
 					width: 100,
