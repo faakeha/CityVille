@@ -52,7 +52,9 @@ const PostListing = () => {
 	console.log(response)
 	var categories = cat
 	return (
-		<div style={{height: "110vh"}}>
+		<div>
+		<div style={{overflow:"hidden", paddingBottom:"20px"}}>
+			
 			<div className="float-child1">
 				
 				<h2 style={{ paddingLeft: "0px", paddingTop: "35px" }}>
@@ -100,7 +102,7 @@ const PostListing = () => {
 					<Form.Control type="text" placeholder="Enter the service name" 
 					value = {service_name}
 					onChange={(e) => setServiceName(e.target.value)}
-					type="text" placeholder="Enter the service name" 
+					 
 					
 					/>
 					
