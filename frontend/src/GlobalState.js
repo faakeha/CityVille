@@ -134,7 +134,7 @@ export const DataProvider = ({children}) => {
       //   get_role();
 
 
-        async function getUser(event){
+        async function getUser(){
           console.log('in users method')
           const id = localStorage['user_id'];
           const response = await fetch(`http://localhost:3001/CityVille/user/${id}`
@@ -147,7 +147,7 @@ export const DataProvider = ({children}) => {
 
         setUser(response)
         }
-        getUser()
+        //getUser()
    
 
 

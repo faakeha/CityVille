@@ -5,6 +5,7 @@ import logo from '../logo.svg';
 import Register from './Register';
 import { GlobalState } from '../GlobalState'
 
+
 // function logout() {
 //   //localStorage.clear()
 //   console.log(localStorage)
@@ -72,7 +73,7 @@ const username = user.first_name
           Reports</Link>&nbsp;
         <Link to="/ReviewListings" className="header_service" style={{ textDecoration: 'none' }}>
           Listings</Link>&nbsp;
-        <Link to="/Seller" className="header_service" style={{ textDecoration: 'none' }}>
+        <Link to="/SellerRequests" className="header_service" style={{ textDecoration: 'none' }}>
           Sellers</Link>&nbsp;
         <Link to="/Homepage" className="header_service" onClick={logout} style={{ textDecoration: 'none' }}>
           Logout</Link>&nbsp;

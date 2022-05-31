@@ -52,7 +52,7 @@ const PostListing = () => {
 	console.log(response)
 	var categories = cat
 	return (
-		<div style={{height: "110vh"}}>
+		<div style={{overflow:"hidden", paddingBottom:"20px"}}>
 			<div className="float-child1">
 				
 				<h2 style={{ paddingLeft: "0px", paddingTop: "35px" }}>

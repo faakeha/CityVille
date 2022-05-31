@@ -129,7 +129,7 @@ margin: auto;
 }
 
 .img {
-  border: 3px solid #555;
+  border: 5px solid #555;
 }
 
 .roundimg{
@@ -412,6 +412,8 @@ label {
 }
 .same_line{
   display: flex;
+  width: 300px;
+  
 }
 .float-child1 {
   width: 40%;
