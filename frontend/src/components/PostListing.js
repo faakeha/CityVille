@@ -52,6 +52,7 @@ const PostListing = () => {
 	console.log(response)
 	var categories = cat
 	return (
+		<div>
 		<div style={{overflow:"hidden", paddingBottom:"20px"}}>
 			<div className="float-child1">
 				
@@ -100,18 +101,28 @@ const PostListing = () => {
 					<Form.Control type="text" placeholder="Enter the service name" 
 					value = {service_name}
 					onChange={(e) => setServiceName(e.target.value)}
+					 
+					
 					/>
 					
 				</Form.Group>
 				
 
+					</Form>		
+
+			</div>
+			<Form  className="form">
+
+			
+
 				<Form.Group className="mb-3" controlId="formBasicEmail">
 					<Form.Label>Description</Form.Label>
 					<Form.Control
+					value = {description}
+					onChange={(e) => setDesc(e.target.value)}
 						type="text"
 						placeholder="Describe what your service is about"
-						value = {description}
-						onChange={(e) => setDesc(e.target.value)}
+						
 					/>
 				</Form.Group>
 				<Form.Group className="mb-3" controlId="formBasicEmail">
@@ -143,18 +154,20 @@ const PostListing = () => {
 				<Form.Group className="mb-3" controlId="formBasicPassword">
 					<Form.Label>Price</Form.Label>
 					<Form.Control
+					value = {price}
+					onChange={(e) => setPrice(e.target.value)}
 						type="text"
 						placeholder="Enter the price you want to sell your service for"
-						value = {price}
-						onChange={(e) => setPrice(e.target.value)}
 					/>
 				</Form.Group>
 
 				<Form.Group className="mb-3" controlId="formBasicPassword">
 					<Form.Label>Address</Form.Label>
-					<Form.Control type="text" placeholder="Enter your business address" 
+					<Form.Control 
 					value = {business_address}
-					onChange={(e) => setAddress(e.target.value)}/>
+					onChange={(e) => setAddress(e.target.value)}
+					type="text" placeholder="Enter your business address" 
+					/>
 				</Form.Group>
 
 				<Button onClick= {reg_service} variant="warning" type="submit" className="submit-button">

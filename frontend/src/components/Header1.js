@@ -67,21 +67,21 @@ const username = user.first_name
 
       <div className="flex-container" >
         <h1 className="header_title">CityVille</h1>
-        <Link to="/Homepage" className="header_home" style={{ textDecoration: 'none', paddingRight: '35px' }}>
+        <Link to="/Homepage" className="header_home" style={{ textDecoration: 'none', paddingRight: '55px' }}>
           Home</Link>&nbsp;
-        <Link to="/CommunityReports" className="header_service" style={{ textDecoration: 'none' }}>
+        <Link to="/CommunityReports" className="header_service" style={{ textDecoration: 'none', paddingRight : '55px'}}>
           Reports</Link>&nbsp;
-        <Link to="/ReviewListings" className="header_service" style={{ textDecoration: 'none' }}>
+        <Link to="/SellerRequests" className="header_service" style={{ textDecoration: 'none', paddingRight : '55px' }}>
           Listings</Link>&nbsp;
-        <Link to="/SellerRequests" className="header_service" style={{ textDecoration: 'none' }}>
-          Sellers</Link>&nbsp;
-        <Link to="/Homepage" className="header_service" onClick={logout} style={{ textDecoration: 'none' }}>
+        
+        <Link to="/Homepage" className="header_service" onClick={logout} style={{ textDecoration: 'none', paddingRight : '105px' }}>
           Logout</Link>&nbsp;
-        <Link to="/Profile" className="header_user" style={{ textDecoration: 'none', fontSize: '15px', color: '#ffffff' }}>
+        <Link to="/Profile" className="header_user" style={{ textDecoration: 'none', fontSize: '15px', color: '#ffffff'}}>
           {username}</Link>&nbsp;&nbsp;
           <img src="https://res.cloudinary.com/dbmknff2i/image/upload/v1653947860/users/profile_u6z026.png" style={{
           width: 60,
           height: 55,
+          
         }} className="roundimg" alt='user'></img>
       </div>
     )
