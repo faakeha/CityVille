@@ -621,30 +621,30 @@ router.get("/getServices", async (req, res) => {
 	res.json(serv);
 });
 
-router.get("/AdminServices", verifyToken, async (req, res) => {
-	const user1 = await User.findOne({ _id: req.user.id });
-	// if (!req?.query?.id) {
-	//user
+// router.get("/AdminServices", verifyToken, async (req, res) => {
+// 	const user1 = await User.findOne({ _id: req.user.id });
+// 	// if (!req?.query?.id) {
+// 	//user
 
-	if (user1.user_role == 1) {
-		const all_services = await Service.find();
-		//{ approve_status: "Pending" }
-		//);
-		res.json(all_services);
-	} else {
-		res.json("You are not authorized to do that");
-	}
-	// }
-	// //get services of specified user
-	// else {
-	// 	console.log(req.query.id);
-	// 	const user_service = await Service.find({ user_id: req.query.id });
-	// 	res.json(user_service);
-	// 	if (!user_service) {
-	// 		res.json("Seller does not exist.");
-	// 	}
-	// }
-});
+// 	if (user1.user_role == 1) {
+// 		const all_services = await Service.find();
+// 		//{ approve_status: "Pending" }
+// 		//);
+// 		res.json(all_services);
+// 	} else {
+// 		res.json("You are not authorized to do that");
+// 	}
+// }
+// //get services of specified user
+// else {
+// 	console.log(req.query.id);
+// 	const user_service = await Service.find({ user_id: req.query.id });
+// 	res.json(user_service);
+// 	if (!user_service) {
+// 		res.json("Seller does not exist.");
+// 	}
+// }
+// });
 function GetSortOrder(prop) {
 	return function (a, b) {
 		if (a[prop] > b[prop]) {
