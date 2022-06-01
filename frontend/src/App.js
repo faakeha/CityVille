@@ -73,6 +73,7 @@ function App() {
 							path="/SellerAppointments"
 							element={<SellerAppointments />}
 						/>
+						<Route path="/SellerProfile/:id" element={<SellerProfile />} />
 						<Route path="/SellerProfile" element={<SellerProfile />} />
 
 						{/* <Footer />
