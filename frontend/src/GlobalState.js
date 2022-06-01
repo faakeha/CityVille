@@ -9,6 +9,7 @@ export const DataProvider = ({ children }) => {
 	const [services, setServices] = useState([""]);
 	const [servcat, setServcat] = useState([""]);
 	const [isAdmin, setIsAdmin] = useState(false);
+  const [app, setAppointments] = useState([]);
   
 	const [role, setRole] = useState(0);
 	const [user, setUser] = useState({
@@ -175,6 +176,30 @@ export const DataProvider = ({ children }) => {
 
 			setAppointments(response);
 		}
+
+    getAppointments()
+
+    async function getAdminServices(event) {
+			console.log("in users method");
+			const token = localStorage["userToken"];
+			const response = await fetch(
+				`http://localhost:3001/CityVille/AdminServices`,
+				{
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						token: `Bearer ${token}`,
+					},
+				}
+			)
+				.then((response) => response.json())
+				.then((data) => {
+					return data;
+				});
+
+			setAdminService(response);
+		}
+		getAdminServices();
     if(isAdmin === true){
       getAdminServices()
     }

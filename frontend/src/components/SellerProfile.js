@@ -128,6 +128,7 @@ const SellerProfile = () => {
 					</Card>
 				</div>
 			</div>
+			
 
 			<div className="bottom-sp-bar">
 				{listing.map((service) => (
