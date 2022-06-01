@@ -432,14 +432,14 @@ router.put("/updateApp/:id", verifyToken, async (req, res) => {
 				console.log(req.user.id);
 				res.json("You are not authorized.");
 			} else {
-				if (!req.body.status) {
+				if (!req.body.approve_status) {
 					console.log("2");
 					res.json("You are not authorized");
 				} else {
-					if (req.body.status != "Cancelled") {
+					if (req.body.approve_status != "Cancelled") {
 						console.log("3");
 						res.json("You are not authorized");
-					} else if (req.body.status == "Cancelled") {
+					} else if (req.body.approve_status == "Cancelled") {
 						const updatedApp = await Appointment.findByIdAndUpdate(
 							req.params.id,
 							{
@@ -456,13 +456,13 @@ router.put("/updateApp/:id", verifyToken, async (req, res) => {
 				console.log("1");
 				res.json("You are not authorized.");
 			} else if (user_app.to_user_id == req.user.id) {
-				if (!req.body.status) {
+				if (!req.body.approve_status) {
 					console.log("2");
 					res.json("You are not authorized");
 				} else {
 					if (
-						user_app.status == "Pending" &&
-						(req.body.status == "Approved" || req.body.status == "Rejected")
+						user_app.approve_status == "Pending" &&
+						(req.body.approve_status == "Approved" || req.body.approve_status == "Rejected")
 					) {
 						const updatedApp = await Appointment.findByIdAndUpdate(
 							req.params.id,
@@ -473,8 +473,8 @@ router.put("/updateApp/:id", verifyToken, async (req, res) => {
 						);
 						res.status(200).json(updatedApp);
 					} else if (
-						user_app.status == "Approved" &&
-						(req.body.status == "Cancelled" || req.body.status == "Completed")
+						user_app.approve_status == "Approved" &&
+						(req.body.approve_status == "Cancelled" || req.body.approve_status == "Completed")
 					) {
 						const updatedApp = await Appointment.findByIdAndUpdate(
 							req.params.id,

@@ -154,6 +154,29 @@ export const DataProvider = ({ children }) => {
 		}
 		getUser();
 
+    async function getAdminServices(event) {
+			console.log("in users method");
+			const token = localStorage["userToken"];
+			const response = await fetch(
+				`http://localhost:3001/CityVille/AdminServices`,
+				{
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						token: `Bearer ${token}`,
+					},
+				}
+			)
+				.then((response) => response.json())
+				.then((data) => {
+					return data;
+				});
+
+			setAdminService(response);
+		}
+		getAdminServices();
+
+
 		async function getAppointments(event) {
 			console.log("in users method");
 			const token = localStorage["userToken"];
