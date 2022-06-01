@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {useState, useEffect, createContext, useContext} from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import Profile from './Profile';
 import {FaExclamationCircle } from "react-icons/fa";
 import { GlobalState } from '../GlobalState'
 
@@ -10,8 +9,10 @@ function Login() {
 
   const state = useContext(GlobalState)
     //const [sp] = state.users;
-    const [role, setRole] = state.role;
+    const [role, setRole] = state.role
     const [user, setUser] = state.user
+    const [isLogin, setIsLogin] = state.user
+
     
     
 
@@ -78,9 +79,10 @@ function Login() {
     if(data !== 'Wrong Credentials'){
       console.log('before route change')
       console.log(data)
-    localStorage.setItem('username', (data.first_name + " " + data.last_name))
-     localStorage.setItem('userToken', data.accessToken)
-    setRole(JSON.stringify(data.user_role));
+      localStorage.setItem('username', (data.first_name + " " + data.last_name))
+      localStorage.setItem('userToken', data.accessToken)
+      setRole(JSON.stringify(data.user_role));
+      setIsLogin(true)
     //localStorage.setItem('user_role', JSON.stringify(data.user_role))
     setUser({
       id: data._id,
@@ -91,6 +93,7 @@ function Login() {
     
      localStorage.setItem('user_role', data.user_role)
      localStorage.setItem('user_id', data._id)
+    
     routeChange()
     
     }

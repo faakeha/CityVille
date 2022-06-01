@@ -5,6 +5,7 @@ import logo from "../logo.svg";
 import Register from "./Register";
 import { GlobalState } from "../GlobalState";
 
+
 // function logout() {
 //   //localStorage.clear()
 //   console.log(localStorage)
@@ -55,8 +56,101 @@ function Header1() {
 
 	//}
 
+<<<<<<< HEAD
 	const username = user.first_name;
 	//const role = JSON.parse(localStorage.getItem('user_role'))
+=======
+      <div className="flex-container" >
+        <h1 className="header_title">CityVille</h1>
+        <Link to="/Homepage" className="header_home" style={{ textDecoration: 'none', paddingRight: '55px' }}>
+          Home</Link>&nbsp;
+        <Link to="/CommunityReports" className="header_service" style={{ textDecoration: 'none', paddingRight : '55px'}}>
+          Reports</Link>&nbsp;
+        <Link to="/SellerRequests" className="header_service" style={{ textDecoration: 'none', paddingRight : '55px' }}>
+          Listings</Link>&nbsp;
+        
+        <Link to="/Homepage" className="header_service" onClick={logout} style={{ textDecoration: 'none', paddingRight : '105px' }}>
+          Logout</Link>&nbsp;
+        <Link to="/Profile" className="header_user" style={{ textDecoration: 'none', fontSize: '15px', color: '#ffffff'}}>
+          {username}</Link>&nbsp;&nbsp;
+          <img src="https://res.cloudinary.com/dbmknff2i/image/upload/v1653947860/users/profile_u6z026.png" style={{
+          width: 60,
+          height: 55,
+          
+        }} className="roundimg" alt='user'></img>
+      </div>
+    )
+  }
+  else if (role == '3') {
+
+    return (
+
+      <div className="flex-container" >
+        <h1 className="header_title">CityVille</h1>
+        <Link to="/Homepage" className="header_home" style={{ textDecoration: 'none', paddingRight: '10px' }}>
+          Home</Link>&nbsp;
+        <Link to="/Services" className="header_service" style={{ textDecoration: 'none', paddingRight: '10px' }}>
+          Services</Link>&nbsp;
+        <Link to="/SellerAppointments" className="header_service" style={{ textDecoration: 'none', paddingRight: '10px' }}>
+          Appointments</Link>&nbsp;
+        <Link to="/Homepage" className="header_service" onClick={logout} style={{ textDecoration: 'none', paddingRight: '10px' }}>
+          Logout</Link>&nbsp;
+        <Link to='/PostListing' className='btn-primary col hdbtn' style={{ textDecoration: 'none', maxWidth: '150px', marginRight: '30px', marginLeft: '25px' }}>
+          Add Service</Link>
+        <Link to="/SellerProfile" className="header_user" style={{ textDecoration: 'none', fontSize: '15px', color: '#ffffff', paddingRight: '1px' }}>
+          {username}</Link>&nbsp;&nbsp;
+          <img src="https://res.cloudinary.com/dbmknff2i/image/upload/v1653947860/users/profile_u6z026.png" style={{
+          width: 60,
+          height: 55,
+        }} className="roundimg" alt='user'></img>
+      </div>
+    )
+  }
+  else if (role == '2') {
+    return (
+      <div className="flex-container" >
+        <h1 className="header_title">CityVille</h1>
+        <Link to="/Homepage" className="header_home" style={{ textDecoration: 'none' }}>
+          Home</Link>&nbsp;
+        <Link to="/Services" className="header_service" style={{ textDecoration: 'none' }}>
+          Services</Link>&nbsp;
+        <Link to="/CustomerAppointments" className="header_service" style={{ textDecoration: 'none' }}>
+          Appointments</Link>&nbsp;
+        <Link to="/Homepage" className="header_service" onClick={logout} style={{ textDecoration: 'none'}}>
+          Logout</Link>&nbsp;
+        <Link to="/CustomerProfile" className="header_user" style={{ textDecoration: 'none', fontSize: '15px', color: '#ffffff', paddingRight: '30px' }}>
+          {username}</Link>
+          <img src="https://res.cloudinary.com/dbmknff2i/image/upload/v1653947860/users/profile_u6z026.png" style={{
+          width: 60,
+          height: 55,
+        }} className="roundimg" alt='user'></img>
+      </div>
+    )
+  }
+
+  else {
+    return (
+      <div className="flex-container" >
+        <h1 className="header_title">CityVille</h1>
+        <Link to="/Homepage" className="header_home" style={{ textDecoration: 'none' }}>
+          Home</Link>&nbsp;
+        <Link to="/Services" className="header_service" style={{ textDecoration: 'none' }}>
+          Services</Link>&nbsp;
+        <Link to="/Login" className="header_service" style={{ textDecoration: 'none' }}>
+          Login</Link>&nbsp;
+
+
+        <Link to={`/Register/${sid}`} className='btn-primary col hdbtn' >
+          Signup as Seller</Link>
+
+        &nbsp;&nbsp;&nbsp;
+        <Link to={`/Register/${cid}`} className='btn-primary col hdbtn'>
+          Signup as Customer</Link>
+
+      </div>
+    )
+  }
+>>>>>>> e475215c4406ebb24a0738ee4f376625c967825d
 
 	if (role === "1") {
 		return (
