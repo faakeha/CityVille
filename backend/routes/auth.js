@@ -636,6 +636,7 @@ router.get("/AdminServices", verifyToken, async (req, res) => {
 	}
 });
 //get services of specified user
+// //get services of specified user
 // else {
 // 	console.log(req.query.id);
 // 	const user_service = await Service.find({ user_id: req.query.id });
@@ -645,6 +646,8 @@ router.get("/AdminServices", verifyToken, async (req, res) => {
 // 	}
 // }
 // });
+// );
+
 // function GetSortOrder(prop) {
 // 	return function (a, b) {
 // 		if (a[prop] > b[prop]) {
@@ -655,7 +658,6 @@ router.get("/AdminServices", verifyToken, async (req, res) => {
 // 		return 0;
 // 	};
 // }
-
 router.get("/getTopServiceProviders", async (req, res) => {
 	const all_services = await Service.aggregate([
 		{ $project: { avg_rating: { $avg: "$ratings" } } },
@@ -670,5 +672,4 @@ router.get("/getTopServiceProviders", async (req, res) => {
 	}
 	res.json(services);
 });
-
 module.exports = router;

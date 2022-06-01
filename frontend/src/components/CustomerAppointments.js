@@ -1,31 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./CustomerAppointments.css";
+import { GlobalState } from "../GlobalState";
 //import Axios from "axios";
 import { Card, Button, Row } from "react-bootstrap";
 
 function CustomerAppointments() {
-	const [responses, setResponse] = useState([]);
+	//const [responses, setResponse] = useState([]);
 
-	async function get_com_app(event) {
-		console.log("in login method");
+	const state = useContext(GlobalState);
+	const [response] = state.app;
+	console.log("in login method", response);
+
+	async function update_app(id, new_status) {
 		const token = localStorage["userToken"];
+		console.log("id", id);
+		console.log("new_status", new_status);
 		//event.preventDefault()
-		const data = await fetch("http://localhost:3001/CityVille/getApp", {
-			method: "GET",
+		const res = await fetch(`http://localhost:3001/CityVille/updateApp/${id}`, {
+			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
 				token: `Bearer ${token}`,
 			},
+			body: JSON.stringify({
+				approve_status: new_status,
+			}),
 		});
 
-		const res = await data.json();
-		console.log("eeeeeeeeeeeeeeeeeeeeee", res);
-		setResponse(res);
+		console.log("e", res);
+		setfilteredAppointments(approved);
+		setfilteredAppointments(rejected);
+		setfilteredAppointments(pending);
+		setfilteredAppointments(completed);
+		setfilteredAppointments(cancelled);
 	}
 
-	useEffect((e) => {
-		get_com_app(e);
-	}, []);
+	// useEffect((e) => {
+	// 	get_com_app(e)
+	//    }, []);
 
 	// const responses = [
 	// 	{
@@ -102,14 +114,14 @@ function CustomerAppointments() {
 	// 	},
 	// ];
 
-	const [appointments, setAppointments] = useState(null);
-	const getAppointments = () => {
-		///Axios.get("http://localhost:4000/api/auth/getApp").then((response) => {
-		//console.log(response);
-		setAppointments(responses.data);
-		//}
-		//);
-	};
+	// const [appointments, setAppointments] = useState(null);
+	// const getAppointments = () => {
+	// 	///Axios.get("http://localhost:4000/api/auth/getApp").then((response) => {
+	// 	//console.log(response);
+	// 	setAppointments(response.data);
+	// 	//}
+	// 	//);
+	// };
 	const [filteredAppointments, setfilteredAppointments] = useState(null);
 
 	const [isPending, setIsPending] = useState(null);
@@ -122,11 +134,11 @@ function CustomerAppointments() {
 
 	const [isCancelled, setIsCancelled] = useState(null);
 
-	var approved = responses.filter((e) => e.approve_status === "Approved");
-	var rejected = responses.filter((e) => e.approve_status === "Rejected");
-	var pending = responses.filter((e) => e.approve_status === "Pending");
-	var completed = responses.filter((e) => e.approve_status === "Completed");
-	var cancelled = responses.filter((e) => e.approve_status === "Cancelled");
+	var approved = response.filter((e) => e.approve_status === "Approved");
+	var rejected = response.filter((e) => e.approve_status === "Rejected");
+	var pending = response.filter((e) => e.approve_status === "Pending");
+	var completed = response.filter((e) => e.approve_status === "Completed");
+	var cancelled = response.filter((e) => e.approve_status === "Cancelled");
 
 	function showApproved() {
 		setIsApproved(true);
@@ -301,6 +313,28 @@ function CustomerAppointments() {
 												</a>
 											</div>
 										</Card.Text>
+										<div className="decision-buttons">
+											{isPending === true && (
+												<div className="apr-buttons">
+													<Button
+														onClick={() =>
+															update_app(response._id, "Cancelled")
+														}
+														className="apr-btn"
+														variant="outline-warning"
+													>
+														Cancel
+													</Button>
+													{/* <Button
+													onClick={() => update_service(e._id, "Rejected")}
+													className="rej-btn"
+													variant="outline-warning"
+												>
+													Reject
+												</Button> */}
+												</div>
+											)}
+										</div>
 									</Card.Body>
 								</Card>
 							</div>
