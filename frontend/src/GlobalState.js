@@ -8,7 +8,9 @@ export const DataProvider = ({ children }) => {
 	const [categories, setCategories] = useState([""]);
 	const [services, setServices] = useState([""]);
 	const [servcat, setServcat] = useState([""]);
-	const [role, setRole] = useState();
+	const [isAdmin, setIsAdmin] = useState(false);
+  
+	const [role, setRole] = useState(0);
 	const [user, setUser] = useState({
 		id: "",
 		first_name: "",
@@ -173,7 +175,10 @@ export const DataProvider = ({ children }) => {
 
 			setAdminService(response);
 		}
-		getAdminServices();
+    if(isAdmin === true){
+      getAdminServices()
+    }
+		
 	}, []);
 
 	const state = {
@@ -183,6 +188,7 @@ export const DataProvider = ({ children }) => {
 		servcat: [servcat, setServcat],
 		role: [role, setRole],
 		user: [user, setUser],
+		admin: [isAdmin, setIsAdmin],
 		admin_service: [admin_service, setAdminService],
 	};
 
