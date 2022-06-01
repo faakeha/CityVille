@@ -37,17 +37,17 @@ const SellerProfile = () => {
 						// lagy ga
 					}
 					<Card className="main-card">
-						<Card.Body>
+						<Card.Body style={{ width: "25rem" }}>
 							This is a card this is a card this is a carddddddddddddddd
 						</Card.Body>
 					</Card>
 					<Card className="main-card">
-						<Card.Body>
+						<Card.Body style={{ width: "25rem" }}>
 							This is a card this is a card this is a carddddddddddddddd
 						</Card.Body>
 					</Card>
 					<Card className="main-card">
-						<Card.Body>
+						<Card.Body style={{ width: "25rem" }}>
 							This is a card this is a card this is a carddddddddddddddd
 						</Card.Body>
 					</Card>

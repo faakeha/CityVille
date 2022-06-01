@@ -28,3 +28,22 @@
     color: black;
 
 }
+
+.card-body{
+    text-align: left;
+}
+
+.decision-buttons{
+    text-align: right !important;
+
+}
+
+.apr-btn{
+    width: 90px;
+    height: 45px;
+}
+
+.rej-btn{
+    width: 90px;
+    height: 45px;
+}

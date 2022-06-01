@@ -1,30 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import "./SellerRequests.css";
-import { Card, Button, Row } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
+import { GlobalState } from "../GlobalState";
 
 function SellerRequests() {
-	const [response, setResponse] = useState([]);
+	//const [response, setResponse] = useState([]);
+	const [status, setStatus] = useState("");
 
-	async function get_seller_req(event) {
-		console.log("in login method");
+	const state = useContext(GlobalState);
+	const [response] = state.admin_service;
+	console.log("in login method");
+
+	async function update_service(id, new_status) {
 		const token = localStorage["userToken"];
+		console.log("id", id);
+		console.log("new_status", new_status);
 		//event.preventDefault()
-		const data = await fetch("http://localhost:3001/CityVille/AdminServices", {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-				token: `Bearer ${token}`,
-			},
-		});
+		const res = await fetch(
+			`http://localhost:3001/CityVille/updateService/${id}`,
+			{
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+					token: `Bearer ${token}`,
+				},
+				body: JSON.stringify({
+					approve_status: new_status,
+				}),
+			}
+		);
 
-		const res = await data.json();
-		console.log("eeeeeeeeeeeeeeeeeeeeee", res);
-		setResponse(res);
+		console.log("e", res);
+		setfilteredRequests(approved);
+		setfilteredRequests(rejected);
+		setfilteredRequests(pending);
+		//setResponse(res);
 	}
 
-	useEffect((e) => {
-		get_seller_req(e);
-	}, []);
+	// useEffect((e) => {
+	// 	get_seller_req(e);
+	// }, []);
 
 	// const responses = [
 	// 	{
@@ -156,16 +171,53 @@ function SellerRequests() {
 				filteredRequests.map((e) => {
 					return (
 						<div className="cards">
-							<Card className="main-card">
-								<Card.Body className="card-body">
+							<Card className="main-card" style={{ width: "70rem" }}>
+								<Card.Body className="card-body" style={{ width: "60rem" }}>
 									<p>
-										<b>From User ID: </b>
-										{e._id}
-									</p>
-									<p>
-										<b>To User ID: </b>
+										<b>User ID: </b>
 										{e.user_id}
 									</p>
+									<p>
+										<b>Service Name: </b>
+										{e.service_name}
+									</p>
+									<p>
+										<b>Description: </b>
+										{e.description}
+									</p>
+									<p>
+										<b>Category: </b>
+										{e.category}
+									</p>
+									<p>
+										<b>Business Address: </b>
+										{e.business_address}
+									</p>
+									<p>
+										<b>Price: </b>
+										{e.price}
+									</p>
+
+									<div className="decision-buttons">
+										{isPending === true && (
+											<div className="apr-buttons">
+												<Button
+													onClick={() => update_service(e._id, "Approved")}
+													className="apr-btn"
+													variant="outline-warning"
+												>
+													Accept
+												</Button>
+												<Button
+													onClick={() => update_service(e._id, "Rejected")}
+													className="rej-btn"
+													variant="outline-warning"
+												>
+													Reject
+												</Button>
+											</div>
+										)}
+									</div>
 								</Card.Body>
 							</Card>
 						</div>
