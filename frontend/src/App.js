@@ -30,6 +30,9 @@ import SellerProfile from "./components/SellerProfile";
 
 function App() {
 	// const role = JSON.parse(localStorage.getItem('user_role'))
+	const state = useContext(GlobalState);
+	//const role = state.role? state.role : -1
+
 	return (
 		<DataProvider>
 			<Router>
@@ -52,6 +55,8 @@ function App() {
 						<Route path="/PostListing" element={<PostListing />} />
 						<Route path="/CustomerProfile" element={<CustomerProfile />} />
 						<Route path="/SellerProfile" element={<SellerProfile />} />
+						<Route path="/SellerProfile/:id" element={<SellerProfile />} />
+
 
 						<Route
 							path="/Individual_Listing/:id/:uid"

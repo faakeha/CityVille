@@ -8,8 +8,10 @@ export const DataProvider = ({ children }) => {
 	const [categories, setCategories] = useState([""]);
 	const [services, setServices] = useState([""]);
 	const [servcat, setServcat] = useState([""]);
-	const [role, setRole] = useState();
+	const [isAdmin, setIsAdmin] = useState(false);
   const [app, setAppointments] = useState([]);
+  
+	const [role, setRole] = useState(0);
 	const [user, setUser] = useState({
 		id: "",
 		first_name: "",
@@ -154,6 +156,29 @@ export const DataProvider = ({ children }) => {
 		}
 		getUser();
 
+    async function getAdminServices(event) {
+			console.log("in users method");
+			const token = localStorage["userToken"];
+			const response = await fetch(
+				`http://localhost:3001/CityVille/AdminServices`,
+				{
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						token: `Bearer ${token}`,
+					},
+				}
+			)
+				.then((response) => response.json())
+				.then((data) => {
+					return data;
+				});
+
+			setAdminService(response);
+		}
+		getAdminServices();
+
+
 		async function getAppointments(event) {
 			console.log("in users method");
 			const token = localStorage["userToken"];
@@ -174,9 +199,34 @@ export const DataProvider = ({ children }) => {
 
 			setAppointments(response);
 		}
-		getAppointments();
 
+    getAppointments()
 
+    async function getAdminServices(event) {
+			console.log("in users method");
+			const token = localStorage["userToken"];
+			const response = await fetch(
+				`http://localhost:3001/CityVille/AdminServices`,
+				{
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						token: `Bearer ${token}`,
+					},
+				}
+			)
+				.then((response) => response.json())
+				.then((data) => {
+					return data;
+				});
+
+			setAdminService(response);
+		}
+		getAdminServices();
+    if(isAdmin === true){
+      getAdminServices()
+    }
+		
 	}, []);
 
 	const state = {
@@ -186,6 +236,7 @@ export const DataProvider = ({ children }) => {
 		servcat: [servcat, setServcat],
 		role: [role, setRole],
 		user: [user, setUser],
+		admin: [isAdmin, setIsAdmin],
 		admin_service: [admin_service, setAdminService],
     app : [app, setAppointments]
 	};

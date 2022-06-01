@@ -314,6 +314,22 @@ function CustomerAppointments() {
 											</div>
 										</Card.Text>
 										<div className="decision-buttons">
+											{isApproved === true && (
+												<div className="apr-buttons">
+													<Button
+														onClick={() =>
+															update_app(response._id, "Cancelled")
+														}
+														className="apr-btn"
+														variant="outline-warning"
+													>
+														Cancel
+													</Button>
+													
+												</div>
+											)}
+										</div>
+										<div className="decision-buttons">
 											{isPending === true && (
 												<div className="apr-buttons">
 													<Button
@@ -325,13 +341,7 @@ function CustomerAppointments() {
 													>
 														Cancel
 													</Button>
-													{/* <Button
-													onClick={() => update_service(e._id, "Rejected")}
-													className="rej-btn"
-													variant="outline-warning"
-												>
-													Reject
-												</Button> */}
+													
 												</div>
 											)}
 										</div>
