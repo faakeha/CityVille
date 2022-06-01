@@ -257,8 +257,8 @@ router.get("/profile", verifyToken, async (req, res) => {
 });
 
 //get profile
-router.get("/users", async (req, res) => {
-	const user1 = await User.findOne({ _id: req.query.id });
+router.get("/users",verifyToken, async (req, res) => {
+	const user1 = await User.findOne({ _id: req.user.id });
 	if (user1.user_role == 1) {
 		if (!req?.query?.id) {
 			const all_users = await User.find();

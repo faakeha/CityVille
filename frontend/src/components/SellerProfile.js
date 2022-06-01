@@ -2,23 +2,37 @@ import React, { useState, useEffect, useContext } from "react";
 import { Card } from "react-bootstrap";
 import "./SellerProfile.css";
 import { GlobalState } from "../GlobalState";
+import {Link,  useParams } from 'react-router-dom';
+
 
 const SellerProfile = () => {
-	const [response, setResponse] = useState();
+	const params = useParams();
+	const uid = params.id;
+	console.log(uid)
+	const userid = uid ? uid : -1
+	
+
+
+	//const [response, setResponse] = useState();
 	const [name, setName] = useState();
 	const [ID, setID] = useState();
+
 	const state = useContext(GlobalState);
 	const [services] = state.services;
 	const [listing, setListing] = useState([]);
+	var id = ''
 
-	const id = localStorage["user_id"];
-	const token = localStorage["userToken"];
+	
 
 	const get_user = async (event) => {
 		console.log("in login method");
+		const token = localStorage["userToken"];
 
-		//event.preventDefault()
-		const data = await fetch(`http://localhost:3001/CityVille/user/${id}`, {
+		if(userid !== -1){
+			console.log('in userid if')
+			id = userid
+			console.log(userid, 'id')
+			const data = await fetch(`http://localhost:3001/CityVille/users?id=${id}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -28,15 +42,35 @@ const SellerProfile = () => {
 
 		const res = await data.json();
 		console.log("eeeeeeeeeeeeeeeeeeeeee", res);
-		setResponse(res);
+		
+		setName(res.first_name + " " + res.last_name);
+		setID(res._id);
+			
+		}
+		else{
+			console.log('in userid else')
+			id = localStorage["user_id"];
+			const data = await fetch(`http://localhost:3001/CityVille/user/${id}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				token: `Bearer ${token}`,
+			},
+		});
+
+		const res = await data.json();
+		console.log("eeeeeeeeeeeeeeeeeeeeee", res);
+		
 		setName(res[0].first_name + " " + res[0].last_name);
 		setID(res[0]._id);
+		}
+
+		//event.preventDefault()
+		
 	};
 
 	console.log("lalal", name);
 	console.log("id", ID);
-
-	//const li = services.filter(element => element.user_id === ID)
 
 	useEffect(
 		(e) => {
@@ -51,10 +85,11 @@ const SellerProfile = () => {
 					)
 				);
 			};
+
 			get_user(e);
 			list(e);
 		},
-		[name]
+		[name, ID]
 	);
 
 	console.log("listing", listing[0]);
@@ -78,21 +113,22 @@ const SellerProfile = () => {
 					}
 					<Card className="main-card">
 						<Card.Body style={{ width: "25rem" }}>
-							This is a card this is a card this is a carddddddddddddddd
+							Review 1
 						</Card.Body>
 					</Card>
 					<Card className="main-card">
 						<Card.Body style={{ width: "25rem" }}>
-							This is a card this is a card this is a carddddddddddddddd
+							Review 2
 						</Card.Body>
 					</Card>
 					<Card className="main-card">
 						<Card.Body style={{ width: "25rem" }}>
-							This is a card this is a card this is a carddddddddddddddd
+							Review 3
 						</Card.Body>
 					</Card>
 				</div>
 			</div>
+			
 
 			<div className="bottom-sp-bar">
 				{listing.map((service) => (
@@ -108,7 +144,7 @@ const SellerProfile = () => {
 							alt="user"
 						></img>
 						<div>
-							<p>{service.service_name}</p>
+							<p ><Link to={`/Individual_Listing/${service._id}/${service.user_id}`} style={{textDecoration: "none", color:"black"}}>{service.service_name}</Link></p>
 
 							<br></br>
 						</div>

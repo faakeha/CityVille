@@ -11,7 +11,7 @@ function Login() {
     //const [sp] = state.users;
     const [role, setRole] = state.role
     const [user, setUser] = state.user
-    const [isLogin, setIsLogin] = state.user
+    const [IsAdmin, setIsAdmin] = state.admin
 
     
     
@@ -82,7 +82,8 @@ function Login() {
       localStorage.setItem('username', (data.first_name + " " + data.last_name))
       localStorage.setItem('userToken', data.accessToken)
       setRole(JSON.stringify(data.user_role));
-      setIsLogin(true)
+      data.user_role === 1? setIsAdmin(true) :setIsAdmin(false)
+      
     //localStorage.setItem('user_role', JSON.stringify(data.user_role))
     setUser({
       id: data._id,
