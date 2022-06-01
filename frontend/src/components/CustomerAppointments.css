@@ -1,0 +1,8 @@
+.card-text{
+    display: flex;
+    flex-direction: column;
+}
+.customCard{
+    height: fit-content;
+    width: 70rem;
+}

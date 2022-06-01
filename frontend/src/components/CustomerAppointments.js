@@ -1,36 +1,31 @@
 import React, { useState, useEffect } from "react";
-import "./SellerAppointments.css";
+import "./CustomerAppointments.css";
 //import Axios from "axios";
 import { Card, Button, Row } from "react-bootstrap";
 
 function CustomerAppointments() {
-
 	const [responses, setResponse] = useState([]);
 
-	async function get_com_app(event){
+	async function get_com_app(event) {
+		console.log("in login method");
+		const token = localStorage["userToken"];
+		//event.preventDefault()
+		const data = await fetch("http://localhost:3001/CityVille/getApp", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				token: `Bearer ${token}`,
+			},
+		});
 
-	console.log('in login method')
-	const token = localStorage['userToken'] 
-    //event.preventDefault()
-    const data = await fetch('http://localhost:3001/CityVille/getApp', {
-      method: 'GET',
-      headers: {
-        'Content-Type':'application/json',
-		"token":`Bearer ${token}`
-      }
-      })
-    
-	  const res = await data.json()
-	  console.log("eeeeeeeeeeeeeeeeeeeeee",res)
-	  setResponse(res);
-
+		const res = await data.json();
+		console.log("eeeeeeeeeeeeeeeeeeeeee", res);
+		setResponse(res);
 	}
 
 	useEffect((e) => {
-		get_com_app(e)
-	   }, []); 
-
-
+		get_com_app(e);
+	}, []);
 
 	// const responses = [
 	// 	{
@@ -230,7 +225,7 @@ function CustomerAppointments() {
 						<div>
 							<div className="cards">
 								<Card className="customCard" style={{ width: "70rem" }}>
-									<Card.Body>
+									<Card.Body style={{ width: "65rem" }}>
 										<Card.Text className="card-text">
 											{isApproved === true && (
 												<div className="test">

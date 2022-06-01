@@ -621,21 +621,21 @@ router.get("/getServices", async (req, res) => {
 	res.json(serv);
 });
 
-// router.get("/AdminServices", verifyToken, async (req, res) => {
-// 	const user1 = await User.findOne({ _id: req.user.id });
-// 	// if (!req?.query?.id) {
-// 	//user
+router.get("/AdminServices", verifyToken, async (req, res) => {
+	const user1 = await User.findOne({ _id: req.user.id });
+	// if (!req?.query?.id) {
+	//user
 
-// 	if (user1.user_role == 1) {
-// 		const all_services = await Service.find();
-// 		//{ approve_status: "Pending" }
-// 		//);
-// 		res.json(all_services);
-// 	} else {
-// 		res.json("You are not authorized to do that");
-// 	}
-// }
-// //get services of specified user
+	if (user1.user_role == 1) {
+		const all_services = await Service.find();
+		//{ approve_status: "Pending" }
+		//);
+		res.json(all_services);
+	} else {
+		res.json("You are not authorized to do that");
+	}
+});
+//get services of specified user
 // else {
 // 	console.log(req.query.id);
 // 	const user_service = await Service.find({ user_id: req.query.id });
@@ -645,16 +645,17 @@ router.get("/getServices", async (req, res) => {
 // 	}
 // }
 // });
-function GetSortOrder(prop) {
-	return function (a, b) {
-		if (a[prop] > b[prop]) {
-			return 1;
-		} else if (a[prop] < b[prop]) {
-			return -1;
-		}
-		return 0;
-	};
-}
+// function GetSortOrder(prop) {
+// 	return function (a, b) {
+// 		if (a[prop] > b[prop]) {
+// 			return 1;
+// 		} else if (a[prop] < b[prop]) {
+// 			return -1;
+// 		}
+// 		return 0;
+// 	};
+// }
+
 router.get("/getTopServiceProviders", async (req, res) => {
 	const all_services = await Service.aggregate([
 		{ $project: { avg_rating: { $avg: "$ratings" } } },
