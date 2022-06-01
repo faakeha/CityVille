@@ -50,6 +50,8 @@ var today = new Date();
 
 					console.log(data, '\n');
 
+					
+
 					return fetch(`http://localhost:3001/CityVille/createAppointment`, {
 						method: "POST",
 				headers: {
