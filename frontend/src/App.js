@@ -68,6 +68,7 @@ function App() {
 							path="/SellerAppointments"
 							element={<SellerAppointments />}
 						/>
+						<Route path="/SellerProfile" element={<SellerProfile />} />
 
 						{/* <Footer />
 				<div className="App">

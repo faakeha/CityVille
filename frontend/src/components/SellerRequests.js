@@ -1,35 +1,39 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import "./SellerRequests.css";
-import { Card, Button, Row } from "react-bootstrap";
-import { GlobalState } from '../GlobalState'
+import { Card, Button } from "react-bootstrap";
+import { GlobalState } from "../GlobalState";
 
 function SellerRequests() {
 	//const [response, setResponse] = useState([]);
-	const [status, setStatus] = useState('');
+	const [status, setStatus] = useState("");
 
-	const state = useContext(GlobalState)
+	const state = useContext(GlobalState);
 	const [response] = state.admin_service;
 	console.log("in login method");
 
-
 	async function update_service(id, new_status) {
 		const token = localStorage["userToken"];
-		console.log("id", id)
-		console.log("new_status", new_status)
+		console.log("id", id);
+		console.log("new_status", new_status);
 		//event.preventDefault()
-		const res = await fetch(`http://localhost:3001/CityVille/updateService/${id}`, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-				token: `Bearer ${token}`,
-			},
-			body: JSON.stringify({
-				approve_status : new_status
-			})
-		});
-
+		const res = await fetch(
+			`http://localhost:3001/CityVille/updateService/${id}`,
+			{
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+					token: `Bearer ${token}`,
+				},
+				body: JSON.stringify({
+					approve_status: new_status,
+				}),
+			}
+		);
 
 		console.log("e", res);
+		setfilteredRequests(approved);
+		setfilteredRequests(rejected);
+		setfilteredRequests(pending);
 		//setResponse(res);
 	}
 
@@ -167,8 +171,8 @@ function SellerRequests() {
 				filteredRequests.map((e) => {
 					return (
 						<div className="cards">
-							<Card className="main-card">
-								<Card.Body className="card-body">
+							<Card className="main-card" style={{ width: "70rem" }}>
+								<Card.Body className="card-body" style={{ width: "60rem" }}>
 									<p>
 										<b>User ID: </b>
 										{e.user_id}
@@ -197,11 +201,18 @@ function SellerRequests() {
 									<div className="decision-buttons">
 										{isPending === true && (
 											<div className="apr-buttons">
-												<Button onClick={() => update_service(e._id, "Approved")}
-													className="apr-btn" variant="outline-warning">
+												<Button
+													onClick={() => update_service(e._id, "Approved")}
+													className="apr-btn"
+													variant="outline-warning"
+												>
 													Accept
 												</Button>
-												<Button onClick={() => update_service(e._id, "Rejected")} className="rej-btn" variant="outline-warning">
+												<Button
+													onClick={() => update_service(e._id, "Rejected")}
+													className="rej-btn"
+													variant="outline-warning"
+												>
 													Reject
 												</Button>
 											</div>
