@@ -4,31 +4,28 @@ import "./SellerAppointments.css";
 import { Card, Button, Row } from "react-bootstrap";
 
 function CommunityReports() {
-
 	const [response, setResponse] = useState([]);
 
-	async function get_com_reports(event){
+	async function get_com_reports(event) {
+		console.log("in login method");
+		const token = localStorage["userToken"];
+		//event.preventDefault()
+		const data = await fetch("http://localhost:3001/CityVille/allreports", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				token: `Bearer ${token}`,
+			},
+		});
 
-	console.log('in login method')
-	const token = localStorage['userToken'] 
-    //event.preventDefault()
-    const data = await fetch('http://localhost:3001/CityVille/allreports', {
-      method: 'GET',
-      headers: {
-        'Content-Type':'application/json',
-		"token":`Bearer ${token}`
-      }
-      })
-    
-	  const res = await data.json()
-	  console.log("eeeeeeeeeeeeeeeeeeeeee",res)
-	  setResponse(res);
-
+		const res = await data.json();
+		console.log("eeeeeeeeeeeeeeeeeeeeee", res);
+		setResponse(res);
 	}
 
 	useEffect((e) => {
-		get_com_reports(e)
-	   }, []); 
+		get_com_reports(e);
+	}, []);
 
 	// const response = [
 	// 	{
@@ -100,7 +97,7 @@ function CommunityReports() {
 	var approved = response.filter((e) => e.report_status === "Approved");
 	var rejected = response.filter((e) => e.report_status === "Rejected");
 	var pending = response.filter((e) => e.report_status === "Pending");
-	console.log("1", approved)
+	console.log("1", approved);
 
 	function showApproved() {
 		setIsApproved(true);

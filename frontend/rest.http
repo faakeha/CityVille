@@ -13,6 +13,18 @@ content-type: application/json
 
 }
 
+POST  http://localhost:3001/CityVille/createAppointment
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDVmNzE3YTMwZWE4MTNhZmNkNDA4NyIsImlhdCI6MTY1NDA3MTQzNywiZXhwIjoxNjU0NDE3MDM3fQ.V1TBg74nzUMfM0Gg8SqUPcyWY8FyTasDdyIA52dd0eQ
+
+{
+  	"to_user_id": "62448b9f4abc741d0a0e9ae4",
+		"from_user_id": "6245b36dcc96387381539fb7",
+		"service_id": "625ee0c4f8963506d68bebe3",
+		"date": "2022-04-19T18:12:46.882+00:00"
+}
+
+
 
 
 HTTP/1.1 200 OK

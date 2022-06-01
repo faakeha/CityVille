@@ -31,9 +31,7 @@ function SellerRequests() {
 		);
 
 		console.log("e", res);
-		setfilteredRequests(approved);
-		setfilteredRequests(rejected);
-		setfilteredRequests(pending);
+
 		//setResponse(res);
 	}
 

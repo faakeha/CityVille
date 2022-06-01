@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SellerAppointments.css";
+import "./ReviewListings.css";
 import Axios from "axios";
 import { Card, Button, Row } from "react-bootstrap";
 
@@ -137,7 +137,7 @@ function ReviewListings() {
 						<div>
 							<div className="cards">
 								<Card className="customCard" style={{ width: "70rem" }}>
-									<Card.Body>
+									<Card.Body style={{ width: "65rem" }}>
 										<Card.Text className="card-text">
 											{isApproved === true && (
 												<div className="test">

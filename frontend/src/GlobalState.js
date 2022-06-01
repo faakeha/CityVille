@@ -155,11 +155,11 @@ export const DataProvider = ({ children }) => {
 		}
 		getUser();
 
-		async function getAdminServices(event) {
+		async function getAppointments(event) {
 			console.log("in users method");
 			const token = localStorage["userToken"];
 			const response = await fetch(
-				`http://localhost:3001/CityVille/AdminServices`,
+				`http://localhost:3001/CityVille/getApp`,
 				{
 					method: "GET",
 					headers: {
@@ -173,7 +173,7 @@ export const DataProvider = ({ children }) => {
 					return data;
 				});
 
-			setAdminService(response);
+			setAppointments(response);
 		}
     if(isAdmin === true){
       getAdminServices()
@@ -190,6 +190,7 @@ export const DataProvider = ({ children }) => {
 		user: [user, setUser],
 		admin: [isAdmin, setIsAdmin],
 		admin_service: [admin_service, setAdminService],
+    app : [app, setAppointments]
 	};
 
 	return <GlobalState.Provider value={state}>{children}</GlobalState.Provider>;

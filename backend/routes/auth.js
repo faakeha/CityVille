@@ -634,27 +634,30 @@ router.get("/AdminServices", verifyToken, async (req, res) => {
 	} else {
 		res.json("You are not authorized to do that");
 	}
-	// }
-	// //get services of specified user
-	// else {
-	// 	console.log(req.query.id);
-	// 	const user_service = await Service.find({ user_id: req.query.id });
-	// 	res.json(user_service);
-	// 	if (!user_service) {
-	// 		res.json("Seller does not exist.");
-	// 	}
-	// }
 });
-function GetSortOrder(prop) {
-	return function (a, b) {
-		if (a[prop] > b[prop]) {
-			return 1;
-		} else if (a[prop] < b[prop]) {
-			return -1;
-		}
-		return 0;
-	};
-}
+//get services of specified user
+// //get services of specified user
+// else {
+// 	console.log(req.query.id);
+// 	const user_service = await Service.find({ user_id: req.query.id });
+// 	res.json(user_service);
+// 	if (!user_service) {
+// 		res.json("Seller does not exist.");
+// 	}
+// }
+// });
+// );
+
+// function GetSortOrder(prop) {
+// 	return function (a, b) {
+// 		if (a[prop] > b[prop]) {
+// 			return 1;
+// 		} else if (a[prop] < b[prop]) {
+// 			return -1;
+// 		}
+// 		return 0;
+// 	};
+// }
 router.get("/getTopServiceProviders", async (req, res) => {
 	const all_services = await Service.aggregate([
 		{ $project: { avg_rating: { $avg: "$ratings" } } },
@@ -669,5 +672,4 @@ router.get("/getTopServiceProviders", async (req, res) => {
 	}
 	res.json(services);
 });
-
 module.exports = router;
