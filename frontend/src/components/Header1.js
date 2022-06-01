@@ -57,7 +57,6 @@ function Header1() {
 
 	const username = user.first_name;
 	//const role = JSON.parse(localStorage.getItem('user_role'))
-
 	if (role === "1") {
 		return (
 			<div className="flex-container">
@@ -65,7 +64,7 @@ function Header1() {
 				<Link
 					to="/Homepage"
 					className="header_home"
-					style={{ textDecoration: "none", paddingRight: "35px" }}
+					style={{ textDecoration: "none", paddingRight: "55px" }}
 				>
 					Home
 				</Link>
@@ -73,7 +72,7 @@ function Header1() {
 				<Link
 					to="/CommunityReports"
 					className="header_service"
-					style={{ textDecoration: "none" }}
+					style={{ textDecoration: "none", paddingRight: "55px" }}
 				>
 					Reports
 				</Link>
@@ -81,24 +80,16 @@ function Header1() {
 				<Link
 					to="/SellerRequests"
 					className="header_service"
-					style={{ textDecoration: "none" }}
+					style={{ textDecoration: "none", paddingRight: "55px" }}
 				>
 					Listings
-				</Link>
-				&nbsp;
-				<Link
-					to="/Seller"
-					className="header_service"
-					style={{ textDecoration: "none" }}
-				>
-					Sellers
 				</Link>
 				&nbsp;
 				<Link
 					to="/Homepage"
 					className="header_service"
 					onClick={logout}
-					style={{ textDecoration: "none" }}
+					style={{ textDecoration: "none", paddingRight: "105px" }}
 				>
 					Logout
 				</Link>

@@ -3,7 +3,7 @@ import "./App.css";
 import Nav from "./components/Nav";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Profile from "./components/Profile";
+import NotAuth from "./components/NotAuth";
 import Events from "./components/Events";
 import Homepage from "./components/Homepage";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -46,13 +46,15 @@ function App() {
 						<Route path="/Register/:role" element={<Register />} />
 						<Route path="/Login" element={<Login />} />
 						<Route path="/Nav" element={<Nav />} />
-						<Route path="/Profile" element={<Profile />} />
+						<Route path="/NotAuth" element={<NotAuth />} />
 						<Route path="/Services" element={<Services />} />
 						<Route path="/Events" element={<Events />} />
 						<Route path="/PostListing" element={<PostListing />} />
 						<Route path="/CustomerProfile" element={<CustomerProfile />} />
+						<Route path="/SellerProfile" element={<SellerProfile />} />
+
 						<Route
-							path="/Individual_Listing/:id"
+							path="/Individual_Listing/:id/:uid"
 							element={<Individual_listing />}
 						/>
 						<Route path="/PostListing" element={<PostListing />} />
