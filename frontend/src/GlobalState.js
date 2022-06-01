@@ -9,6 +9,7 @@ export const DataProvider = ({ children }) => {
 	const [services, setServices] = useState([""]);
 	const [servcat, setServcat] = useState([""]);
 	const [role, setRole] = useState();
+  const [app, setAppointments] = useState([]);
 	const [user, setUser] = useState({
 		id: "",
 		first_name: "",
@@ -153,11 +154,11 @@ export const DataProvider = ({ children }) => {
 		}
 		getUser();
 
-		async function getAdminServices(event) {
+		async function getAppointments(event) {
 			console.log("in users method");
 			const token = localStorage["userToken"];
 			const response = await fetch(
-				`http://localhost:3001/CityVille/AdminServices`,
+				`http://localhost:3001/CityVille/getApp`,
 				{
 					method: "GET",
 					headers: {
@@ -171,9 +172,11 @@ export const DataProvider = ({ children }) => {
 					return data;
 				});
 
-			setAdminService(response);
+			setAppointments(response);
 		}
-		getAdminServices();
+		getAppointments();
+
+
 	}, []);
 
 	const state = {
@@ -184,6 +187,7 @@ export const DataProvider = ({ children }) => {
 		role: [role, setRole],
 		user: [user, setUser],
 		admin_service: [admin_service, setAdminService],
+    app : [app, setAppointments]
 	};
 
 	return <GlobalState.Provider value={state}>{children}</GlobalState.Provider>;
