@@ -13,7 +13,8 @@ import { GlobalState } from "../GlobalState";
 function Header1() {
 	const state = useContext(GlobalState);
 	const [user, setUser] = state.user;
-	const [role, setRole] = state.role;
+	//const [role, setRole] = state.role;
+	const role  = localStorage.getItem('user_role')
 	const sid = 3;
 	const cid = 2;
 	// function logout() {
@@ -40,16 +41,17 @@ function Header1() {
 
 		const response = await data.json();
 
-		if (response === "Logged out") {
-			setRole("");
-			//localStorage.setItem('user_role', JSON.stringify(""))
+		
+			//setRole("");
+			console.log("in logout method")
+			localStorage.removeItem("user_role")
 			setUser({
 				id: "",
 				first_name: "data.first_name",
 				last_name: "data.last_name",
 				token: "data.accessToken",
 			});
-		}
+		
 	}
 	//check()
 
