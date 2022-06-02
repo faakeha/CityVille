@@ -12,23 +12,26 @@ function SellerRequests() {
 	console.log("in login method");
 
 	Promise.all([
-		  fetch('http://localhost:3001/CityVille/Login'),
-		  fetch('http://localhost:3001/CityVille/getRole')
-		]).then(function (responses) {
-		  // Get      a JSON object from each of the responses
-		  return Promise.all(responses.map(
-		    function (response) {
-		    return response.json();
-		  }));
-		}).then(function (data) {
-		  // Log the data to the console
-		  // You would do something with both sets of data here
-		  console.log('login response', data[0]);
-		  console.log('get role response', data[1]);
-	
-		}).catch(function (error) {
-		  // if there's an error, log it
-		  console.log(error);
+		fetch("http://localhost:3001/CityVille/Login"),
+		fetch("http://localhost:3001/CityVille/getRole"),
+	])
+		.then(function (responses) {
+			// Get      a JSON object from each of the responses
+			return Promise.all(
+				responses.map(function (response) {
+					return response.json();
+				})
+			);
+		})
+		.then(function (data) {
+			// Log the data to the console
+			// You would do something with both sets of data here
+			console.log("login response", data[0]);
+			console.log("get role response", data[1]);
+		})
+		.catch(function (error) {
+			// if there's an error, log it
+			console.log(error);
 		});
 
 	async function update_service(id, new_status) {

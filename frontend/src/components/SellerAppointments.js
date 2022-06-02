@@ -1,83 +1,86 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./SellerAppointments.css";
-import Axios from "axios";
+//import Axios from "axios";
+import { GlobalState } from "../GlobalState";
 import { Card, Button, Row } from "react-bootstrap";
 
 function SellerAppointments() {
-	const responses = [
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Pending",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Pending",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Pending",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Approved",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Approved",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Rejected",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Cancelled",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-		{
-			_id: "6260afc9f481f2aa958617ef",
-			to_user_id: "242424242424242424242422",
-			from_user_id: "130390394309430943093093",
-			service_id: "6260b03ff481f2aa958617f1",
-			status: "Completed",
-			date: "1602442800000",
-			alternate_date: "1665514800000",
-		},
-	];
+	const state = useContext(GlobalState);
+	const [response] = state.app;
+	// const responses = [
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Pending",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Pending",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Pending",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Approved",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Approved",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Rejected",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Cancelled",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// 	{
+	// 		_id: "6260afc9f481f2aa958617ef",
+	// 		to_user_id: "242424242424242424242422",
+	// 		from_user_id: "130390394309430943093093",
+	// 		service_id: "6260b03ff481f2aa958617f1",
+	// 		status: "Completed",
+	// 		date: "1602442800000",
+	// 		alternate_date: "1665514800000",
+	// 	},
+	// ];
 
 	async function update_app(id, new_status) {
 		const token = localStorage["userToken"];
@@ -107,7 +110,7 @@ function SellerAppointments() {
 	const getAppointments = () => {
 		///Axios.get("http://localhost:4000/api/auth/getApp").then((response) => {
 		//console.log(response);
-		setAppointments(responses.data);
+		//setAppointments(responses.data);
 		//}
 		//);
 	};
@@ -125,11 +128,11 @@ function SellerAppointments() {
 
 	const [editMode, setInEditMode] = useState(null);
 
-	var approved = responses.filter((e) => e.status === "Approved");
-	var rejected = responses.filter((e) => e.status === "Rejected");
-	var pending = responses.filter((e) => e.status === "Pending");
-	var completed = responses.filter((e) => e.status === "Completed");
-	var cancelled = responses.filter((e) => e.status === "Cancelled");
+	var approved = response.filter((e) => e.status === "Approved");
+	var rejected = response.filter((e) => e.status === "Rejected");
+	var pending = response.filter((e) => e.status === "Pending");
+	var completed = response.filter((e) => e.status === "Completed");
+	var cancelled = response.filter((e) => e.status === "Cancelled");
 
 	function clickedEdit() {
 		setInEditMode(!editMode);
@@ -415,6 +418,13 @@ function SellerAppointments() {
 											<div className="apr-buttons">
 												<Button className="del-btn" variant="outline-warning">
 													Delete
+												</Button>
+												<Button
+													className="ed-btn"
+													variant="outline-warning"
+													onClick={() => clickedEdit()}
+												>
+													{editMode ? "Save" : "Edit"}
 												</Button>
 											</div>
 										</div>
