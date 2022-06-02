@@ -12,10 +12,24 @@ import { GlobalState } from "../GlobalState";
 
 function Header1() {
 	const state = useContext(GlobalState);
-	const [user, setUser] = state.user;
-	const [role, setRole] = state.role;
+	const [user, setUser] = state.globalUser.user;
+	//const role = localStorage.getItem('user_role')
+	const [role, setRole] = state.globalUser.role
 	const sid = 3;
 	const cid = 2;
+
+	useEffect(() => {
+		
+	}, [role])
+
+	console.log(role, 'role is ')
+
+	window.addEventListener('storage', () => {
+		console.log("change to local storage!");
+		setRole(localStorage.getItem('user_role'))
+	})
+  
+
 	// function logout() {
 
 	//localStorage.clear()
@@ -25,10 +39,10 @@ function Header1() {
 
 	async function logout() {
 		//event.preventDefault()
-		console.log("in check");
+		console.log("in logout");
 		const token = user.token;
 		//event.preventDefault()
-		const data = await fetch("http://localhost:3001/CityVille/logout", {
+		/*const data = await fetch("http://localhost:3001/CityVille/logout", {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",
@@ -36,27 +50,30 @@ function Header1() {
 			body: JSON.stringify({
 				token,
 			}),
-		});
+		});*/
 
-		const response = await data.json();
-
-		if (response === "Logged out") {
-			setRole("");
-			//localStorage.setItem('user_role', JSON.stringify(""))
+		//const response = await data.json();
+		console.log('before set')
+		window.localStorage.setItem("user_role", "0")
+		window.dispatchEvent(new Event("storage"));
+			//setRole()
 			setUser({
 				id: "",
-				first_name: "data.first_name",
-				last_name: "data.last_name",
-				token: "data.accessToken",
+				first_name: "",
+				last_name: "",
+				token: "",
 			});
-		}
+		
 	}
+
+	console.log('hello',localStorage.getItem('user_role'))
 	//check()
 
 	//}
 
 	const username = user.first_name;
-	//const role = JSON.parse(localStorage.getItem('user_role'))
+	
+
 	if (role === "1") {
 		return (
 			<div className="flex-container">

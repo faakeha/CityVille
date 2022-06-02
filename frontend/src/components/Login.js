@@ -9,15 +9,13 @@ function Login() {
 
   const state = useContext(GlobalState)
     //const [sp] = state.users;
-    const [role, setRole] = state.role
-    const [user, setUser] = state.user
-    const [IsAdmin, setIsAdmin] = state.admin
+    const [role, setRole] = state.globalUser.role
+    //const [user, setUser] = state.user
+    const [isAdmin, setIsAdmin] = state.globalUser.isAdmin
 
     
-    
-
    let navigate = useNavigate(); 
-  function routeChange(){ 
+    function routeChange(){ 
     
     //if(form === true){
       let path = `/Homepage`; 
@@ -79,21 +77,27 @@ function Login() {
     if(data !== 'Wrong Credentials'){
       console.log('before route change')
       console.log(data)
-      localStorage.setItem('username', (data.first_name + " " + data.last_name))
+      localStorage.setItem('firstlogin', true)
+      //localStorage.setItem('username', (data.first_name + " " + data.last_name))
       localStorage.setItem('userToken', data.accessToken)
-      setRole(JSON.stringify(data.user_role));
+      setRole(data.user_role);
       data.user_role === 1? setIsAdmin(true) :setIsAdmin(false)
       
-    //localStorage.setItem('user_role', JSON.stringify(data.user_role))
-    setUser({
-      id: data._id,
-      first_name: data.first_name,
-      last_name:data.last_name,
-      token :data.accessToken
-    })
+      localStorage.setItem('user_role', data.user_role)
     
-     localStorage.setItem('user_role', data.user_role)
-     localStorage.setItem('user_id', data._id)
+      window.localStorage.setItem("isThisInLocalStorage", "true");
+      window.dispatchEvent(new Event("storage"));
+    
+  
+    // setUser({
+    //   id: data._id,
+    //   first_name: data.first_name,
+    //   last_name:data.last_name,
+    //   token :data.accessToken
+    // })
+    
+     //localStorage.setItem('user_role', data.user_role)
+     //localStorage.setItem('user_id', data._id)
     
     routeChange()
     

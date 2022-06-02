@@ -1,24 +1,16 @@
 import React, { createContext, useState, useEffect } from "react";
+import GlobalUser from "./GlobalUser";
 
 export const GlobalState = createContext();
 
 export const DataProvider = ({ children }) => {
-	const [admin_service, setAdminService] = useState();
-	const [users, setUsers] = useState([""]);
+	
 	const [categories, setCategories] = useState([""]);
 	const [services, setServices] = useState([""]);
 	const [servcat, setServcat] = useState([""]);
-	const [isAdmin, setIsAdmin] = useState(false);
-  const [app, setAppointments] = useState([]);
-  
-	const [role, setRole] = useState(0);
-	const [user, setUser] = useState({
-		id: "",
-		first_name: "",
-		last_name: "",
-		token: "",
-	});
-
+	const [users, setUsers] = useState([""]);
+	
+	
 	useEffect(() => {
 		//console.log('hi from global state')
 		/* const firstLogin = localStorage.getItem('firstLogin')
@@ -58,23 +50,11 @@ export const DataProvider = ({ children }) => {
 		// }
 		// getUser()
 
-		async function allUsers(event) {
-			console.log("in users method");
-
-			const response = await fetch("http://localhost:3001/CityVille/sellers", {
-				method: "GET",
-			})
-				.then((response) => response.json())
-				.then((data) => {
-					return data;
-				});
-
-			setUsers(response);
-		}
-		allUsers();
-
+		
 		async function allCategories() {
 			console.log("in ac");
+	
+	
 			const cat = await fetch("http://localhost:3001/CityVille/Categories", {
 				method: "GET",
 			})
@@ -82,11 +62,11 @@ export const DataProvider = ({ children }) => {
 				.then((data) => {
 					return data;
 				});
-
+	
 			setCategories(cat);
 		}
 		allCategories();
-
+	
 		async function allServices() {
 			console.log("in services");
 			const ser = await fetch("http://localhost:3001/CityVille/Services", {
@@ -100,10 +80,10 @@ export const DataProvider = ({ children }) => {
 			setServices(ser);
 		}
 		allServices();
-
+	
 		async function serv() {
 			console.log("in serv method");
-
+	
 			const data = await fetch("http://localhost:3001/CityVille/getServices", {
 				method: "GET",
 			})
@@ -111,111 +91,41 @@ export const DataProvider = ({ children }) => {
 				.then((data) => {
 					return data;
 				});
-
+	
 			setServcat(data);
 			console.log("serv", data);
 		}
 		serv();
 
-		//   async function get_role(){
-		//     const token = localStorage['userToken']
-		//     console.log('in role obj')
-		//     const ser = await fetch('http://localhost:3001/CityVille/getRole', {
-		//         method: 'GET',
-		//         headers: {
-		//         'Content-Type':'application/json',
-		//         "token":`Bearer ${token}`
-		//         }
-
-		//       })
-		//       .then((response) => response.json())
-		//       .then(data => {
-		//         return data;
-		//     });
-		//     //console.log('srv', ser)
-		//     setRole(ser)
-
-		// }
-		//   get_role();
-
-		async function getUser(event) {
+		async function allUsers() {
 			console.log("in users method");
-			const id = localStorage["user_id"];
-			const response = await fetch(
-				`http://localhost:3001/CityVille/user/${id}`,
-				{
-					method: "GET",
-				}
-			)
+		   
+			const response = await fetch("http://localhost:3001/CityVille/sellers", {
+				method: "GET",
+			})
 				.then((response) => response.json())
 				.then((data) => {
 					return data;
 				});
-
-			setUser(response);
+	
+			setUsers(response);
 		}
-		getUser();
+	
+		allUsers();
+	
 
-		async function getAppointments(event) {
-			console.log("in users method");
-			const token = localStorage["userToken"];
-			const response = await fetch(
-				`http://localhost:3001/CityVille/getApp`,
-				{
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						token: `Bearer ${token}`,
-					},
-				}
-			)
-				.then((response) => response.json())
-				.then((data) => {
-					return data;
-				});
-
-			setAppointments(response);
-		}
-
-    getAppointments()
-
-    async function getAdminServices(event) {
-			console.log("in users method");
-			const token = localStorage["userToken"];
-			const response = await fetch(
-				`http://localhost:3001/CityVille/AdminServices`,
-				{
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						token: `Bearer ${token}`,
-					},
-				}
-			)
-				.then((response) => response.json())
-				.then((data) => {
-					return data;
-				});
-
-			setAdminService(response);
-		}
-		getAdminServices();
-    if(isAdmin === true){
-      getAdminServices()
-    }
-		
+				
 	}, []);
 
 	const state = {
+		
+        globalUser: GlobalUser(),
 		categories: [categories, setCategories],
-		services: [services, setServices],
-		users: [users, setUsers],
+    	services: [services, setServices],
 		servcat: [servcat, setServcat],
-		role: [role, setRole],
-		user: [user, setUser],
-		admin: [isAdmin, setIsAdmin],
-		admin_service: [admin_service, setAdminService],
-    app : [app, setAppointments]
+		users: [users, setUsers],
+		
+
 	};
 
 	return <GlobalState.Provider value={state}>{children}</GlobalState.Provider>;
