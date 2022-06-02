@@ -10,7 +10,7 @@ function Homepage() {
 	const [categoriesG] = state.categories;
 	//const [sp, setSp] = useState([''])
 	const [sp] = state.users;
-	const [user, setUser] = state.user;
+	const [user, setUser] = state.globalUser.user;
 	console.log("first", user);
 	//const userToken = localStorage.getItem('userToken')
 
