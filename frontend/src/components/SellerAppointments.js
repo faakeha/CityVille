@@ -1,15 +1,83 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
 import "./SellerAppointments.css";
-//import Axios from "axios";
+import Axios from "axios";
 import { Card, Button, Row } from "react-bootstrap";
-import { GlobalState } from "../GlobalState";
 
 function SellerAppointments() {
-	//const [responses, setResponse] = useState([]);
-
-	const state = useContext(GlobalState);
-	const [response] = state.app;
-	console.log("in login method", response);
+	const responses = [
+		{
+			_id: "6260afc9f481f2aa958617ef",
+			to_user_id: "242424242424242424242422",
+			from_user_id: "130390394309430943093093",
+			service_id: "6260b03ff481f2aa958617f1",
+			status: "Pending",
+			date: "1602442800000",
+			alternate_date: "1665514800000",
+		},
+		{
+			_id: "6260afc9f481f2aa958617ef",
+			to_user_id: "242424242424242424242422",
+			from_user_id: "130390394309430943093093",
+			service_id: "6260b03ff481f2aa958617f1",
+			status: "Pending",
+			date: "1602442800000",
+			alternate_date: "1665514800000",
+		},
+		{
+			_id: "6260afc9f481f2aa958617ef",
+			to_user_id: "242424242424242424242422",
+			from_user_id: "130390394309430943093093",
+			service_id: "6260b03ff481f2aa958617f1",
+			status: "Pending",
+			date: "1602442800000",
+			alternate_date: "1665514800000",
+		},
+		{
+			_id: "6260afc9f481f2aa958617ef",
+			to_user_id: "242424242424242424242422",
+			from_user_id: "130390394309430943093093",
+			service_id: "6260b03ff481f2aa958617f1",
+			status: "Approved",
+			date: "1602442800000",
+			alternate_date: "1665514800000",
+		},
+		{
+			_id: "6260afc9f481f2aa958617ef",
+			to_user_id: "242424242424242424242422",
+			from_user_id: "130390394309430943093093",
+			service_id: "6260b03ff481f2aa958617f1",
+			status: "Approved",
+			date: "1602442800000",
+			alternate_date: "1665514800000",
+		},
+		{
+			_id: "6260afc9f481f2aa958617ef",
+			to_user_id: "242424242424242424242422",
+			from_user_id: "130390394309430943093093",
+			service_id: "6260b03ff481f2aa958617f1",
+			status: "Rejected",
+			date: "1602442800000",
+			alternate_date: "1665514800000",
+		},
+		{
+			_id: "6260afc9f481f2aa958617ef",
+			to_user_id: "242424242424242424242422",
+			from_user_id: "130390394309430943093093",
+			service_id: "6260b03ff481f2aa958617f1",
+			status: "Cancelled",
+			date: "1602442800000",
+			alternate_date: "1665514800000",
+		},
+		{
+			_id: "6260afc9f481f2aa958617ef",
+			to_user_id: "242424242424242424242422",
+			from_user_id: "130390394309430943093093",
+			service_id: "6260b03ff481f2aa958617f1",
+			status: "Completed",
+			date: "1602442800000",
+			alternate_date: "1665514800000",
+		},
+	];
 
 	async function update_app(id, new_status) {
 		const token = localStorage["userToken"];
@@ -35,83 +103,14 @@ function SellerAppointments() {
 		setfilteredAppointments(cancelled);
 	}
 
-
-	// const responses = [
-	// 	{
-	// 		_id: "6260afc9f481f2aa958617ef",
-	// 		to_user_id: "242424242424242424242422",
-	// 		from_user_id: "130390394309430943093093",
-	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Pending",
-	// 		date: "1602442800000",
-	// 		alternate_date: "1665514800000",
-	// 	},
-	// 	{
-	// 		_id: "6260afc9f481f2aa958617ef",
-	// 		to_user_id: "242424242424242424242422",
-	// 		from_user_id: "130390394309430943093093",
-	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Pending",
-	// 		date: "1602442800000",
-	// 		alternate_date: "1665514800000",
-	// 	},
-	// 	{
-	// 		_id: "6260afc9f481f2aa958617ef",
-	// 		to_user_id: "242424242424242424242422",
-	// 		from_user_id: "130390394309430943093093",
-	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Pending",
-	// 		date: "1602442800000",
-	// 		alternate_date: "1665514800000",
-	// 	},
-	// 	{
-	// 		_id: "6260afc9f481f2aa958617ef",
-	// 		to_user_id: "242424242424242424242422",
-	// 		from_user_id: "130390394309430943093093",
-	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Approved",
-	// 		date: "1602442800000",
-	// 		alternate_date: "1665514800000",
-	// 	},
-	// 	{
-	// 		_id: "6260afc9f481f2aa958617ef",
-	// 		to_user_id: "242424242424242424242422",
-	// 		from_user_id: "130390394309430943093093",
-	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Approved",
-	// 		date: "1602442800000",
-	// 		alternate_date: "1665514800000",
-	// 	},
-	// 	{
-	// 		_id: "6260afc9f481f2aa958617ef",
-	// 		to_user_id: "242424242424242424242422",
-	// 		from_user_id: "130390394309430943093093",
-	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Rejected",
-	// 		date: "1602442800000",
-	// 		alternate_date: "1665514800000",
-	// 	},
-	// 	{
-	// 		_id: "6260afc9f481f2aa958617ef",
-	// 		to_user_id: "242424242424242424242422",
-	// 		from_user_id: "130390394309430943093093",
-	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Cancelled",
-	// 		date: "1602442800000",
-	// 		alternate_date: "1665514800000",
-	// 	},
-	// 	{
-	// 		_id: "6260afc9f481f2aa958617ef",
-	// 		to_user_id: "242424242424242424242422",
-	// 		from_user_id: "130390394309430943093093",
-	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Completed",
-	// 		date: "1602442800000",
-	// 		alternate_date: "1665514800000",
-	// 	},
-	// ];
-
-	
+	const [appointments, setAppointments] = useState(null);
+	const getAppointments = () => {
+		///Axios.get("http://localhost:4000/api/auth/getApp").then((response) => {
+		//console.log(response);
+		setAppointments(responses.data);
+		//}
+		//);
+	};
 	const [filteredAppointments, setfilteredAppointments] = useState(null);
 
 	const [isPending, setIsPending] = useState(null);
@@ -124,11 +123,17 @@ function SellerAppointments() {
 
 	const [isCancelled, setIsCancelled] = useState(null);
 
-	var approved = response.filter((e) => e.approve_status === "Approved");
-	var rejected = response.filter((e) => e.approve_status === "Rejected");
-	var pending = response.filter((e) => e.approve_status === "Pending");
-	var completed = response.filter((e) => e.approve_status === "Completed");
-	var cancelled = response.filter((e) => e.approve_status === "Cancelled");
+	const [editMode, setInEditMode] = useState(null);
+
+	var approved = responses.filter((e) => e.status === "Approved");
+	var rejected = responses.filter((e) => e.status === "Rejected");
+	var pending = responses.filter((e) => e.status === "Pending");
+	var completed = responses.filter((e) => e.status === "Completed");
+	var cancelled = responses.filter((e) => e.status === "Cancelled");
+
+	function clickedEdit() {
+		setInEditMode(!editMode);
+	}
 
 	function showApproved() {
 		setIsApproved(true);
@@ -228,7 +233,7 @@ function SellerAppointments() {
 							<div className="cards">
 								<Card className="customCard" style={{ width: "70rem" }}>
 									<Card.Body>
-										<Card.Text className="card-text" style={{ width: "65rem" }}>
+										<Card.Text className="card-text">
 											{isApproved === true && (
 												<div className="test">
 													<p>
@@ -307,33 +312,111 @@ function SellerAppointments() {
 											{isPending === true && (
 												<div className="apr-buttons">
 													<Button
-													onClick={() =>update_app(response._id, "Approved")}
-													 className="apr-btn" variant="outline-warning">
+														onClick={() => update_app(response._id, "Approved")}
+														className="apr-btn"
+														variant="outline-warning"
+													>
 														Accept
 													</Button>
-													onClick={() =>update_app(response._id, "Rejected")}
-													<Button className="rej-btn" variant="outline-warning">
-														Reject
+													<Button
+														className="rej-btn"
+														variant="outline-warning"
+														onClick={() => update_app(response._id, "Rejected")}
+													>
+														Rejcet
+													</Button>
+													<Button
+														className="cnl-btn"
+														variant="outline-warning"
+														onClick={() =>
+															update_app(response._id, "Cancelled")
+														}
+													>
+														Cancel
 													</Button>
 												</div>
 											)}
-										</div>
-										<div className="decision-buttons">
 											{isApproved === true && (
 												<div className="apr-buttons">
 													<Button
-													onClick={() =>update_app(response._id, "Cancelled")}
-													 className="apr-btn" variant="outline-warning">
-														Cancel
+														className="pnd-btn"
+														variant="outline-warning"
+														onClick={() => update_app(response._id, "Pending")}
+													>
+														Send in Pending
 													</Button>
-													
-													<Button 
-													onClick={() =>update_app(response._id, "Completed")}
-													className="rej-btn" variant="outline-warning">
+													<Button
+														className="cmp-btn"
+														variant="outline-warning"
+														onClick={() =>
+															update_app(response._id, "Completed")
+														}
+													>
 														Complete
+													</Button>
+													<Button
+														className="cnl-btn"
+														variant="outline-warning"
+														onClick={() =>
+															update_app(response._id, "Cancelled")
+														}
+													>
+														Cancel
 													</Button>
 												</div>
 											)}
+											{isCompleted === true && (
+												<div className="apr-buttons">
+													<Button
+														className="pnd-btn"
+														variant="outline-warning"
+														onClick={() => update_app(response._id, "Pending")}
+													>
+														Send in Pending
+													</Button>
+												</div>
+											)}
+											{isCancelled === true && (
+												<div className="apr-buttons">
+													<Button
+														className="pnd-btn"
+														variant="outline-warning"
+														onClick={() => update_app(response._id, "Pending")}
+													>
+														Send in Pending
+													</Button>
+													<Button
+														className="apr-btn"
+														variant="outline-warning"
+														onClick={() => update_app(response._id, "Approved")}
+													>
+														Approve
+													</Button>
+												</div>
+											)}
+											{isRejected === true && (
+												<div className="apr-buttons">
+													<Button
+														className="pnd-btn"
+														variant="outline-warning"
+														onClick={() => update_app(response._id, "Pending")}
+													>
+														Send in Pending
+													</Button>
+													<Button
+														className="apr-btn"
+														variant="outline-warning"
+														onClick={() => update_app(response._id, "Approved")}
+													>
+														Approve
+													</Button>
+												</div>
+											)}
+											<div className="apr-buttons">
+												<Button className="del-btn" variant="outline-warning">
+													Delete
+												</Button>
+											</div>
 										</div>
 									</Card.Body>
 								</Card>
