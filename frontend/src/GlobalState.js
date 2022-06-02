@@ -222,7 +222,7 @@ export const DataProvider = ({ children }) => {
 
 			setAdminService(response);
 		}
-		getAdminServices();
+		
     if(isAdmin === true){
       getAdminServices()
     }
