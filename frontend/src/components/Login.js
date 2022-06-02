@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import {useState, useEffect, createContext, useContext} from 'react';
+import React, { Component } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {FaExclamationCircle } from "react-icons/fa";
-import { GlobalState } from '../GlobalState'
-
+import { FaExclamationCircle } from "react-icons/fa";
+import { GlobalState } from "../GlobalState";
 
 function Login() {
 

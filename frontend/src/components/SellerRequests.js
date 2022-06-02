@@ -11,6 +11,26 @@ function SellerRequests() {
 	const [response] = state.admin_service;
 	console.log("in login method");
 
+	Promise.all([
+		  fetch('http://localhost:3001/CityVille/Login'),
+		  fetch('http://localhost:3001/CityVille/getRole')
+		]).then(function (responses) {
+		  // Get      a JSON object from each of the responses
+		  return Promise.all(responses.map(
+		    function (response) {
+		    return response.json();
+		  }));
+		}).then(function (data) {
+		  // Log the data to the console
+		  // You would do something with both sets of data here
+		  console.log('login response', data[0]);
+		  console.log('get role response', data[1]);
+	
+		}).catch(function (error) {
+		  // if there's an error, log it
+		  console.log(error);
+		});
+
 	async function update_service(id, new_status) {
 		const token = localStorage["userToken"];
 		console.log("id", id);
@@ -112,9 +132,15 @@ function SellerRequests() {
 
 	const [isRejected, setIsRejected] = useState(null);
 
+	const [editMode, setInEditMode] = useState(null);
+
 	var approved = response.filter((e) => e.approve_status === "Approved");
 	var rejected = response.filter((e) => e.approve_status === "Rejected");
 	var pending = response.filter((e) => e.approve_status === "Pending");
+
+	function clickedEdit() {
+		setInEditMode(!editMode);
+	}
 
 	function showApproved() {
 		setIsApproved(true);
@@ -215,6 +241,54 @@ function SellerRequests() {
 												</Button>
 											</div>
 										)}
+										{isApproved === true && (
+											<div className="apr-buttons">
+												<Button
+													onClick={() => update_service(e._id, "Mark Pending")}
+													className="apr-btn"
+													variant="outline-warning"
+												>
+													Mark Pending
+												</Button>
+												<Button
+													onClick={() => update_service(e._id, "Rejected")}
+													className="rej-btn"
+													variant="outline-warning"
+												>
+													Reject
+												</Button>
+											</div>
+										)}
+										{isRejected === true && (
+											<div className="apr-buttons">
+												<Button
+													onClick={() => update_service(e._id, "Mark Pending")}
+													className="apr-btn"
+													variant="outline-warning"
+												>
+													Mark Pending
+												</Button>
+												<Button
+													onClick={() => update_service(e._id, "Accepted")}
+													className="rej-btn"
+													variant="outline-warning"
+												>
+													Accept
+												</Button>
+											</div>
+										)}
+										<div className="apr-buttons">
+											<Button className="del-btn" variant="outline-warning">
+												Delete
+											</Button>
+											<Button
+												className="ed-btn"
+												variant="outline-warning"
+												onClick={() => clickedEdit()}
+											>
+												{editMode ? "Save" : "Edit"}
+											</Button>
+										</div>
 									</div>
 								</Card.Body>
 							</Card>
