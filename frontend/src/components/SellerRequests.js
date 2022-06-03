@@ -4,12 +4,13 @@ import { Card, Button } from "react-bootstrap";
 import { GlobalState } from "../GlobalState";
 
 function SellerRequests() {
-	//const [response, setResponse] = useState([]);
+	const [response, setResponse] = useState("");
 	const [status, setStatus] = useState("");
 
 	const state = useContext(GlobalState);
-	const [response] = state.admin_service;
+	setResponse(state.globalUser.admin_service);
 	console.log("in login method");
+	console.log(response);
 
 	Promise.all([
 		fetch("http://localhost:3001/CityVille/Login"),
@@ -31,7 +32,7 @@ function SellerRequests() {
 		})
 		.catch(function (error) {
 			// if there's an error, log it
-			console.log(error);
+			//console.log(error);
 		});
 
 	async function update_service(id, new_status) {
@@ -62,71 +63,71 @@ function SellerRequests() {
 	// 	get_seller_req(e);
 	// }, []);
 
-	// const responses = [
-	// 	{
-	// 		_id: "6260afc9f481f2aa958617ef",
-	// 		to_user_id: "242424242424242424242422",
-	// 		from_user_id: "130390394309430943093093",
-	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Pending",
-	// 		date: "1602442800000",
-	// 		alternate_date: "1665514800000",
-	// 	},
-	// 	{
-	// 		_id: "6260afc9f481f2aa958617ef",
-	// 		to_user_id: "242424242424242424242422",
-	// 		from_user_id: "130390394309430943093093",
-	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Pending",
-	// 		date: "1602442800000",
-	// 		alternate_date: "1665514800000",
-	// 	},
-	// 	{
-	// 		_id: "6260afc9f481f2aa958617ef",
-	// 		to_user_id: "242424242424242424242422",
-	// 		from_user_id: "130390394309430943093093",
-	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Pending",
-	// 		date: "1602442800000",
-	// 		alternate_date: "1665514800000",
-	// 	},
-	// 	{
-	// 		_id: "6260afc9f481f2aa958617ef",
-	// 		to_user_id: "242424242424242424242422",
-	// 		from_user_id: "130390394309430943093093",
-	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Approved",
-	// 		date: "1602442800000",
-	// 		alternate_date: "1665514800000",
-	// 	},
-	// 	{
-	// 		_id: "6260afc9f481f2aa958617ef",
-	// 		to_user_id: "242424242424242424242422",
-	// 		from_user_id: "130390394309430943093093",
-	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Approved",
-	// 		date: "1602442800000",
-	// 		alternate_date: "1665514800000",
-	// 	},
-	// 	{
-	// 		_id: "6260afc9f481f2aa958617ef",
-	// 		to_user_id: "242424242424242424242422",
-	// 		from_user_id: "130390394309430943093093",
-	// 		service_id: "6260b03ff481f2aa958617f1",
-	// 		status: "Rejected",
-	// 		date: "1602442800000",
-	// 		alternate_date: "1665514800000",
-	// 	},
-	// ];
+	const responses = [
+		{
+			_id: "6260afc9f481f2aa958617ef",
+			to_user_id: "242424242424242424242422",
+			from_user_id: "130390394309430943093093",
+			service_id: "6260b03ff481f2aa958617f1",
+			status: "Pending",
+			date: "1602442800000",
+			alternate_date: "1665514800000",
+		},
+		{
+			_id: "6260afc9f481f2aa958617ef",
+			to_user_id: "242424242424242424242422",
+			from_user_id: "130390394309430943093093",
+			service_id: "6260b03ff481f2aa958617f1",
+			status: "Pending",
+			date: "1602442800000",
+			alternate_date: "1665514800000",
+		},
+		{
+			_id: "6260afc9f481f2aa958617ef",
+			to_user_id: "242424242424242424242422",
+			from_user_id: "130390394309430943093093",
+			service_id: "6260b03ff481f2aa958617f1",
+			status: "Pending",
+			date: "1602442800000",
+			alternate_date: "1665514800000",
+		},
+		{
+			_id: "6260afc9f481f2aa958617ef",
+			to_user_id: "242424242424242424242422",
+			from_user_id: "130390394309430943093093",
+			service_id: "6260b03ff481f2aa958617f1",
+			status: "Approved",
+			date: "1602442800000",
+			alternate_date: "1665514800000",
+		},
+		{
+			_id: "6260afc9f481f2aa958617ef",
+			to_user_id: "242424242424242424242422",
+			from_user_id: "130390394309430943093093",
+			service_id: "6260b03ff481f2aa958617f1",
+			status: "Approved",
+			date: "1602442800000",
+			alternate_date: "1665514800000",
+		},
+		{
+			_id: "6260afc9f481f2aa958617ef",
+			to_user_id: "242424242424242424242422",
+			from_user_id: "130390394309430943093093",
+			service_id: "6260b03ff481f2aa958617f1",
+			status: "Rejected",
+			date: "1602442800000",
+			alternate_date: "1665514800000",
+		},
+	];
 
-	// const [requests, setRequests] = useState(null);
-	// const getAppointments = () => {
-	// 	///Axios.get("http://localhost:4000/api/auth/getApp").then((response) => {
-	// 	//console.log(response);
-	// 	setRequests(response);
-	// 	//}
-	// 	//);
-	// };
+	const [requests, setRequests] = useState(null);
+	const getAppointments = () => {
+		///Axios.get("http://localhost:4000/api/auth/getApp").then((response) => {
+		//console.log(response);
+		setRequests(response);
+		//}
+		//);
+	};
 	const [filteredRequests, setfilteredRequests] = useState(null);
 
 	const [isPending, setIsPending] = useState(null);
@@ -137,13 +138,47 @@ function SellerRequests() {
 
 	const [editMode, setInEditMode] = useState(null);
 
-	var approved = response.filter((e) => e.approve_status === "Approved");
-	var rejected = response.filter((e) => e.approve_status === "Rejected");
-	var pending = response.filter((e) => e.approve_status === "Pending");
+	var approved = responses.filter((e) => e.approve_status === "Approved");
+	var rejected = responses.filter((e) => e.approve_status === "Rejected");
+	var pending = responses.filter((e) => e.approve_status === "Pending");
+
+	/////////////////////////////////////////////////////////////////////////////////
 
 	function clickedEdit() {
 		setInEditMode(!editMode);
+
+		if (editMode === false) {
+			JSON.parse(updates);
+			/////call update apiiii
+			/////send in updates json
+		}
 	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+	var updates = {};
+	const handleNameInputChange = (e) => {
+		console.log(e.target.value);
+		updates["service_name"] = e.target.value;
+	};
+
+	const handleDescInputChange = (e) => {
+		console.log(e.target.value);
+		updates["description"] = e.target.value;
+	};
+
+	const handleCategoryInputChange = (e) => {
+		console.log(e.target.value);
+		updates["category"] = e.target.value;
+	};
+
+	const handleAddressInputChange = (e) => {
+		console.log(e.target.value);
+		updates["business_address"] = e.target.value;
+	};
+	const handlePriceInputChange = (e) => {
+		console.log(e.target.value);
+		updates["price"] = e.target.value;
+	};
 
 	function showApproved() {
 		setIsApproved(true);
@@ -206,23 +241,73 @@ function SellerRequests() {
 									</p>
 									<p>
 										<b>Service Name: </b>
-										{e.service_name}
+										{editMode ? (
+											<form>
+												<input
+													type="text"
+													onChange={handleNameInputChange}
+													defaultValue={e.service_name}
+												/>
+											</form>
+										) : (
+											e.service_name
+										)}
 									</p>
 									<p>
 										<b>Description: </b>
-										{e.description}
+										{editMode ? (
+											<form>
+												<input
+													type="text"
+													onChange={handleDescInputChange}
+													defaultValue={e.description}
+												/>
+											</form>
+										) : (
+											e.description
+										)}
 									</p>
 									<p>
 										<b>Category: </b>
-										{e.category}
+										{editMode ? (
+											<form>
+												<input
+													type="text"
+													onChange={handleCategoryInputChange}
+													defaultValue={e.category}
+												/>
+											</form>
+										) : (
+											e.category
+										)}
 									</p>
 									<p>
 										<b>Business Address: </b>
-										{e.business_address}
+										{editMode ? (
+											<form>
+												<input
+													type="text"
+													onChange={handleAddressInputChange}
+													defaultValue={e.business_address}
+												/>
+											</form>
+										) : (
+											e.business_address
+										)}
 									</p>
 									<p>
 										<b>Price: </b>
-										{e.price}
+										{editMode ? (
+											<form>
+												<input
+													type="text"
+													onChange={handlePriceInputChange}
+													defaultValue={e.price}
+												/>
+											</form>
+										) : (
+											e.price
+										)}
 									</p>
 
 									<div className="decision-buttons">
