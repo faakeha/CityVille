@@ -62,7 +62,6 @@ const SellerProfile = () => {
 				.catch((err) => {
 					console.error("Request failed", err);
 				});
-
 			// I'm using the result const to show that you can continue to extend the chain from the returned promise
 			result.then((r) => {
 				console.log(r); // 2nd request result first_stage property
@@ -141,10 +140,26 @@ const SellerProfile = () => {
 						src="https://res.cloudinary.com/dbmknff2i/image/upload/v1653748300/users/Image_t0wi4m.png"
 						alt="Tesla"
 					/>
-
-					<Link to="/CustomerAppointments">
-						<Button style={{ width: "250px" }}>Request an appointment</Button>
-					</Link>
+					{console.log("id from services", services[0])}
+					{console.log(
+						"id from local storage",
+						localStorage.getItem("user_id")
+					)}
+					{
+						//services.length !== 0 &&
+						services[0].user_id !== localStorage.getItem("user_id") && (
+							<Link to="/CustomerAppointments">
+								<Button style={{ width: "250px" }}>
+									Request an appointment
+								</Button>
+							</Link>
+						)
+					}
+					{/* {services[0].user_id === localStorage.getItem("user_id") && (
+						<Link to="/CustomerAppointments">
+							<Button style={{ width: "250px" }}>Request an appointment</Button>
+						</Link>
+					)} */}
 				</div>
 
 				<div className="card-wrapper">
@@ -183,29 +198,28 @@ const SellerProfile = () => {
 								<Link
 									to={`/Individual_Listing/${service._id}/${service.user_id}`}
 									style={{ textDecoration: "none", color: "black" }}
-								>
-									{service.service_name}
-								</Link>
+								></Link>
 							</p>
 							<br></br>
 						</div>
-						{service.user_id}
-						<div className="buttons">
-							<Button
-								onClick={() => {
-									pauseHandler();
-								}}
-							>
-								Pause
-							</Button>
-							<Button
-								onClick={() => {
-									deleteHandler();
-								}}
-							>
-								Delete
-							</Button>
-						</div>
+						{service.user_id === localStorage.getItem("user_id") && (
+							<div className="buttons">
+								<Button
+									onClick={() => {
+										pauseHandler();
+									}}
+								>
+									Pause
+								</Button>
+								<Button
+									onClick={() => {
+										deleteHandler();
+									}}
+								>
+									Delete
+								</Button>
+							</div>
+						)}
 					</div>
 				))}
 

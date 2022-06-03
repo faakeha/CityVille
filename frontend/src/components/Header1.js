@@ -14,21 +14,18 @@ function Header1() {
 	const state = useContext(GlobalState);
 	const [user, setUser] = state.globalUser.user;
 	//const role = localStorage.getItem('user_role')
-	const [role, setRole] = state.globalUser.role
+	const [role, setRole] = state.globalUser.role;
 	const sid = 3;
 	const cid = 2;
 
-	useEffect(() => {
-		
-	}, [role])
+	useEffect(() => {}, [role]);
 
-	console.log(role, 'role is ')
+	console.log(role, "role is ");
 
-	window.addEventListener('storage', () => {
+	window.addEventListener("storage", () => {
 		console.log("change to local storage!");
-		setRole(localStorage.getItem('user_role'))
-	})
-  
+		setRole(localStorage.getItem("user_role"));
+	});
 
 	// function logout() {
 
@@ -53,26 +50,24 @@ function Header1() {
 		});*/
 
 		//const response = await data.json();
-		console.log('before set')
-		window.localStorage.setItem("user_role", "0")
+		console.log("before set");
+		window.localStorage.setItem("user_role", "0");
 		window.dispatchEvent(new Event("storage"));
-			//setRole()
-			setUser({
-				id: "",
-				first_name: "",
-				last_name: "",
-				token: "",
-			});
-		
+		//setRole()
+		setUser({
+			id: "",
+			first_name: "",
+			last_name: "",
+			token: "",
+		});
 	}
 
-	console.log('hello',localStorage.getItem('user_role'))
+	console.log("hello", localStorage.getItem("user_role"));
 	//check()
 
 	//}
 
 	const username = user.first_name;
-	
 
 	if (role === "1") {
 		return (
@@ -192,15 +187,17 @@ function Header1() {
 					{username}
 				</Link>
 				&nbsp;&nbsp;
-				<img
-					src="https://res.cloudinary.com/dbmknff2i/image/upload/v1653947860/users/profile_u6z026.png"
-					style={{
-						width: 60,
-						height: 55,
-					}}
-					className="roundimg"
-					alt="user"
-				></img>
+				<Link to={`/SellerProfile/${localStorage.getItem("user_id")}`}>
+					<img
+						src="https://res.cloudinary.com/dbmknff2i/image/upload/v1653947860/users/profile_u6z026.png"
+						style={{
+							width: 60,
+							height: 55,
+						}}
+						className="roundimg"
+						alt="user"
+					></img>
+				</Link>
 			</div>
 		);
 	} else if (role === "2") {
