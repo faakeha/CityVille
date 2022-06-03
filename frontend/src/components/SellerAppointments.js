@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./SellerAppointments.css";
-import Axios from "axios";
 import { Card, Button, Row } from "react-bootstrap";
 
 function SellerAppointments() {

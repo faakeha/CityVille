@@ -8,7 +8,7 @@ function SellerRequests() {
 	const [status, setStatus] = useState("");
 
 	const state = useContext(GlobalState);
-	const [response] = state.admin_service;
+	const [response] = state.globalUser.admin_service;
 	console.log("in login method");
 
 	Promise.all([
