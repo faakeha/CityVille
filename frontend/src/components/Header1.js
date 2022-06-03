@@ -249,15 +249,17 @@ function Header1() {
 				>
 					{username}
 				</Link>
-				<img
-					src="https://res.cloudinary.com/dbmknff2i/image/upload/v1653947860/users/profile_u6z026.png"
-					style={{
-						width: 60,
-						height: 55,
-					}}
-					className="roundimg"
-					alt="user"
-				></img>
+				<Link to="/CustomerProfile">
+					<img
+						src="https://res.cloudinary.com/dbmknff2i/image/upload/v1653947860/users/profile_u6z026.png"
+						style={{
+							width: 60,
+							height: 55,
+						}}
+						className="roundimg"
+						alt="user"
+					></img>
+				</Link>
 			</div>
 		);
 	} else {
