@@ -346,14 +346,14 @@ function SellerRequests() {
 										{isPending === true && (
 											<div className="apr-buttons">
 												<Button
-													onClick={() => {update_service(e.id, "Approved")}}
+													onClick={() => {update_service(e._id, "Approved")}}
 													className="apr-btn"
 													variant="outline-warning"
 												>
 													Accept
 												</Button>
 												<Button
-													onClick={() => {update_service(e.id, "Rejected")}}
+													onClick={() => {update_service(e._id, "Rejected")}}
 													className="rej-btn"
 													variant="outline-warning"
 												>
@@ -364,7 +364,7 @@ function SellerRequests() {
 										{isApproved === true && (
 											<div className="apr-buttons">
 												<Button
-													onClick={() => update_service(e._id, "Mark Pending")}
+													onClick={() => update_service(e._id, "Pending")}
 													className="apr-btn"
 													variant="outline-warning"
 												>
@@ -382,7 +382,7 @@ function SellerRequests() {
 										{isRejected === true && (
 											<div className="apr-buttons">
 												<Button
-													onClick={() => update_service(e._id, "Mark Pending")}
+													onClick={() => update_service(e._id, "Pending")}
 													className="apr-btn"
 													variant="outline-warning"
 												>

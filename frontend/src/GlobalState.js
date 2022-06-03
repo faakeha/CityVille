@@ -10,6 +10,7 @@ export const DataProvider = ({ children }) => {
 	const [servcat, setServcat] = useState([""]);
 	const [users, setUsers] = useState([""]);
 	
+	console.log(categories, 'gsc')
 	useEffect(() => {
 		//console.log('hi from global state')
 		/* const firstLogin = localStorage.getItem('firstLogin')
@@ -53,6 +54,7 @@ export const DataProvider = ({ children }) => {
 		
 		async function allCategories() {
 			console.log("in ac");
+			const other = "Other"
 	
 	
 			const cat = await fetch("http://localhost:3001/CityVille/Categories", {
@@ -64,6 +66,8 @@ export const DataProvider = ({ children }) => {
 				});
 	
 			setCategories(cat);
+			//setCategories([...cat], other)
+			
 		}
 		allCategories();
 	

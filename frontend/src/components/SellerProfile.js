@@ -14,6 +14,8 @@ const SellerProfile = () => {
 	//const [response, setResponse] = useState();
 	const [name, setName] = useState();
 	const [ID, setID] = useState();
+	const [custID, setcustID] = useState();
+
 
 	const state = useContext(GlobalState);
 	const [services] = state.services;
@@ -25,6 +27,9 @@ const SellerProfile = () => {
 		console.log("in login method");
 		const token = localStorage["userToken"];
 		const fromid = localStorage["user_id"];
+		
+		setcustID(fromid)
+
 		var today = new Date();
 
 		if (userid !== -1) {
@@ -147,7 +152,7 @@ const SellerProfile = () => {
 					)}
 					{
 						//services.length !== 0 &&
-						services[0].user_id !== localStorage.getItem("user_id") && (
+						ID !== localStorage.getItem("user_id") && (
 							<Link to="/CustomerAppointments">
 								<Button style={{ width: "250px" }}>
 									Request an appointment
@@ -193,24 +198,26 @@ const SellerProfile = () => {
 							}}
 							alt="user"
 						></img>
+
 						<div>
 							<p>
 								<Link
 									to={`/Individual_Listing/${service._id}/${service.user_id}`}
 									style={{ textDecoration: "none", color: "black" }}
-								></Link>
+								>{service.service_name}</Link>
 							</p>
 							<br></br>
 						</div>
-						{service.user_id === localStorage.getItem("user_id") && (
+						{ID === localStorage.getItem("user_id") && (
 							<div className="buttons">
 								<Button
 									onClick={() => {
 										pauseHandler();
 									}}
 								>
-									Pause
+									{service.is_paused === false ? "Pause" : "Resume"}
 								</Button>
+								
 								<Button
 									onClick={() => {
 										deleteHandler();

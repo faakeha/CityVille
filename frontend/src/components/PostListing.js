@@ -7,9 +7,20 @@ import { GlobalState } from "../GlobalState";
 const PostListing = () => {
 	const [selected, setSelected] = useState(null);
 	const handleSelect = (key, value) => {
-		setSelected(categories[key]);
-		setCategory(categories[key]);
+
+			if(categories[key] !== "Other"){
+				setSelected(categories[key]);
+				setCategory(categories[key]);
+			}
+			else{
+				setSelected(categories[key]);
+			}
+	
 	};
+
+	const setcat = () => {
+		
+	}
 
 	const [service_name, setServiceName] = useState("");
 	const [description, setDesc] = useState("");
@@ -22,11 +33,16 @@ const PostListing = () => {
 	const [msg, setMsg] = useState("");
 	const state = useContext(GlobalState);
 	const [cat] = state.categories;
+	console.log(cat.length, 'catl')
 	const user_id = localStorage["user_id"];
 
 	async function reg_service(event) {
 		console.log("in login method");
 		const token = localStorage["userToken"];
+
+		if(categories.include(category)){
+			alert("Category already exists.")
+		}
 
 		console.log(
 			user_id,
@@ -40,6 +56,7 @@ const PostListing = () => {
 		const image_url =
 			"https://res.cloudinary.com/dbmknff2i/image/upload/v1653407708/cityville/cityville6_onzrct.jpg";
 		event.preventDefault();
+
 		const data = await fetch("http://localhost:3001/CityVille/createService", {
 			method: "POST",
 			headers: {
@@ -146,8 +163,19 @@ const PostListing = () => {
 						{categories.map((value, index) => (
 							<Dropdown.Item eventKey={index}>{value}</Dropdown.Item>
 						))}
+						
 					</Dropdown.Menu>
 				</Dropdown>
+				{selected === "Other" &&
+				<Form.Group className="mb-3" controlId="formBasicPassword">
+					<Form.Label>Category</Form.Label>
+					<Form.Control
+						value={category}
+						onChange={(e) => setCategory(e.target.value)}
+						type="text"
+						placeholder="Enter the category for your service"
+					/>
+				</Form.Group> }
 
 				<Form.Group className="mb-3" controlId="formBasicPassword">
 					<Form.Label>Price</Form.Label>
@@ -170,7 +198,7 @@ const PostListing = () => {
 				</Form.Group>
 
 				<Button
-					onClick={reg_service()}
+					onClick={reg_service}
 					variant="warning"
 					type="submit"
 					className="submit-button"

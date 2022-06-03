@@ -14,6 +14,8 @@ function GlobalUser() {
 	//const [token, setToken] = useState(false);
 	const [user, setUser] = useState({});
 	const [token, setToken] = useState();
+	const [allUsers, setAllUsers] = useState([]);
+
 
 
 	console.log(isLogged, "log in");
@@ -54,10 +56,10 @@ function GlobalUser() {
 
 				console.log("api call3", response);
 				setIsLogged(true);
-				response.data.user_role === 1 ? setIsAdmin(true) : setIsAdmin(false);
+				response.user_role === 1 ? setIsAdmin(true) : setIsAdmin(false);
 				setUser(response);
 			}
-			//profile();
+			profile();
 
 			async function getAppointments() {
 				console.log("in users method");
@@ -102,6 +104,32 @@ function GlobalUser() {
 
 			
 				getAdminServices();
+
+				async function getAllUsers() {
+					console.log("in users method");
+					//const token = localStorage["userToken"];
+					const response = await fetch(
+						`http://localhost:3001/CityVille/users`,
+						{
+							method: "GET",
+							headers: {
+								"Content-Type": "application/json",
+								token: `Bearer ${token}`,
+							},
+						}
+					)
+						.then((response) => response.json())
+						.then((data) => {
+							return data;
+						});
+	
+					setAllUsers(response);
+					console.log('as', response)
+				}
+
+				getAllUsers()
+
+
 			
 
 			//   async function get_role(){
@@ -153,6 +181,8 @@ function GlobalUser() {
 		isLogged: [isLogged, setIsLogged],
 		isAdmin: [isAdmin, setIsAdmin],
 		role: [role, setRole],
+		allUsers: [allUsers, setAllUsers],
+
 	};
 }
 

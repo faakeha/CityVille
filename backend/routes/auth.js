@@ -110,6 +110,7 @@ router.get("/Services", async (req, res) => {
 			{ approve_status: "Approved" },
 			{ is_paused: false }
 		);
+		console.log(all_services[0].is_paused)
 		res.json(all_services);
 	}
 	//get services of specified user
@@ -604,6 +605,9 @@ router.get("/Categories", async (req, res) => {
 			arrc.push(element.category);
 		}
 	});
+	arrc.push("Other")
+	 console.log(arrc)
+	
 	res.json(arrc);
 });
 

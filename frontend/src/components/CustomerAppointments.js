@@ -4,12 +4,95 @@ import { GlobalState } from "../GlobalState";
 //import Axios from "axios";
 import { Card, Button, Row } from "react-bootstrap";
 
+
 function CustomerAppointments() {
 	//const [responses, setResponse] = useState([]);
-
+	const [filteredAppointments, setfilteredAppointments] = useState([]);
 	const state = useContext(GlobalState);
-	const [response] = state.app;
+	const [response] = state.globalUser.app;
+	const [user] = state.globalUser.user;
+	const [allUsers] = state.globalUser.allUsers;
+	const [services] = state.services;
+
+	const today = Date.now();
+	console.log(today)
+
+	console.log(new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(today));
+
+	const [dates, setDates] = useState([]);
+	const [names, setNames] = useState([]);
+
+	//console.log(format(new Date(), 'yyyy/MM/dd kk:mm:ss'))
+
+
+
+	console.log("all users", allUsers);
+	console.log("services", services);
+
+
 	console.log("in login method", response);
+	console.log("names", names);
+
+	//const today = Date.now();
+
+	// console.log(new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(today));
+
+
+
+	/*async function getuser(){
+		var toUser = {}
+		filteredAppointments.map(app => {
+			allUsers.map(user => {
+				if(app.to_user_id === user._id){
+					setNames(names => [...names, user.first_name+" "+user.last_name])
+				}
+			})
+			//toUser = allUsers.findindex(user => user._id === app.to_user_id),
+			
+			
+	})
+			
+		
+	}*/
+
+	useEffect(() => {
+		const getuser = async () => {
+			//console.log('in const')
+			filteredAppointments.forEach(app => {
+				allUsers.forEach(user => {
+					//console.log(app.to_user_id, user._id)
+					if (app.to_user_id === user._id) {
+						setNames(names => [...names, user.first_name + " " + user.last_name])
+					}
+				})
+				//toUser = allUsers.findindex(user => user._id === app.to_user_id),
+
+
+			})
+
+
+		}
+
+
+		const getDates = async () => {
+			filteredAppointments.forEach(app => {
+				 
+				var d = new Date(app.createdAt);
+
+				var date = d.getDate();
+				var month = d.getMonth() + 1; // Since getMonth() returns month from 0-11 not 1-12
+				var year = d.getFullYear();
+				var newDate = date + "/" + month + "/" + year;
+				setDates(dates => [...dates, newDate])
+
+			})
+		}
+
+		getuser()
+		getDates()
+
+
+	}, [filteredAppointments])
 
 	async function update_app(id, new_status) {
 		const token = localStorage["userToken"];
@@ -122,7 +205,7 @@ function CustomerAppointments() {
 	// 	//}
 	// 	//);
 	// };
-	const [filteredAppointments, setfilteredAppointments] = useState(null);
+
 
 	const [isPending, setIsPending] = useState(null);
 
@@ -147,6 +230,7 @@ function CustomerAppointments() {
 		setIsCancelled(false);
 		setIsCompleted(false);
 		setfilteredAppointments(approved);
+
 	}
 
 	function showRejected() {
@@ -185,7 +269,14 @@ function CustomerAppointments() {
 		setfilteredAppointments(cancelled);
 	}
 
+	console.log("appnts", filteredAppointments);
+
+	// if(filteredAppointments.length === 0 && names.length === 0) return (
+	// 	null
+	// )
+
 	return (
+
 		<div className="main-content">
 			<h1 className=".appointments-h1">My Appointments</h1>
 			<div className="buttons">
@@ -232,7 +323,8 @@ function CustomerAppointments() {
 			</div>
 
 			{filteredAppointments &&
-				filteredAppointments.map((response) => {
+				filteredAppointments.map((response, index) => {
+
 					return (
 						<div>
 							<div className="cards">
@@ -242,40 +334,40 @@ function CustomerAppointments() {
 											{isApproved === true && (
 												<div className="test">
 													<p>
-														<b>To User: </b> {response.to_user_id}
+														<b>To User: </b> {names[index]}
 													</p>
 													<p>
-														<b>Acceptance Date: </b> {response.alternate_date}
+														<b>Acceptance Date: </b> {dates[index]}
 													</p>
 												</div>
 											)}
 											{isPending === true && (
 												<div className="test">
 													<p>
-														<b>To User: </b> {response.to_user_id}
+														<b>To User: </b> {names[index]}
 													</p>
 													<p>
-														<b>Recieval Date: </b> {response.date}
+														<b>Receival Date: </b> {dates[index]}
 													</p>
 												</div>
 											)}
 											{isRejected === true && (
 												<div className="test">
 													<p>
-														<b>To User: </b> {response.to_user_id}
+														<b>To User: </b> {names[index]}
 													</p>
 													<p>
-														<b>Rejection Date: </b> {response.alternate_date}
+														<b>Rejection Date: </b> {dates[index]}
 													</p>
 												</div>
 											)}
 											{isCompleted === true && (
 												<div className="test">
 													<p>
-														<b>To User: </b> {response.to_user_id}
+														<b>To User: </b> {names[index]}
 													</p>
 													<p>
-														<b>Completion Date: </b> {response.alternate_date}
+														<b>Completion Date: </b> {dates[index]}
 													</p>
 												</div>
 											)}
@@ -283,22 +375,19 @@ function CustomerAppointments() {
 											{isCancelled === true && (
 												<div className="user-date">
 													<p>
-														<b>To User: </b> {response.to_user_id}
+														<b>To User: </b> {names[index]}
 													</p>
 													<p>
-														<b>Cancellation Date: </b> {response.alternate_date}
+														<b>Cancellation Date: </b> {dates[index]}
 													</p>
 												</div>
 											)}
 
 											<p>
 												<b>From User: </b>
-												{response.from_user_id}
+												{user.first_name} {user.last_name}
 											</p>
-											<p>
-												<b>For Service: </b>
-												{response.service_id}
-											</p>
+
 											<p>
 												<b>Status: </b>
 												{response.approve_status}
@@ -306,7 +395,7 @@ function CustomerAppointments() {
 											<div className="date-report">
 												<p>
 													<b>Date: </b>
-													{response.date}
+													{dates[index]}
 												</p>
 												<a className="report-link" href="">
 													Report Customer
@@ -325,7 +414,7 @@ function CustomerAppointments() {
 													>
 														Cancel
 													</Button>
-													
+
 												</div>
 											)}
 										</div>
@@ -341,7 +430,7 @@ function CustomerAppointments() {
 													>
 														Cancel
 													</Button>
-													
+
 												</div>
 											)}
 										</div>
