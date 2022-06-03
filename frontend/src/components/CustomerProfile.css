@@ -1,0 +1,9 @@
+.main-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.form{
+    padding-bottom: 60px;
+    padding-left: 100px;
+}
