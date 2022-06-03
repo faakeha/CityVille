@@ -149,9 +149,9 @@ router.put("/updateService/:id", verifyToken, async (req, res) => {
 			}
 		}
 	} else if (user1.user_role == 1) {
-		if (!req.body.approve_status) {
-			res.json("You are not authorized.");
-		} else {
+		// if (!req.body.approve_status) {
+		// 	res.json("You are not authorized.");
+		// } else {
 			try {
 				const updatedUser = await Service.findByIdAndUpdate(
 					req.params.id,
@@ -164,7 +164,7 @@ router.put("/updateService/:id", verifyToken, async (req, res) => {
 			} catch (err) {
 				res.status(500).json(err);
 			}
-		}
+		//}
 	} else if (user1.user_role == 2) {
 		if (!(req.body.reviews || req.body.ratings)) {
 			res.json("You are not authorized.");
@@ -185,7 +185,6 @@ router.put("/updateService/:id", verifyToken, async (req, res) => {
 		}
 	}
 });
-
 //LOGIN
 router.post("/login", async (req, res) => {
 	try {
@@ -625,7 +624,7 @@ router.get("/AdminServices", verifyToken, async (req, res) => {
 	const user1 = await User.findOne({ _id: req.user.id });
 	// if (!req?.query?.id) {
 	//user
-
+	console.log('in admin services')
 	if (user1.user_role == 1) {
 		const all_services = await Service.find();
 		//{ approve_status: "Pending" }

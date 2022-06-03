@@ -11,22 +11,29 @@ function GlobalUser() {
 	const [isLogged, setIsLogged] = useState(false);
 	const [app, setAppointments] = useState([]);
 	const [role, setRole] = useState(localStorage.getItem("user_role"));
-	const [token, setToken] = useState(false);
+	//const [token, setToken] = useState(false);
 	const [user, setUser] = useState({});
+	const [token, setToken] = useState();
+
 
 	console.log(isLogged, "log in");
 	console.log(app, "appointments");
+	console.log(admin_service, "as");
+	
 
 	useEffect(() => {
-		const firstLogin = localStorage.getItem("firstLogin");
+		const firstLogin = localStorage.getItem("firstlogin");
 		const tok = localStorage.getItem("userToken");
+		
 		if (firstLogin) {
+			console.log('token')
 			setToken(tok);
 		}
 	}, []);
 
 	useEffect(() => {
 		if (token) {
+		console.log('token')
 			async function profile() {
 				console.log("in users method");
 
@@ -35,7 +42,7 @@ function GlobalUser() {
 					{
 						method: "GET",
 						headers: {
-							token: token,
+							token: `Bearer ${token}`,
 						},
 					}
 				)
@@ -47,10 +54,10 @@ function GlobalUser() {
 
 				console.log("api call3", response);
 				setIsLogged(true);
-				response.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false);
+				response.data.user_role === 1 ? setIsAdmin(true) : setIsAdmin(false);
 				setUser(response);
 			}
-			profile();
+			//profile();
 
 			async function getAppointments() {
 				console.log("in users method");
@@ -73,7 +80,7 @@ function GlobalUser() {
 
 			async function getAdminServices() {
 				console.log("in users method");
-				const token = localStorage["userToken"];
+				//const token = localStorage["userToken"];
 				const response = await fetch(
 					`http://localhost:3001/CityVille/AdminServices`,
 					{
@@ -90,11 +97,12 @@ function GlobalUser() {
 					});
 
 				setAdminService(response);
+				console.log('as', response)
 			}
 
-			if (isAdmin === true) {
+			
 				getAdminServices();
-			}
+			
 
 			//   async function get_role(){
 			//     const token = localStorage['userToken']

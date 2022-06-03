@@ -18,6 +18,7 @@ function Header1() {
 	const sid = 3;
 	const cid = 2;
 
+	console.log(user)
 	useEffect(() => {
 		
 	}, [role])
