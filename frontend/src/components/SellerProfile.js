@@ -2,18 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import { Card } from "react-bootstrap";
 import "./SellerProfile.css";
 import { GlobalState } from "../GlobalState";
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams } from "react-router-dom";
 import { Button } from "react-bootstrap";
-
-
 
 const SellerProfile = () => {
 	const params = useParams();
 	const uid = params.id;
-	console.log(uid)
-	const userid = uid ? uid : -1
-
-
+	console.log(uid);
+	const userid = uid ? uid : -1;
 
 	//const [response, setResponse] = useState();
 	const [name, setName] = useState();
@@ -22,57 +18,52 @@ const SellerProfile = () => {
 	const state = useContext(GlobalState);
 	const [services] = state.services;
 	const [listing, setListing] = useState([]);
-	var id = ''
-
-
+	const [serviceStatus, setServiceStatus] = useState(null);
+	var id = "";
 
 	const get_user = async (event) => {
 		console.log("in login method");
 		const token = localStorage["userToken"];
 		const fromid = localStorage["user_id"];
-var today = new Date(); 
+		var today = new Date();
 
 		if (userid !== -1) {
-			console.log('in userid if')
-			id = userid
-			console.log(userid, 'id')
-			const result = fetch(`http://localhost:3001/CityVille/users?id=${id}`, { 
+			console.log("in userid if");
+			id = userid;
+			console.log(userid, "id");
+			const result = fetch(`http://localhost:3001/CityVille/users?id=${id}`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
 					token: `Bearer ${token}`,
 				},
-			 })
-				.then(response => response.json()) // pass the data as promise to next then block
-				.then(data => {
+			})
+				.then((response) => response.json()) // pass the data as promise to next then block
+				.then((data) => {
 					setName(data.first_name + " " + data.last_name);
 					setID(data._id);
 
-					console.log(data, '\n');
-
-					
+					console.log(data, "\n");
 
 					return fetch(`http://localhost:3001/CityVille/createAppointment`, {
 						method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					token: `Bearer ${token}`,
-				},
-				body:JSON.stringify({
-					to_user_id: userid,
-					from_user_id: fromid,
-					date: today.getDate()
-
-				})
+						headers: {
+							"Content-Type": "application/json",
+							token: `Bearer ${token}`,
+						},
+						body: JSON.stringify({
+							to_user_id: userid,
+							from_user_id: fromid,
+							date: today.getDate(),
+						}),
 					}); // make a 2nd request and return a promise
 				})
-				.then(response => response.json())
-				.catch(err => {
-					console.error('Request failed', err)
-				})
-
+				.then((response) => response.json())
+				.catch((err) => {
+					console.error("Request failed", err);
+				});
 			// I'm using the result const to show that you can continue to extend the chain from the returned promise
-			result.then(r => {
+			result.then((r) => {
 				console.log(r); // 2nd request result first_stage property
 			});
 
@@ -86,12 +77,8 @@ var today = new Date();
 
 			// const res = await data.json();
 			// console.log("eeeeeeeeeeeeeeeeeeeeee", res);
-
-			
-
-		}
-		else {
-			console.log('in userid else')
+		} else {
+			console.log("in userid else");
 			id = localStorage["user_id"];
 			const data = await fetch(`http://localhost:3001/CityVille/user/${id}`, {
 				method: "GET",
@@ -109,7 +96,6 @@ var today = new Date();
 		}
 
 		//event.preventDefault()
-
 	};
 
 	console.log("lalal", name);
@@ -135,6 +121,14 @@ var today = new Date();
 		[name, ID]
 	);
 
+	const deleteHandler = () => {
+		////call delete api here
+	};
+
+	const pauseHandler = () => {
+		////call delete api here
+	};
+
 	console.log("listing", listing[0]);
 	return (
 		<div>
@@ -146,17 +140,27 @@ var today = new Date();
 						src="https://res.cloudinary.com/dbmknff2i/image/upload/v1653748300/users/Image_t0wi4m.png"
 						alt="Tesla"
 					/>
-
-					<Link to="/CustomerAppointments">
-
-						<Button style={{ width: "250px" }}>
-							Request an appointment
-						</Button>
-
-					</Link>
+					{console.log("id from services", services[0])}
+					{console.log(
+						"id from local storage",
+						localStorage.getItem("user_id")
+					)}
+					{
+						//services.length !== 0 &&
+						services[0].user_id !== localStorage.getItem("user_id") && (
+							<Link to="/CustomerAppointments">
+								<Button style={{ width: "250px" }}>
+									Request an appointment
+								</Button>
+							</Link>
+						)
+					}
+					{/* {services[0].user_id === localStorage.getItem("user_id") && (
+						<Link to="/CustomerAppointments">
+							<Button style={{ width: "250px" }}>Request an appointment</Button>
+						</Link>
+					)} */}
 				</div>
-
-
 
 				<div className="card-wrapper">
 					{
@@ -165,23 +169,16 @@ var today = new Date();
 						// lagy ga
 					}
 					<Card className="main-card">
-						<Card.Body style={{ width: "25rem" }}>
-							Review 1
-						</Card.Body>
+						<Card.Body style={{ width: "25rem" }}>Review 1</Card.Body>
 					</Card>
 					<Card className="main-card">
-						<Card.Body style={{ width: "25rem" }}>
-							Review 2
-						</Card.Body>
+						<Card.Body style={{ width: "25rem" }}>Review 2</Card.Body>
 					</Card>
 					<Card className="main-card">
-						<Card.Body style={{ width: "25rem" }}>
-							Review 3
-						</Card.Body>
+						<Card.Body style={{ width: "25rem" }}>Review 3</Card.Body>
 					</Card>
 				</div>
 			</div>
-
 
 			<div className="bottom-sp-bar">
 				{listing.map((service) => (
@@ -197,10 +194,32 @@ var today = new Date();
 							alt="user"
 						></img>
 						<div>
-							<p ><Link to={`/Individual_Listing/${service._id}/${service.user_id}`} style={{ textDecoration: "none", color: "black" }}>{service.service_name}</Link></p>
-
+							<p>
+								<Link
+									to={`/Individual_Listing/${service._id}/${service.user_id}`}
+									style={{ textDecoration: "none", color: "black" }}
+								></Link>
+							</p>
 							<br></br>
 						</div>
+						{service.user_id === localStorage.getItem("user_id") && (
+							<div className="buttons">
+								<Button
+									onClick={() => {
+										pauseHandler();
+									}}
+								>
+									Pause
+								</Button>
+								<Button
+									onClick={() => {
+										deleteHandler();
+									}}
+								>
+									Delete
+								</Button>
+							</div>
+						)}
 					</div>
 				))}
 

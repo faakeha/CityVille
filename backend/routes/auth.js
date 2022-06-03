@@ -256,7 +256,7 @@ router.get("/profile", verifyToken, async (req, res) => {
 });
 
 //get profile
-router.get("/users",verifyToken, async (req, res) => {
+router.get("/users", verifyToken, async (req, res) => {
 	const user1 = await User.findOne({ _id: req.user.id });
 	if (user1.user_role == 1) {
 		if (!req?.query?.id) {
@@ -461,7 +461,8 @@ router.put("/updateApp/:id", verifyToken, async (req, res) => {
 				} else {
 					if (
 						user_app.approve_status == "Pending" &&
-						(req.body.approve_status == "Approved" || req.body.approve_status == "Rejected")
+						(req.body.approve_status == "Approved" ||
+							req.body.approve_status == "Rejected")
 					) {
 						const updatedApp = await Appointment.findByIdAndUpdate(
 							req.params.id,
@@ -473,7 +474,8 @@ router.put("/updateApp/:id", verifyToken, async (req, res) => {
 						res.status(200).json(updatedApp);
 					} else if (
 						user_app.approve_status == "Approved" &&
-						(req.body.approve_status == "Cancelled" || req.body.approve_status == "Completed")
+						(req.body.approve_status == "Cancelled" ||
+							req.body.approve_status == "Completed")
 					) {
 						const updatedApp = await Appointment.findByIdAndUpdate(
 							req.params.id,
@@ -671,4 +673,5 @@ router.get("/getTopServiceProviders", async (req, res) => {
 	}
 	res.json(services);
 });
+
 module.exports = router;
