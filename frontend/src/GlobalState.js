@@ -10,7 +10,6 @@ export const DataProvider = ({ children }) => {
 	const [servcat, setServcat] = useState([""]);
 	const [users, setUsers] = useState([""]);
 	
-	
 	useEffect(() => {
 		//console.log('hi from global state')
 		/* const firstLogin = localStorage.getItem('firstLogin')
@@ -49,6 +48,7 @@ export const DataProvider = ({ children }) => {
 		// setUser(response)
 		// }
 		// getUser()
+		
 
 		
 		async function allCategories() {

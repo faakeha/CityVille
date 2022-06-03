@@ -18,7 +18,10 @@ function Header1() {
 	const sid = 3;
 	const cid = 2;
 
-	useEffect(() => {}, [role]);
+	console.log(user)
+	useEffect(() => {
+		
+	}, [role])
 
 	console.log(role, "role is ");
 
