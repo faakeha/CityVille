@@ -63,7 +63,7 @@ function GlobalUser() {
 
 			async function getAppointments() {
 				console.log("in users method");
-				const token = localStorage["userToken"];
+				//const token = localStorage["userToken"];
 				const response = await fetch(`http://localhost:3001/CityVille/getApp`, {
 					method: "GET",
 					headers: {

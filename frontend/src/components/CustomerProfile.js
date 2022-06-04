@@ -45,14 +45,47 @@ function CustomerProfile() {
 		get_user(e);
 	}, []);
 
-	const res = {};
+	async function update_user(id, resp) {
+		const token = localStorage["userToken"];
+		console.log("id", id);
+		//console.log("new_status", new_status);
+		//event.preventDefault()
+		const res = await fetch(
+			`http://localhost:3001/CityVille/updateUser/${id}`,
+			{
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+					token: `Bearer ${token}`,
+				},
+				body: JSON.stringify({
+					email: resp["email"],
+					phone_number: resp["phone_number"],
+					cnic_number: resp["cnic_number"],
+					address: resp["address"]
+
+					
+				}),
+			}
+		);
+
+		console.log("e", res);
+
+		//setResponse(res);
+	}
+
+	const resp = {};
 	const buttonHandler = () => {
 		console.log("inside button handler");
 		setEditMode(!editMode);
-		res["email"] = email;
-		res["phone_number"] = phone;
-		res["address"] = address;
-		res["cnic_number"] = cnic;
+		resp["email"] = email;
+		resp["phone_number"] = phone;
+		resp["address"] = address;
+		resp["cnic_number"] = cnic;
+
+		if (editMode === true) {
+			update_user(id, resp)
+		}
 	};
 
 	return (
@@ -96,7 +129,7 @@ function CustomerProfile() {
 							</Form.Group>
 
 							<Form.Group className="mb-3" controlId="formBasicEmail">
-								<Form.Label>Description</Form.Label>
+								<Form.Label>Phone</Form.Label>
 								<Form.Control
 									defaultValue={phone}
 									onChange={(e) => setPhone(e.target.value)}
@@ -105,7 +138,7 @@ function CustomerProfile() {
 								/>
 							</Form.Group>
 							<Form.Group className="mb-3" controlId="formBasicEmail">
-								<Form.Label>Price</Form.Label>
+								<Form.Label>Address</Form.Label>
 								<Form.Control
 									defaultValue={address}
 									onChange={(e) => setAddress(e.target.value)}
@@ -113,6 +146,15 @@ function CustomerProfile() {
 									placeholder="Enter the address"
 								/>
 							</Form.Group>
+							<Form.Group className="mb-3" controlId="formBasicEmail">
+						<Form.Label>CNIC</Form.Label>
+						<Form.Control
+							defaultValue={cnic}
+							onChange={(e) => setCnic(e.target.value)}
+							type="text"
+							placeholder="CNIC"
+						/>
+					</Form.Group>
 						</div>
 					) : (
 						<div>
@@ -128,7 +170,7 @@ function CustomerProfile() {
 							</Form.Group>
 
 							<Form.Group className="mb-3" controlId="formBasicEmail">
-								<Form.Label>Description</Form.Label>
+								<Form.Label>Phone</Form.Label>
 								<Form.Control
 									readOnly
 									defaultValue={phone}
@@ -138,7 +180,7 @@ function CustomerProfile() {
 								/>
 							</Form.Group>
 							<Form.Group className="mb-3" controlId="formBasicEmail">
-								<Form.Label>Price</Form.Label>
+								<Form.Label>Address</Form.Label>
 								<Form.Control
 									readOnly
 									defaultValue={address}
@@ -147,18 +189,19 @@ function CustomerProfile() {
 									placeholder="Enter the address"
 								/>
 							</Form.Group>
-						</div>
-					)}
-					<Form.Group className="mb-3" controlId="formBasicEmail">
-						<Form.Label>CNIC</Form.Label>
-						<Form.Control
+							<Form.Group className="mb-3" controlId="formBasicEmail">
+							<Form.Label>CNIC</Form.Label>
+							<Form.Control
 							readOnly
 							defaultValue={cnic}
-							onChange={(e) => setAddress(e.target.value)}
+							onChange={(e) => setCnic(e.target.value)}
 							type="text"
 							placeholder="CNIC"
 						/>
 					</Form.Group>
+						</div>
+					)}
+					
 					<Button
 						onClick={buttonHandler}
 						variant="warning"

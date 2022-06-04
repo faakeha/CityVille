@@ -110,7 +110,7 @@ router.get("/Services", async (req, res) => {
 			{ approve_status: "Approved" },
 			{ is_paused: false }
 		);
-		console.log(all_services[0].is_paused)
+		
 		res.json(all_services);
 	}
 	//get services of specified user

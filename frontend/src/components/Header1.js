@@ -55,6 +55,10 @@ function Header1() {
 		//const response = await data.json();
 		console.log("before set");
 		window.localStorage.setItem("user_role", "0");
+		window.localStorage.setItem("userToken", "");
+		window.localStorage.setItem("user_id", "");
+		window.localStorage.setItem("username", "");
+
 		window.dispatchEvent(new Event("storage"));
 		//setRole()
 		setUser({
@@ -70,7 +74,7 @@ function Header1() {
 
 	//}
 
-	const username = user.first_name;
+	const username = localStorage.getItem('username')
 
 	if (role === "1") {
 		return (

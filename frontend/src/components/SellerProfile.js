@@ -215,7 +215,7 @@ const SellerProfile = () => {
 										pauseHandler();
 									}}
 								>
-									{service.is_paused === false ? "Pause" : "Resume"}
+									Pause
 								</Button>
 								
 								<Button

@@ -39,11 +39,22 @@
 }
 
 .apr-btn{
-    width: 90px;
-    height: 45px;
+    width: 130px;
+    height: 50px;
 }
 
 .rej-btn{
-    width: 90px;
-    height: 45px;
+    width: 130px;
+    height: 50px;
 }
+
+.del-btn{
+    width: 130px;
+    height: 50px;
+}
+
+.ed-btn{
+    width: 130px;
+    height: 50px;
+}
+

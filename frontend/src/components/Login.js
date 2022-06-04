@@ -66,7 +66,7 @@ function Login() {
 			console.log("before route change");
 			console.log(data);
 			localStorage.setItem("firstlogin", true);
-			//localStorage.setItem('username', (data.first_name + " " + data.last_name))
+			localStorage.setItem('username', (data.first_name + " " + data.last_name))
 			localStorage.setItem("userToken", data.accessToken);
 			setRole(data.user_role);
 			data.user_role === 1 ? setIsAdmin(true) : setIsAdmin(false);

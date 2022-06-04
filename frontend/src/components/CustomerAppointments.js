@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import "./CustomerAppointments.css";
 import { GlobalState } from "../GlobalState";
 //import Axios from "axios";
-import { Card, Button, Row } from "react-bootstrap";
+import { Card, Button, Row, Form } from "react-bootstrap";
 
 
 function CustomerAppointments() {
@@ -10,21 +10,28 @@ function CustomerAppointments() {
 	const [filteredAppointments, setfilteredAppointments] = useState([]);
 	const state = useContext(GlobalState);
 	const [response] = state.globalUser.app;
-	const [user] = state.globalUser.user;
+	//const [user] = state.globalUser.user;
 	const [allUsers] = state.globalUser.allUsers;
 	const [services] = state.services;
 
-	const today = Date.now();
-	console.log(today)
-
-	console.log(new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(today));
+	const user = localStorage.getItem('username')
 
 	const [dates, setDates] = useState([]);
 	const [names, setNames] = useState([]);
 
-	//console.log(format(new Date(), 'yyyy/MM/dd kk:mm:ss'))
+	response.sort(GetSortOrder("createdAt"))
 
-
+	function GetSortOrder(prop) {
+		return function (a, b) {
+			if (a[prop] > b[prop]) {
+				return 1;
+			} else if (a[prop] < b[prop]) {
+				return -1;
+			}
+			return 0;
+		};
+	}
+	
 
 	console.log("all users", allUsers);
 	console.log("services", services);
@@ -73,6 +80,7 @@ function CustomerAppointments() {
 
 		}
 
+		
 
 		const getDates = async () => {
 			filteredAppointments.forEach(app => {
@@ -90,6 +98,8 @@ function CustomerAppointments() {
 
 		getuser()
 		getDates()
+		dates.sort()
+		
 
 
 	}, [filteredAppointments])
@@ -385,7 +395,7 @@ function CustomerAppointments() {
 
 											<p>
 												<b>From User: </b>
-												{user.first_name} {user.last_name}
+												{user}
 											</p>
 
 											<p>
@@ -397,9 +407,7 @@ function CustomerAppointments() {
 													<b>Date: </b>
 													{dates[index]}
 												</p>
-												<a className="report-link" href="">
-													Report Customer
-												</a>
+												
 											</div>
 										</Card.Text>
 										<div className="decision-buttons">
@@ -411,6 +419,7 @@ function CustomerAppointments() {
 														}
 														className="apr-btn"
 														variant="outline-warning"
+														type="submit"
 													>
 														Cancel
 													</Button>
@@ -420,18 +429,22 @@ function CustomerAppointments() {
 										</div>
 										<div className="decision-buttons">
 											{isPending === true && (
+												<Form>
 												<div className="apr-buttons">
+													
 													<Button
 														onClick={() =>
 															update_app(response._id, "Cancelled")
 														}
 														className="apr-btn"
 														variant="outline-warning"
+														
 													>
 														Cancel
 													</Button>
-
+													
 												</div>
+												</Form>
 											)}
 										</div>
 									</Card.Body>

@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./SellerRequests.css";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Form } from "react-bootstrap";
 import { GlobalState } from "../GlobalState";
 
 function SellerRequests() {
@@ -8,12 +8,35 @@ function SellerRequests() {
 	const [response, setResponse] = state.globalUser.admin_service
 	const [status, setStatus] = useState("");
 	const [ID, setID] = useState("");
-
+	const [allUsers, setAllUsers] = state.globalUser.allUsers
+	const [filteredRequests, setfilteredRequests] = useState([]);
+	const [names, setNames] = useState([]);
 
 	
 	//setResponse(state.globalUser.admin_service);
 	console.log("in login method");
 	console.log(response);
+
+	useEffect(() => {
+		const getuser = async () => {
+			//console.log('in const')
+			filteredRequests.forEach(app => {
+				allUsers.forEach(user => {
+					//console.log(app.to_user_id, user._id)
+					if (app.user_id === user._id) {
+						setNames(names => [...names, user.first_name + " " + user.last_name])
+					}
+				})
+				//toUser = allUsers.findindex(user => user._id === app.to_user_id),
+
+
+			})
+
+
+		}
+
+		getuser()
+	}, [filteredRequests])
 
 	/*Promise.all([
 		fetch("http://localhost:3001/CityVille/Login"),
@@ -156,7 +179,7 @@ function SellerRequests() {
 
 	const [requests, setRequests] = useState(null);
 	
-	const [filteredRequests, setfilteredRequests] = useState(null);
+	
 
 	const [isPending, setIsPending] = useState(null);
 
@@ -262,14 +285,14 @@ function SellerRequests() {
 				</Button>
 			</div>
 			{filteredRequests &&
-				filteredRequests.map((e) => {
+				filteredRequests.map((e, index) => {
 					return (
 						<div className="cards">
 							<Card className="main-card" style={{ width: "70rem" }}>
 								<Card.Body className="card-body" style={{ width: "60rem" }}>
 									<p>
 										<b>User ID: </b>
-										{e.user_id}
+										{names[index]}
 									</p>
 									<p>
 										<b>Service Name: </b>
@@ -344,11 +367,13 @@ function SellerRequests() {
 
 									<div className="decision-buttons">
 										{isPending === true && (
+											
 											<div className="apr-buttons">
 												<Button
 													onClick={() => {update_service(e._id, "Approved")}}
 													className="apr-btn"
 													variant="outline-warning"
+													type="submit"
 												>
 													Accept
 												</Button>
@@ -356,17 +381,22 @@ function SellerRequests() {
 													onClick={() => {update_service(e._id, "Rejected")}}
 													className="rej-btn"
 													variant="outline-warning"
+													type="submit"
 												>
 													Reject
 												</Button>
 											</div>
+											
 										)}
 										{isApproved === true && (
+											
 											<div className="apr-buttons">
+
 												<Button
 													onClick={() => update_service(e._id, "Pending")}
 													className="apr-btn"
 													variant="outline-warning"
+													type="submit"
 												>
 													Mark Pending
 												</Button>
@@ -374,10 +404,12 @@ function SellerRequests() {
 													onClick={() => update_service(e._id, "Rejected")}
 													className="rej-btn"
 													variant="outline-warning"
+													type="submit"
 												>
 													Reject
 												</Button>
 											</div>
+											
 										)}
 										{isRejected === true && (
 											<div className="apr-buttons">

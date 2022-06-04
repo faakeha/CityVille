@@ -6,7 +6,7 @@ import { Card, Button, Row } from "react-bootstrap";
 
 function SellerAppointments() {
 	const state = useContext(GlobalState);
-	const [response] = state.app;
+	const [response] = state.globalUser.app;
 	// const responses = [
 	// 	{
 	// 		_id: "6260afc9f481f2aa958617ef",

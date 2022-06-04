@@ -40,9 +40,9 @@ const PostListing = () => {
 		console.log("in login method");
 		const token = localStorage["userToken"];
 
-		if(categories.include(category)){
-			alert("Category already exists.")
-		}
+		// if(categories.include(category)){
+		// 	alert("Category already exists.")
+		// }
 
 		console.log(
 			user_id,
@@ -55,7 +55,8 @@ const PostListing = () => {
 		);
 		const image_url =
 			"https://res.cloudinary.com/dbmknff2i/image/upload/v1653407708/cityville/cityville6_onzrct.jpg";
-		event.preventDefault();
+		
+			event.preventDefault();
 
 		const data = await fetch("http://localhost:3001/CityVille/createService", {
 			method: "POST",
